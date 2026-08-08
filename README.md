@@ -15,6 +15,20 @@
 
 データはブラウザの `localStorage` にのみ保存されます（サーバー送信なし）。初回起動時はサンプルデータ3件が入っています。
 
+## iPhone で使う
+
+公開URL（GitHub Pages）: **https://takuya1128iuy-pixel.github.io/claudecode01/**
+
+1. iPhone の Safari で上記URLを開く
+2. 下部の共有ボタン（□に↑）をタップ
+3. 「ホーム画面に追加」を選ぶ
+
+ホーム画面のアイコンから起動すると、Safariのアドレスバーが消えてアプリのように全画面で使えます。
+
+- 「写真を選ぶ / 撮影する」から、その場でカメラ撮影・写真ライブラリの選択ができます
+- 記録データはその iPhone の Safari 内にのみ保存されます（他の端末とは同期しません）
+- iOS では、しばらくアプリを開かない状態が続くとブラウザ側の判断で保存データが消える場合があります。長期的に残したい記録には、サーバー保存の実装が必要です
+
 ## 技術構成
 
 - React + TypeScript + Vite
@@ -34,6 +48,11 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## デプロイ
+
+`claude/sake-tasting-app-demo-bbnia0` ブランチに push すると、GitHub Actions
+(`.github/workflows/deploy.yml`) が自動でビルドして GitHub Pages に公開します。
 
 ## 今後の拡張アイデア
 
