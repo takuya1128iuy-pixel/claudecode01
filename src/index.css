@@ -26,6 +26,21 @@ body {
   box-sizing: border-box;
 }
 
+/* iOS Safari は 16px 未満の入力欄にフォーカスすると画面を自動拡大するため、
+   モバイル幅では 16px を明示して拡大を防ぐ */
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* ホーム画面から起動したときにセーフエリア（ノッチ・ホームバー）を避ける */
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

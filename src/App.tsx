@@ -32,7 +32,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <header className="bg-[color:var(--color-indigo)] text-white">
+      <header
+        className="bg-[color:var(--color-indigo)] text-white"
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
+      >
         <div className="max-w-4xl mx-auto px-4 py-6">
           <h1 className="text-2xl font-semibold tracking-wide">🍶 きき酒ノート</h1>
           <p className="text-sm text-white/70 mt-1">
@@ -66,7 +69,7 @@ export default function App() {
         {tab === "insight" && <PreferenceSummary records={records} />}
       </main>
 
-      <footer className="text-center text-xs text-stone-400 pb-6">
+      <footer className="text-center text-xs text-stone-400 px-4 pb-6">
         デモアプリ：データはこの端末のブラウザ内（localStorage）にのみ保存されます
       </footer>
     </div>
