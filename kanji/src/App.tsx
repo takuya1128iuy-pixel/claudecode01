@@ -5,29 +5,47 @@ import LessonList from "./components/LessonList";
 import Quiz from "./components/Quiz";
 import RecordScreen from "./components/RecordScreen";
 import Result from "./components/Result";
-import {
-  dueEntries,
-  emptyStore,
-  loadStore,
-  masteredCount,
-  recordAnswer,
-  saveStore,
-  streak,
-  type Store,
-} from "./lib/progress";
+import UserSelect from "./components/UserSelect";
 import { buildQuestions } from "./lib/quiz";
+import {
+  currentUser,
+  dueEntries,
+  loadStore,
+  newUser,
+  recordAnswer,
+  recordTest,
+  saveStore,
+  updateUser,
+  type Store,
+  type UserProfile,
+} from "./lib/store";
 import type { Answer, Grade, KanjiEntry, Question, QuizMode } from "./types";
 
+type Purpose = "practice" | "test";
+
+interface TestContext {
+  grade: Grade;
+  lesson: number | null;
+}
+
 type Screen =
+  | { name: "users" }
   | { name: "home" }
-  | { name: "grades" }
-  | { name: "lessons"; grade: Grade }
-  | { name: "quiz"; title: string; questions: Question[] }
-  | { name: "result"; title: string; answers: Answer[] }
+  | { name: "grades"; purpose: Purpose }
+  | { name: "lessons"; grade: Grade; purpose: Purpose }
+  | { name: "quiz"; title: string; questions: Question[]; test: TestContext | null }
+  | {
+      name: "result";
+      title: string;
+      answers: Answer[];
+      test: { score: number; gainedXp: number; best: boolean } | null;
+    }
   | { name: "record" };
 
-/** 1回のセッションでの最大問題数。長すぎて飽きないように区切る。 */
-const MAX_QUESTIONS = 20;
+/** 練習1回ぶんの最大問題数。テストは回が10問、学年まとめが20問。 */
+const MAX_PRACTICE = 20;
+const LESSON_TEST_COUNT = 10;
+const GRADE_TEST_COUNT = 20;
 
 export default function App() {
   const [store, setStore] = useState<Store>(() => loadStore());
@@ -37,19 +55,91 @@ export default function App() {
     saveStore(store);
   }, [store]);
 
-  const due = useMemo(() => dueEntries(store), [store]);
+  const user = currentUser(store);
+  const due = useMemo(() => (user ? dueEntries(user) : []), [user]);
 
-  const setMode = (mode: QuizMode) => setStore((prev) => ({ ...prev, mode }));
-
-  const startQuiz = (entries: KanjiEntry[], title: string) => {
-    if (entries.length === 0) return;
-    const questions = buildQuestions(entries, store.mode, MAX_QUESTIONS);
-    setScreen({ name: "quiz", title, questions });
+  const patchUser = (update: (user: UserProfile) => UserProfile) => {
+    if (!user) return;
+    setStore((prev) => updateUser(prev, user.id, update));
   };
 
-  const handleAnswer = (answer: Answer) => {
-    setStore((prev) => recordAnswer(prev, answer.question.entry, answer.correct));
+  const startPractice = (entries: KanjiEntry[], title: string) => {
+    if (!user || entries.length === 0) return;
+    setScreen({
+      name: "quiz",
+      title,
+      questions: buildQuestions(entries, user.mode, MAX_PRACTICE),
+      test: null,
+    });
   };
+
+  const startTest = (entries: KanjiEntry[], title: string, grade: Grade, lesson: number | null) => {
+    if (!user || entries.length === 0) return;
+    const count = lesson === null ? GRADE_TEST_COUNT : LESSON_TEST_COUNT;
+    setScreen({
+      name: "quiz",
+      title,
+      questions: buildQuestions(entries, user.mode, count),
+      test: { grade, lesson },
+    });
+  };
+
+  const finishQuiz = (title: string, answers: Answer[], test: TestContext | null) => {
+    if (!test || !user) {
+      setScreen({ name: "result", title, answers, test: null });
+      return;
+    }
+    const correct = answers.filter((answer) => answer.correct).length;
+    const score = Math.round((correct / answers.length) * 100);
+    const outcome = recordTest(user, {
+      title,
+      grade: test.grade,
+      lesson: test.lesson,
+      mode: user.mode,
+      score,
+      correct,
+      total: answers.length,
+    });
+    setStore((prev) => updateUser(prev, user.id, () => outcome.user));
+    setScreen({
+      name: "result",
+      title,
+      answers,
+      test: { score, gainedXp: outcome.gainedXp, best: outcome.best },
+    });
+  };
+
+  // ユーザーがいない、または選ばれていないときは、まず選んでもらう
+  if (!user || screen.name === "users") {
+    return (
+      <UserSelect
+        users={store.users}
+        currentUserId={store.currentUserId}
+        onSelect={(id) => {
+          setStore((prev) => ({ ...prev, currentUserId: id }));
+          setScreen({ name: "home" });
+        }}
+        onCreate={(name, emoji) => {
+          const created = newUser(name, emoji);
+          setStore((prev) => ({ ...prev, users: [...prev.users, created], currentUserId: created.id }));
+          setScreen({ name: "home" });
+        }}
+        onDelete={(id) =>
+          setStore((prev) => {
+            const users = prev.users.filter((item) => item.id !== id);
+            return {
+              ...prev,
+              users,
+              currentUserId: prev.currentUserId === id ? (users[0]?.id ?? null) : prev.currentUserId,
+            };
+          })
+        }
+        onBack={user ? () => setScreen({ name: "home" }) : null}
+      />
+    );
+  }
+
+  const setMode = (mode: QuizMode) => patchUser((prev) => ({ ...prev, mode }));
 
   switch (screen.name) {
     case "quiz":
@@ -57,10 +147,11 @@ export default function App() {
         <Quiz
           title={screen.title}
           questions={screen.questions}
-          onAnswer={handleAnswer}
-          onFinish={(answers) =>
-            setScreen({ name: "result", title: screen.title, answers })
+          isTest={screen.test !== null}
+          onAnswer={(answer) =>
+            patchUser((prev) => recordAnswer(prev, answer.question.entry, answer.correct, screen.test === null))
           }
+          onFinish={(answers) => finishQuiz(screen.title, answers, screen.test)}
           onQuit={() => setScreen({ name: "home" })}
         />
       );
@@ -70,7 +161,8 @@ export default function App() {
         <Result
           title={screen.title}
           answers={screen.answers}
-          onRetryWrong={(entries) => startQuiz(entries, `${screen.title}（なおし）`)}
+          test={screen.test}
+          onRetryWrong={(entries) => startPractice(entries, `${screen.title}（なおし）`)}
           onHome={() => setScreen({ name: "home" })}
         />
       );
@@ -78,8 +170,9 @@ export default function App() {
     case "grades":
       return (
         <GradeList
-          store={store}
-          onSelect={(grade) => setScreen({ name: "lessons", grade })}
+          user={user}
+          purpose={screen.purpose}
+          onSelect={(grade) => setScreen({ name: "lessons", grade, purpose: screen.purpose })}
           onBack={() => setScreen({ name: "home" })}
         />
       );
@@ -88,21 +181,23 @@ export default function App() {
       return (
         <LessonList
           grade={screen.grade}
-          store={store}
-          mode={store.mode}
+          user={user}
+          mode={user.mode}
+          purpose={screen.purpose}
           onChangeMode={setMode}
-          onStart={startQuiz}
-          onBack={() => setScreen({ name: "grades" })}
+          onPractice={startPractice}
+          onTest={(entries, title, lesson) => startTest(entries, title, screen.grade, lesson)}
+          onBack={() => setScreen({ name: "grades", purpose: screen.purpose })}
         />
       );
 
     case "record":
       return (
         <RecordScreen
-          store={store}
+          user={user}
           onBack={() => setScreen({ name: "home" })}
           onReset={() => {
-            setStore(emptyStore());
+            patchUser((prev) => ({ ...prev, progress: {}, days: [], tests: [], xp: 0 }));
             setScreen({ name: "home" });
           }}
         />
@@ -111,14 +206,14 @@ export default function App() {
     default:
       return (
         <Home
-          mode={store.mode}
+          user={user}
+          mode={user.mode}
           onChangeMode={setMode}
           dueCount={due.length}
-          streakDays={streak(store)}
-          masteredTotal={masteredCount(store)}
-          onStartReview={() => startQuiz(due, "きょうの ふくしゅう")}
-          onOpenGrades={() => setScreen({ name: "grades" })}
+          onStartReview={() => startPractice(due, "きょうの ふくしゅう")}
+          onOpenGrades={(purpose) => setScreen({ name: "grades", purpose })}
           onOpenRecord={() => setScreen({ name: "record" })}
+          onSwitchUser={() => setScreen({ name: "users" })}
         />
       );
   }

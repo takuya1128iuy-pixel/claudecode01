@@ -6,6 +6,8 @@ import WritingPad from "./WritingPad";
 interface Props {
   title: string;
   questions: Question[];
+  /** テストモードかどうか */
+  isTest?: boolean;
   /** 1問こたえるたびに呼ばれる（とちゅうでやめても記録が残るように） */
   onAnswer: (answer: Answer) => void;
   onFinish: (answers: Answer[]) => void;
@@ -14,7 +16,7 @@ interface Props {
 
 type Phase = "answering" | "checking" | "feedback";
 
-export default function Quiz({ title, questions, onAnswer, onFinish, onQuit }: Props) {
+export default function Quiz({ title, questions, isTest = false, onAnswer, onFinish, onQuit }: Props) {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [phase, setPhase] = useState<Phase>("answering");
@@ -68,10 +70,17 @@ export default function Quiz({ title, questions, onAnswer, onFinish, onQuit }: P
           やめる
         </button>
         <div className="flex-1">
-          <p className="text-sm font-bold text-slate-400">{title}</p>
+          <p className="flex items-center gap-2 text-sm font-bold text-slate-400">
+            {isTest && (
+              <span className="rounded-full bg-violet-600 px-2 py-0.5 text-xs font-black text-white">
+                テスト 1もん{Math.round(100 / questions.length)}点
+              </span>
+            )}
+            {title}
+          </p>
           <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-slate-200">
             <div
-              className="h-full rounded-full bg-blue-500 transition-all"
+              className={`h-full rounded-full transition-all ${isTest ? "bg-violet-500" : "bg-blue-500"}`}
               style={{ width: `${((index + (phase === "feedback" ? 1 : 0)) / questions.length) * 100}%` }}
             />
           </div>
