@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import Backup from "./components/Backup";
 import GradeList from "./components/GradeList";
 import Home from "./components/Home";
 import LessonList from "./components/LessonList";
@@ -6,6 +7,7 @@ import Quiz from "./components/Quiz";
 import RecordScreen from "./components/RecordScreen";
 import Result from "./components/Result";
 import UserSelect from "./components/UserSelect";
+import { requestPersistentStorage } from "./lib/backup";
 import { buildQuestions } from "./lib/quiz";
 import {
   currentUser,
@@ -40,7 +42,8 @@ type Screen =
       answers: Answer[];
       test: { score: number; gainedXp: number; best: boolean } | null;
     }
-  | { name: "record" };
+  | { name: "record" }
+  | { name: "backup" };
 
 /** 練習1回ぶんの最大問題数。テストは回が10問、学年まとめが20問。 */
 const MAX_PRACTICE = 20;
@@ -54,6 +57,11 @@ export default function App() {
   useEffect(() => {
     saveStore(store);
   }, [store]);
+
+  // ブラウザに「このデータを勝手に消さないで」とお願いしておく
+  useEffect(() => {
+    void requestPersistentStorage();
+  }, []);
 
   const user = currentUser(store);
   const due = useMemo(() => (user ? dueEntries(user) : []), [user]);
@@ -109,6 +117,16 @@ export default function App() {
     });
   };
 
+  if (screen.name === "backup") {
+    return (
+      <Backup
+        store={store}
+        onImport={setStore}
+        onBack={() => setScreen(user ? { name: "home" } : { name: "users" })}
+      />
+    );
+  }
+
   // ユーザーがいない、または選ばれていないときは、まず選んでもらう
   if (!user || screen.name === "users") {
     return (
@@ -134,6 +152,7 @@ export default function App() {
             };
           })
         }
+        onOpenBackup={() => setScreen({ name: "backup" })}
         onBack={user ? () => setScreen({ name: "home" }) : null}
       />
     );
@@ -196,6 +215,7 @@ export default function App() {
         <RecordScreen
           user={user}
           onBack={() => setScreen({ name: "home" })}
+          onOpenBackup={() => setScreen({ name: "backup" })}
           onReset={() => {
             patchUser((prev) => ({ ...prev, progress: {}, days: [], tests: [], xp: 0 }));
             setScreen({ name: "home" });

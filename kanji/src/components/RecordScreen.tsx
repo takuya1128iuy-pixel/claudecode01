@@ -7,6 +7,7 @@ interface Props {
   user: UserProfile;
   onBack: () => void;
   onReset: () => void;
+  onOpenBackup: () => void;
 }
 
 /** 直近14日ぶんの学習カレンダー。 */
@@ -22,7 +23,7 @@ function recentDays(user: UserProfile): { key: string; label: string; done: bool
   return list;
 }
 
-export default function RecordScreen({ user, onBack, onReset }: Props) {
+export default function RecordScreen({ user, onBack, onReset, onOpenBackup }: Props) {
   const weak = weakEntries(user).slice(0, 24);
   const info = levelInfo(user.xp);
 
@@ -144,6 +145,17 @@ export default function RecordScreen({ user, onBack, onReset }: Props) {
           </div>
         )}
       </section>
+
+      <button
+        type="button"
+        onClick={onOpenBackup}
+        className="rounded-3xl bg-white px-6 py-4 text-left shadow-sm active:bg-slate-50"
+      >
+        <span className="block text-xl font-black text-slate-700">きろくの バックアップ</span>
+        <span className="block text-sm font-bold text-slate-400">
+          べつの端末へ うつす・きろくを 守る
+        </span>
+      </button>
 
       <button
         type="button"

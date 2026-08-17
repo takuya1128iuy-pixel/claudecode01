@@ -8,10 +8,19 @@ interface Props {
   onSelect: (id: string) => void;
   onCreate: (name: string, emoji: string) => void;
   onDelete: (id: string) => void;
+  onOpenBackup: () => void;
   onBack: (() => void) | null;
 }
 
-export default function UserSelect({ users, currentUserId, onSelect, onCreate, onDelete, onBack }: Props) {
+export default function UserSelect({
+  users,
+  currentUserId,
+  onSelect,
+  onCreate,
+  onDelete,
+  onOpenBackup,
+  onBack,
+}: Props) {
   const [adding, setAdding] = useState(users.length === 0);
   const [name, setName] = useState("");
   const [emoji, setEmoji] = useState(AVATARS[0]);
@@ -123,6 +132,14 @@ export default function UserSelect({ users, currentUserId, onSelect, onCreate, o
           ＋ あたらしく つくる
         </button>
       )}
+
+      <button
+        type="button"
+        onClick={onOpenBackup}
+        className="self-center rounded-full px-6 py-3 text-base font-bold text-slate-400 underline"
+      >
+        きろくの バックアップ
+      </button>
 
       {onBack && users.length > 0 && (
         <button
