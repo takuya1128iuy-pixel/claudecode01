@@ -1,3 +1,10 @@
+> **このリポジトリには2つのアプリが入っています**
+>
+> | アプリ | 置き場所 | 公開URL |
+> | --- | --- | --- |
+> | 🍶 きき酒ノート | リポジトリ直下 | https://takuya1128iuy-pixel.github.io/claudecode01/ |
+> | ✍️ かんじドリル（小学生の漢字学習） | [`kanji/`](./kanji/) | https://takuya1128iuy-pixel.github.io/claudecode01/kanji/ |
+
 # 🍶 きき酒ノート（デモ）
 
 飲んだ日本酒を記録して、自分の好みの傾向を見つけるためのデモアプリです。

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - claude/sake-tasting-app-demo-bbnia0
+      - claude/kanji-learning-app-jqnn9u
   workflow_dispatch:
 
 permissions:
@@ -24,8 +25,18 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            kanji/package-lock.json
+      # きき酒ノート（サイトのルート）
       - run: npm ci
       - run: npm run build
+      # かんじドリル（/kanji/ 配下）
+      - run: npm ci --prefix kanji
+      - run: npm run build --prefix kanji
+      - run: |
+          mkdir -p dist/kanji
+          cp -r kanji/dist/. dist/kanji/
       - uses: actions/configure-pages@v5
         with:
           enablement: true
