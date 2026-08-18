@@ -1,16 +1,21 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Backup from "./components/Backup";
 import GradeList from "./components/GradeList";
 import Home from "./components/Home";
 import LessonList from "./components/LessonList";
+import ParentScreen from "./components/ParentScreen";
 import Quiz from "./components/Quiz";
 import RecordScreen from "./components/RecordScreen";
 import Result from "./components/Result";
 import UserSelect from "./components/UserSelect";
 import { requestPersistentStorage } from "./lib/backup";
+import { buildDailySummary, sendWebhook } from "./lib/notify";
+import { XP_PERFECT_BONUS } from "./lib/level";
 import { buildQuestions } from "./lib/quiz";
 import {
+  bestScore,
   currentUser,
+  dayKey,
   dueEntries,
   loadStore,
   newUser,
@@ -18,6 +23,7 @@ import {
   recordTest,
   saveStore,
   updateUser,
+  type ParentSettings,
   type Store,
   type UserProfile,
 } from "./lib/store";
@@ -43,7 +49,8 @@ type Screen =
       test: { score: number; gainedXp: number; best: boolean } | null;
     }
   | { name: "record" }
-  | { name: "backup" };
+  | { name: "backup" }
+  | { name: "parent" };
 
 /** 練習1回ぶんの最大問題数。テストは回が10問、学年まとめが20問。 */
 const MAX_PRACTICE = 20;
@@ -54,6 +61,11 @@ export default function App() {
   const [store, setStore] = useState<Store>(() => loadStore());
   const [screen, setScreen] = useState<Screen>({ name: "home" });
 
+  const storeRef = useRef(store);
+  storeRef.current = store;
+  /** 前の問題に答えた時こく。学習時間の計算に使う。 */
+  const lastAnswerAt = useRef<number | null>(null);
+
   useEffect(() => {
     saveStore(store);
   }, [store]);
@@ -63,12 +75,64 @@ export default function App() {
     void requestPersistentStorage();
   }, []);
 
+  /**
+   * ほごしゃへ「1日のまとめ」を送る。
+   * includeToday が false のときは、まだ送っていない過去の日ぶんだけ送る。
+   */
+  const flushDailySummaries = useCallback(async (includeToday: boolean) => {
+    const current = storeRef.current;
+    const { webhookUrl, enabled } = current.parent;
+    if (!enabled || webhookUrl.trim() === "") return;
+
+    const today = dayKey();
+    const sent: { userId: string; day: string }[] = [];
+    for (const user of current.users) {
+      for (const [day, stat] of Object.entries(user.daily)) {
+        if (stat.questions === 0 || user.notifiedDays.includes(day)) continue;
+        if (day === today && !includeToday) continue;
+        const result = await sendWebhook(webhookUrl, buildDailySummary(user, day, stat));
+        if (result !== "error") sent.push({ userId: user.id, day });
+      }
+    }
+    if (sent.length === 0) return;
+    setStore((prev) => ({
+      ...prev,
+      users: prev.users.map((user) => {
+        const days = sent.filter((item) => item.userId === user.id).map((item) => item.day);
+        return days.length > 0 ? { ...user, notifiedDays: [...user.notifiedDays, ...days] } : user;
+      }),
+    }));
+  }, []);
+
+  // 開いたときに、送りそびれた日ぶんを送る
+  useEffect(() => {
+    void flushDailySummaries(false);
+  }, [flushDailySummaries]);
+
+  // アプリを閉じた（別の画面に移った）ときに、その日のまとめを送る
+  useEffect(() => {
+    const onHide = () => {
+      if (document.visibilityState === "hidden") void flushDailySummaries(true);
+    };
+    document.addEventListener("visibilitychange", onHide);
+    return () => document.removeEventListener("visibilitychange", onHide);
+  }, [flushDailySummaries]);
+
   const user = currentUser(store);
   const due = useMemo(() => (user ? dueEntries(user) : []), [user]);
 
   const patchUser = (update: (user: UserProfile) => UserProfile) => {
     if (!user) return;
     setStore((prev) => updateUser(prev, user.id, update));
+  };
+
+  /** 前の問題からの経過秒。長い中断は2分までとして学習時間に足す。 */
+  const secondsSinceLastAnswer = () => {
+    const now = Date.now();
+    const previous = lastAnswerAt.current;
+    lastAnswerAt.current = now;
+    if (previous === null) return 5; // 1問目はだいたい5秒として数える
+    return Math.min(120, Math.round((now - previous) / 1000));
   };
 
   const startPractice = (entries: KanjiEntry[], title: string) => {
@@ -99,7 +163,7 @@ export default function App() {
     }
     const correct = answers.filter((answer) => answer.correct).length;
     const score = Math.round((correct / answers.length) * 100);
-    const outcome = recordTest(user, {
+    const result = {
       title,
       grade: test.grade,
       lesson: test.lesson,
@@ -107,15 +171,32 @@ export default function App() {
       score,
       correct,
       total: answers.length,
-    });
-    setStore((prev) => updateUser(prev, user.id, () => outcome.user));
+    };
+    // 直前の解答も反映されるよう、かならず最新のユーザーに対して記録する
+    setStore((prev) => updateUser(prev, user.id, (latest) => recordTest(latest, result).user));
+
+    const previousBest = bestScore(user, test.grade, test.lesson);
     setScreen({
       name: "result",
       title,
       answers,
-      test: { score, gainedXp: outcome.gainedXp, best: outcome.best },
+      test: {
+        score,
+        gainedXp: score + (score === 100 ? XP_PERFECT_BONUS : 0),
+        best: previousBest === null || score > previousBest,
+      },
     });
   };
+
+  if (screen.name === "parent") {
+    return (
+      <ParentScreen
+        store={store}
+        onChange={(parent: ParentSettings) => setStore((prev) => ({ ...prev, parent }))}
+        onBack={() => setScreen(user ? { name: "home" } : { name: "users" })}
+      />
+    );
+  }
 
   if (screen.name === "backup") {
     return (
@@ -153,6 +234,7 @@ export default function App() {
           })
         }
         onOpenBackup={() => setScreen({ name: "backup" })}
+        onOpenParent={() => setScreen({ name: "parent" })}
         onBack={user ? () => setScreen({ name: "home" }) : null}
       />
     );
@@ -167,9 +249,12 @@ export default function App() {
           title={screen.title}
           questions={screen.questions}
           isTest={screen.test !== null}
-          onAnswer={(answer) =>
-            patchUser((prev) => recordAnswer(prev, answer.question.entry, answer.correct, screen.test === null))
-          }
+          onAnswer={(answer) => {
+            const seconds = secondsSinceLastAnswer();
+            patchUser((prev) =>
+              recordAnswer(prev, answer.question.entry, answer.correct, screen.test === null, seconds),
+            );
+          }}
           onFinish={(answers) => finishQuiz(screen.title, answers, screen.test)}
           onQuit={() => setScreen({ name: "home" })}
         />

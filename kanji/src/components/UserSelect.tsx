@@ -9,6 +9,7 @@ interface Props {
   onCreate: (name: string, emoji: string) => void;
   onDelete: (id: string) => void;
   onOpenBackup: () => void;
+  onOpenParent: () => void;
   onBack: (() => void) | null;
 }
 
@@ -19,6 +20,7 @@ export default function UserSelect({
   onCreate,
   onDelete,
   onOpenBackup,
+  onOpenParent,
   onBack,
 }: Props) {
   const [adding, setAdding] = useState(users.length === 0);
@@ -133,13 +135,22 @@ export default function UserSelect({
         </button>
       )}
 
-      <button
-        type="button"
-        onClick={onOpenBackup}
-        className="self-center rounded-full px-6 py-3 text-base font-bold text-slate-400 underline"
-      >
-        きろくの バックアップ
-      </button>
+      <div className="flex flex-wrap justify-center gap-4">
+        <button
+          type="button"
+          onClick={onOpenParent}
+          className="rounded-full px-5 py-3 text-base font-bold text-slate-400 underline"
+        >
+          ほごしゃメニュー
+        </button>
+        <button
+          type="button"
+          onClick={onOpenBackup}
+          className="rounded-full px-5 py-3 text-base font-bold text-slate-400 underline"
+        >
+          きろくの バックアップ
+        </button>
+      </div>
 
       {onBack && users.length > 0 && (
         <button

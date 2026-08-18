@@ -37,6 +37,16 @@ export interface TestResult {
   at: number;
 }
 
+/** 1日ぶんの学習のようす。ほごしゃへの「1日のまとめ」に使う。 */
+export interface DailyStat {
+  questions: number;
+  correct: number;
+  seconds: number;
+  tests: { title: string; score: number }[];
+  /** その日まちがえた漢字 */
+  wrong: string[];
+}
+
 export interface UserProfile {
   id: string;
   name: string;
@@ -48,12 +58,28 @@ export interface UserProfile {
   /** 学習した日（YYYY-MM-DD） */
   days: string[];
   tests: TestResult[];
+  daily: Record<string, DailyStat>;
+  /** ほごしゃに「1日のまとめ」を送りおえた日 */
+  notifiedDays: string[];
+}
+
+/** ほごしゃ向けの設定（家族で1つ） */
+export interface ParentSettings {
+  webhookUrl: string;
+  enabled: boolean;
+  /** 4けたの数字。空なら ロックなし */
+  pin: string;
 }
 
 export interface Store {
   version: 2;
   users: UserProfile[];
   currentUserId: string | null;
+  parent: ParentSettings;
+}
+
+export function emptyParentSettings(): ParentSettings {
+  return { webhookUrl: "", enabled: false, pin: "" };
 }
 
 function newId(): string {
@@ -61,7 +87,7 @@ function newId(): string {
 }
 
 export function emptyStore(): Store {
-  return { version: 2, users: [], currentUserId: null };
+  return { version: 2, users: [], currentUserId: null, parent: emptyParentSettings() };
 }
 
 export function newUser(name: string, emoji: string): UserProfile {
@@ -75,6 +101,8 @@ export function newUser(name: string, emoji: string): UserProfile {
     progress: {},
     days: [],
     tests: [],
+    daily: {},
+    notifiedDays: [],
   };
 }
 
@@ -108,10 +136,18 @@ export function loadStore(): Store {
         version: 2,
         users,
         currentUserId: parsed.currentUserId ?? users[0]?.id ?? null,
+        parent: { ...emptyParentSettings(), ...parsed.parent },
       };
     }
     const migrated = migrateOld();
-    if (migrated) return { version: 2, users: [migrated], currentUserId: migrated.id };
+    if (migrated) {
+      return {
+        version: 2,
+        users: [migrated],
+        currentUserId: migrated.id,
+        parent: emptyParentSettings(),
+      };
+    }
   } catch {
     // 壊れていたら新しく始める
   }
@@ -147,11 +183,16 @@ const DAY_MS = 24 * 60 * 60 * 1000;
  * 1問ぶんの結果を記録した新しいユーザーを返す。
  * テスト中は点数から経験値をつけるので、1問ごとの経験値は加えない（gainXp = false）。
  */
+export function emptyDaily(): DailyStat {
+  return { questions: 0, correct: 0, seconds: 0, tests: [], wrong: [] };
+}
+
 export function recordAnswer(
   user: UserProfile,
   entry: KanjiEntry,
   correct: boolean,
   gainXp = true,
+  seconds = 0,
 ): UserProfile {
   const now = Date.now();
   const prev: CharProgress = user.progress[entry.char] ?? {
@@ -177,11 +218,21 @@ export function recordAnswer(
   };
 
   const today = dayKey();
+  const before = user.daily[today] ?? emptyDaily();
+  const stat: DailyStat = {
+    ...before,
+    questions: before.questions + 1,
+    correct: before.correct + (correct ? 1 : 0),
+    seconds: before.seconds + seconds,
+    wrong: correct || before.wrong.includes(entry.char) ? before.wrong : [...before.wrong, entry.char],
+  };
+
   return {
     ...user,
     xp: user.xp + (gainXp ? (correct ? XP_CORRECT : XP_WRONG) : 0),
     progress: { ...user.progress, [entry.char]: next },
     days: user.days.includes(today) ? user.days : [...user.days, today],
+    daily: { ...user.daily, [today]: stat },
   };
 }
 
@@ -193,8 +244,18 @@ export function recordTest(
   const previousBest = bestScore(user, result.grade, result.lesson);
   const gainedXp = result.score + (result.score === 100 ? XP_PERFECT_BONUS : 0);
   const test: TestResult = { ...result, id: newId(), at: Date.now() };
+  const today = dayKey();
+  const before = user.daily[today] ?? emptyDaily();
   return {
-    user: { ...user, xp: user.xp + gainedXp, tests: [test, ...user.tests].slice(0, 100) },
+    user: {
+      ...user,
+      xp: user.xp + gainedXp,
+      tests: [test, ...user.tests].slice(0, 100),
+      daily: {
+        ...user.daily,
+        [today]: { ...before, tests: [...before.tests, { title: result.title, score: result.score }] },
+      },
+    },
     gainedXp,
     best: previousBest === null || result.score > previousBest,
   };
