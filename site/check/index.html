@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E" />
+<title>比較推奨販売 影響セルフチェック</title>
+<meta name="description" content="9つの質問に答えると、2026年8月28日に金融庁が公表した比較推奨販売の改正が自分にどう関係するかがわかるセルフチェック。回答に応じた準備リストが出ます。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ground:#EFF2F6; --surface:#FFFFFF; --surface-2:#E7ECF3;
+  --line:#D2D9E4; --line-soft:#E4E9F0;
+  --ink:#111721; --ink-2:#38424F; --ink-3:#66717F;
+  --accent:#22467A; --accent-2:#3B6CA6; --accent-soft:#E1EAF6;
+  --high:#933925; --high-bg:#FAEBE6; --high-line:#E2BEB2;
+  --mid:#87610F;  --mid-bg:#FBF3E1;  --mid-line:#E0CB99;
+  --low:#2A6250;  --low-bg:#E5F1EC;  --low-line:#ADD1C3;
+  --info:#57616F; --info-bg:#EBEFF4; --info-line:#CDD5DF;
+  --shadow-s:0 1px 2px rgba(17,23,33,.05);
+  --shadow-m:0 1px 3px rgba(17,23,33,.06),0 12px 30px -20px rgba(17,23,33,.32);
+  --r:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D1116; --surface:#161B23; --surface-2:#1F2531;
+    --line:#2A323F; --line-soft:#222933;
+    --ink:#E7EBF2; --ink-2:#AFB9C7; --ink-3:#828E9F;
+    --accent:#93B8E8; --accent-2:#6E9AD2; --accent-soft:#1A2536;
+    --high:#E49B86; --high-bg:#2B1D18; --high-line:#4D332B;
+    --mid:#DAB46B;  --mid-bg:#292317;  --mid-line:#493E26;
+    --low:#80C4A9;  --low-bg:#15251E;  --low-line:#2B4337;
+    --info:#94A1B1; --info-bg:#1B212A; --info-line:#2D3642;
+    --shadow-s:0 1px 2px rgba(0,0,0,.5);
+    --shadow-m:0 1px 3px rgba(0,0,0,.5),0 14px 34px -22px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D1116; --surface:#161B23; --surface-2:#1F2531;
+  --line:#2A323F; --line-soft:#222933;
+  --ink:#E7EBF2; --ink-2:#AFB9C7; --ink-3:#828E9F;
+  --accent:#93B8E8; --accent-2:#6E9AD2; --accent-soft:#1A2536;
+  --high:#E49B86; --high-bg:#2B1D18; --high-line:#4D332B;
+  --mid:#DAB46B;  --mid-bg:#292317;  --mid-line:#493E26;
+  --low:#80C4A9;  --low-bg:#15251E;  --low-line:#2B4337;
+  --info:#94A1B1; --info-bg:#1B212A; --info-line:#2D3642;
+  --shadow-s:0 1px 2px rgba(0,0,0,.5);
+  --shadow-m:0 1px 3px rgba(0,0,0,.5),0 14px 34px -22px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  font-size:16px;line-height:1.85;font-feature-settings:"palt" 1;overflow-wrap:anywhere;
+}
+h1,h2,h3,h4{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;text-wrap:balance;margin:0;line-height:1.45}
+p{margin:0}
+ul,ol{margin:0;padding-left:1.4em}
+li{margin:.32em 0}
+a{color:var(--accent);text-underline-offset:3px}
+button{font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- shell ---------- */
+.bar{position:sticky;top:0;z-index:40;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar .fill{height:3px;background:var(--accent-2);width:0;transition:width .3s ease}
+.bar-in{max-width:1040px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.bar b{font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;font-weight:700;margin-right:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .cnt{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ghost{
+  background:transparent;border:1px solid var(--line);color:var(--ink-2);border-radius:999px;
+  padding:6px 14px;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+}
+.ghost:hover{border-color:var(--accent-2);color:var(--accent)}
+
+.wrap{max-width:780px;margin:0 auto;padding:0 20px 90px}
+.wrap.wide{max-width:1040px}
+
+/* ---------- intro ---------- */
+.intro{padding:58px 0 0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.13em;font-weight:700;
+  color:var(--accent);background:var(--accent-soft);padding:6px 13px;border-radius:999px;
+}
+.intro h1{font-size:clamp(29px,5.2vw,45px);font-weight:900;letter-spacing:-.015em;margin:22px 0 0;line-height:1.25}
+.intro .lead{margin-top:18px;color:var(--ink-2);font-size:16.5px;max-width:32em}
+.qlist{
+  margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px 26px;box-shadow:var(--shadow-s);
+}
+.qlist h2{font-size:11px;letter-spacing:.14em;color:var(--ink-3);font-weight:700}
+.qlist ol{margin-top:12px;padding-left:1.3em;font-size:14.5px;color:var(--ink-2);columns:2;column-gap:34px}
+@media (max-width:620px){.qlist ol{columns:1}}
+.qlist li{break-inside:avoid}
+.cta{
+  margin-top:26px;display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--surface);
+  border:0;border-radius:999px;padding:15px 30px;font-size:16px;font-weight:700;cursor:pointer;
+  font-family:"Zen Kaku Gothic New",sans-serif;box-shadow:var(--shadow-m);
+}
+:root[data-theme="dark"] .cta{color:#0D1116}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .cta{color:#0D1116}}
+.cta:hover{background:var(--accent-2)}
+.caveat{margin-top:30px;font-size:12.5px;color:var(--ink-3);line-height:1.85;max-width:44em}
+
+/* ---------- question ---------- */
+.qwrap{padding:44px 0 0}
+.qnum{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11.5px;letter-spacing:.14em;font-weight:700;color:var(--accent)}
+.qwrap h2{font-size:clamp(21px,3.6vw,28px);font-weight:900;margin-top:8px;letter-spacing:-.01em;line-height:1.4}
+.qhelp{margin-top:12px;color:var(--ink-3);font-size:13.5px;line-height:1.8;max-width:38em}
+.opts{display:grid;gap:10px;margin-top:26px}
+.opt{
+  display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:17px 20px;cursor:pointer;transition:border-color .14s,transform .14s,box-shadow .14s;color:inherit;
+}
+.opt:hover{border-color:var(--accent-2);transform:translateY(-1px);box-shadow:var(--shadow-s)}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt .mk{
+  flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);margin-top:3px;
+  display:grid;place-items:center;font-size:12px;color:transparent;
+}
+.opt.multi .mk{border-radius:6px}
+.opt[aria-pressed="true"] .mk{border-color:var(--accent);background:var(--accent);color:var(--surface)}
+:root[data-theme="dark"] .opt[aria-pressed="true"] .mk{color:#0D1116}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .opt[aria-pressed="true"] .mk{color:#0D1116}}
+.opt .tx{min-width:0}
+.opt .tx b{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:16px;font-weight:700;line-height:1.55}
+.opt .tx span{display:block;font-size:13px;color:var(--ink-3);margin-top:3px;line-height:1.7}
+.qnav{display:flex;gap:12px;align-items:center;margin-top:26px;flex-wrap:wrap}
+.qnav .next{
+  background:var(--accent);color:var(--surface);border:0;border-radius:999px;padding:13px 28px;
+  font-size:15px;font-weight:700;cursor:pointer;font-family:"Zen Kaku Gothic New",sans-serif;
+}
+:root[data-theme="dark"] .qnav .next{color:#0D1116}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .qnav .next{color:#0D1116}}
+.qnav .next[disabled]{background:var(--surface-2);color:var(--ink-3);cursor:not-allowed}
+
+/* answered-so-far strip */
+.sofar{margin-top:36px;padding-top:18px;border-top:1px dashed var(--line)}
+.sofar h3{font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);font-weight:700;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips button{
+  background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 13px;
+  font-size:12.5px;color:var(--ink-2);cursor:pointer;line-height:1.6;
+}
+.chips button:hover{border-color:var(--accent-2);color:var(--accent)}
+.chips button i{font-style:normal;color:var(--ink-3);margin-right:6px}
+
+/* ---------- result ---------- */
+.res{padding:40px 0 0}
+.verdict{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow-m);padding:30px 34px;
+}
+.verdict .lv{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.lvbadge{
+  display:inline-flex;align-items:center;gap:8px;font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:.04em;padding:7px 16px;border-radius:999px;
+}
+.lvbadge.high{background:var(--high-bg);color:var(--high);border:1px solid var(--high-line)}
+.lvbadge.mid{background:var(--mid-bg);color:var(--mid);border:1px solid var(--mid-line)}
+.lvbadge.low{background:var(--low-bg);color:var(--low);border:1px solid var(--low-line)}
+.lvbadge.info{background:var(--info-bg);color:var(--info);border:1px solid var(--info-line)}
+.verdict h2{font-size:clamp(21px,3.4vw,27px);font-weight:900;margin-top:16px;line-height:1.45;letter-spacing:-.01em}
+.verdict .why{margin-top:14px;color:var(--ink-2);font-size:15px;line-height:1.9;max-width:52em}
+.verdict .why b{color:var(--ink)}
+.tally{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+.tally span{
+  font-size:12.5px;font-weight:700;padding:6px 13px;border-radius:8px;font-variant-numeric:tabular-nums;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+}
+.tally .t-high{background:var(--high-bg);color:var(--high)}
+.tally .t-mid{background:var(--mid-bg);color:var(--mid)}
+.tally .t-low{background:var(--low-bg);color:var(--low)}
+.tally .t-info{background:var(--info-bg);color:var(--info)}
+
+.rsec{margin-top:46px}
+.rsec > h2{font-size:19px;font-weight:900;display:flex;align-items:center;gap:11px;letter-spacing:-.01em}
+.rsec > h2::before{content:"";width:18px;height:2px;background:var(--accent);display:block;flex:0 0 auto}
+.rsec > p.note{color:var(--ink-3);font-size:13.5px;margin-top:8px;max-width:56em;line-height:1.8}
+
+.cards{display:grid;gap:12px;margin-top:20px}
+.rc{
+  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--info);
+  border-radius:0 var(--r) var(--r) 0;padding:20px 24px;
+}
+.rc.high{border-left-color:var(--high)}
+.rc.mid{border-left-color:var(--mid)}
+.rc.low{border-left-color:var(--low)}
+.rc .rh{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.tag{
+  font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:5px;white-space:nowrap;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+}
+.tag.high{background:var(--high-bg);color:var(--high)}
+.tag.mid{background:var(--mid-bg);color:var(--mid)}
+.tag.low{background:var(--low-bg);color:var(--low)}
+.tag.info{background:var(--info-bg);color:var(--info)}
+.rc .rh b{font-family:"Zen Kaku Gothic New",sans-serif;font-size:17px;font-weight:700;line-height:1.5;flex:1;min-width:60%}
+.rc .lead{margin-top:11px;font-size:15px;line-height:1.9;color:var(--ink)}
+.rc .todo{margin-top:14px;background:var(--surface-2);border-radius:9px;padding:14px 18px}
+.rc .todo > b{
+  display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:10.5px;letter-spacing:.13em;
+  color:var(--ink-3);margin-bottom:6px;
+}
+.rc .todo li b,.rc .lead b{font-weight:700;color:var(--ink)}
+.rc .todo ul{padding-left:1.25em;font-size:14.5px;line-height:1.8}
+.rc .cite{
+  margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);font-size:12px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;line-height:1.75;
+}
+.rc .cite b{font-family:"Zen Kaku Gothic New",sans-serif;letter-spacing:.1em;font-size:10.5px;margin-right:8px;color:var(--ink-3)}
+
+/* checklist */
+.check{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px 6px;margin-top:20px}
+.check label{
+  display:flex;gap:14px;align-items:flex-start;padding:14px 18px;border-radius:9px;cursor:pointer;
+  transition:background .12s;
+}
+.check label:hover{background:var(--surface-2)}
+.check label + label{border-top:1px solid var(--line-soft)}
+.check input{
+  appearance:none;flex:0 0 auto;width:21px;height:21px;border:2px solid var(--line);border-radius:6px;
+  margin:3px 0 0;cursor:pointer;display:grid;place-items:center;background:var(--surface);
+}
+.check input:checked{background:var(--accent);border-color:var(--accent)}
+.check input:checked::after{content:"✓";color:var(--surface);font-size:13px;font-weight:700;line-height:1}
+:root[data-theme="dark"] .check input:checked::after{color:#0D1116}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .check input:checked::after{color:#0D1116}}
+.check .ct{min-width:0}
+.check .ct b{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:15.5px;font-weight:700;line-height:1.55}
+.check .ct span{display:block;font-size:13px;color:var(--ink-3);margin-top:3px;line-height:1.75}
+.check input:checked ~ .ct b{text-decoration:line-through;color:var(--ink-3)}
+
+/* answers recap */
+.recap{display:grid;gap:2px;margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.recap .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:13px 20px;align-items:center}
+.recap .row + .row{border-top:1px solid var(--line-soft)}
+.recap .q{font-size:13.5px;color:var(--ink-3);line-height:1.6}
+.recap .a{font-size:14px;font-weight:700;text-align:right;font-family:"Zen Kaku Gothic New",sans-serif;line-height:1.6}
+.recap .row button{
+  background:transparent;border:0;color:var(--accent);font-size:12.5px;cursor:pointer;padding:0;
+  text-decoration:underline;text-underline-offset:3px;
+}
+@media (max-width:560px){
+  .recap .row{grid-template-columns:minmax(0,1fr)}
+  .recap .a{text-align:left}
+}
+
+.foot{margin-top:44px;padding:24px 26px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface-2);font-size:13px;color:var(--ink-2);line-height:1.95}
+.foot b{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);display:block;margin-bottom:7px;font-size:13.5px}
+.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:26px}
+
+@media print{
+  :root{--ground:#fff;--surface:#fff;--surface-2:#f4f5f7;--ink:#000;--ink-2:#222;--ink-3:#555;
+        --line:#bbb;--line-soft:#ddd;--shadow-s:none;--shadow-m:none}
+  body{background:#fff;font-size:10.5pt;line-height:1.7}
+  .bar,.actions,.recap .row button,.ghost{display:none!important}
+  .wrap.wide{max-width:none;padding:0}
+  .rc,.verdict,.check label,.foot{break-inside:avoid;page-break-inside:avoid;box-shadow:none}
+  .rsec{margin-top:26px}
+  a{color:inherit}
+}
+</style>
+
+</head>
+<body>
+<header class="bar">
+  <div class="fill" id="fill"></div>
+  <div class="bar-in">
+    <b>比較推奨販売 影響セルフチェック</b>
+    <span class="cnt" id="cnt"></span>
+    <button class="ghost" id="reset" hidden>最初から</button>
+  </div>
+</header>
+
+<main>
+<div class="wrap" id="stage"></div>
+</main>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   質問
+   ============================================================ */
+var QUESTIONS = [
+ {id:'role', q:'あなたの立場を教えてください', type:'single',
+  help:'今回の改正は、乗合代理店（二以上の所属保険会社等を有する保険募集人）を主な名宛人としています。立場によって見る資料が変わります。',
+  opts:[
+   {v:'corp',  t:'保険代理店（法人）',   s:'事業報告書は別紙様式第25号の2'},
+   {v:'indiv', t:'保険代理店（個人）',   s:'事業報告書は別紙様式第25号の3'},
+   {v:'staff', t:'保険会社の役員・使用人', s:'営業職員など'},
+   {v:'fsi',   t:'金融サービス仲介業者（保険媒介業務）', s:'見る監督指針が変わります'}
+  ]},
+ {id:'count', q:'委託を受けている保険会社は何社ですか', type:'single',
+  help:'生命保険会社・損害保険会社・少額短期保険業者を<b>合わせた</b>社数でお答えください。共済事業者は数えません（所属保険会社等に含まれないため）。',
+  opts:[
+   {v:'one',   t:'1社だけ', s:'生保・損保・少短を合わせて1社'},
+   {v:'multi', t:'2社以上', s:'生保1社＋損保1社もこちらです'}
+  ]},
+ {id:'fields', q:'取り扱っている分野は', type:'multi',
+  help:'あてはまるものをすべて選んでください。',
+  opts:[
+   {v:'life',   t:'生命保険'},
+   {v:'nonlife',t:'損害保険'},
+   {v:'small',  t:'少額短期保険'},
+   {v:'jibai',  t:'自賠責保険'},
+   {v:'kyosai', t:'共済'}
+  ]},
+ {id:'method', q:'いま、商品はどうやって決めていますか', type:'single',
+  help:'いちばん近いものを選んでください。事業報告書の「比較・推奨販売の方法」欄でどれに○をつけているかが手がかりになります。',
+  opts:[
+   {v:'ro',     t:'顧客の意向を聞いてから、それに沿って候補を絞って提案している', s:'事業報告書の「1」に近い運用'},
+   {v:'ha',     t:'商品特性や保険料水準といった客観的な基準によらずに絞り込んで提案している', s:'事業報告書の「2」に近い運用'},
+   {v:'branch', t:'店舗・拠点・担当ごとに、推奨する保険会社をあらかじめ決めている', s:'テリトリー制など'},
+   {v:'ionly',  t:'複数を並べて説明するだけで、特定の1本は勧めていない', s:'比較説明のみ'},
+   {v:'unknown',t:'決めていない／よくわからない'}
+  ]},
+ {id:'joint', q:'共同募集を行っていますか', type:'single',
+  help:'他の保険代理店と共同で募集を行う形態です。',
+  opts:[
+   {v:'none',   t:'行っていない'},
+   {v:'kanji',  t:'行っている（自社が幹事）'},
+   {v:'hikanji',t:'行っている（自社が非幹事）'},
+   {v:'jimu',   t:'行っている（自社は事務のみ担当）'}
+  ]},
+ {id:'omakase', q:'「お任せします」と言われる場面はどのくらいありますか', type:'single',
+  help:'「あなたが良いと思う商品で」「おすすめを教えて」「あなたならどこが良い？」なども含みます。',
+  opts:[
+   {v:'often',    t:'よくある', s:'募集の多くがこの入り方'},
+   {v:'sometimes',t:'たまにある'},
+   {v:'rare',     t:'ほとんどない', s:'顧客の希望がはっきりしていることが多い'}
+  ]},
+ {id:'mix', q:'新規と更改（継続）、どちらが多いですか', type:'single',
+  opts:[
+   {v:'renewal', t:'更改・継続が中心', s:'短期の損害保険が多い'},
+   {v:'new',     t:'新規が中心'},
+   {v:'half',    t:'半々くらい'}
+  ]},
+ {id:'system', q:'比較推奨にシステムや比較ツールを使っていますか', type:'single',
+  help:'保険料の一覧表示、意向把握のシステム、商品選別のロジックなどを含みます。',
+  opts:[
+   {v:'using',      t:'使っている'},
+   {v:'considering',t:'導入を検討している'},
+   {v:'none',       t:'使っていない'}
+  ]},
+ {id:'narrow', q:'取扱範囲を絞る予定はありますか', type:'single',
+  help:'乗合の保険会社を減らす、一部の保険会社の新規募集を止める、既契約を他代理店へ移管する、といった見直しです。',
+  opts:[
+   {v:'planned',    t:'予定がある'},
+   {v:'considering',t:'検討している'},
+   {v:'none',       t:'予定はない'}
+  ]}
+];
+
+var FSA='https://www.fsa.go.jp/news/r8/hoken/20260828/';
+
+/* ============================================================
+   判定に使う派生値
+   ============================================================ */
+function derive(a){
+  var agency = a.role==='corp'||a.role==='indiv';
+  var d={};
+  d.agency=agency;
+  d.fsi=a.role==='fsi';
+  d.staff=a.role==='staff';
+  d.multi=(agency&&a.count==='multi')||d.fsi;      // 乗合代理店 相当
+  d.solo=agency&&a.count==='one';
+  d.subject=d.multi;                                 // 今回の改正の直接の対象か
+  d.recommends=['ro','ha','branch','unknown'].indexOf(a.method)>=0;
+  d.proposes=['ro','ha','branch'].indexOf(a.method)>=0;
+  d.f=a.fields||[];
+  d.has=function(x){return d.f.indexOf(x)>=0;};
+  // 生命保険業と損害保険業は同一の保険会社が引き受けないため、両方を扱うなら引受会社は二以上になる
+  d.mismatch = d.solo && d.has('life') && d.has('nonlife');
+  if(d.mismatch){ d.solo=false; d.multi=true; d.subject=true; }
+  return d;
+}
+
+/* ============================================================
+   トピック
+   ============================================================ */
+var TOPICS=[
+ {id:'unknown', sev:'high', title:'まず、いまのやり方を確かめるところから',
+  when:function(a,d){return d.subject&&a.method==='unknown';},
+  lead:'現在の事業報告書「比較・推奨販売の方法」欄でどれに○をつけているか、社内規則に推奨の基準が書かれているか。この2点で現状がわかります。',
+  todo:['「2 商品特性や保険料水準等の客観的な基準や理由等に基づくことなく、保険商品を絞り込んで、顧客に提示している」に○をつけているなら、それが廃止される「ハ」に対応する運用です',
+        '社内規則に商品名が並んでいるだけなら、それは「決め方の手順」を定めた文書ではありません'],
+  cite:'資料02 第一条 別紙様式第25号の2(16)／第25号の3(11)'},
+
+ {id:'ha', sev:'high', title:'「ハ」の廃止で、いまのやり方は続けられません',
+  when:function(a,d){return d.subject&&(a.method==='ha'||a.method==='branch');},
+  lead:'客観的な基準によらずに絞り込んで提案する型（規則227条の2第3項第4号ハ）が削除されます。提案は「意向を聞く → 意向に沿って選ぶ → 概要と理由を説明する」の一本道になります。',
+  todo:['意向を聞く工程を、商品を出す前に置く',
+        '委託契約で取扱対象とされた契約の中から、代理店の判断だけであらかじめ推奨商品（群）を設けることは適当ではない、とされました',
+        '店舗ごとに異なる保険会社を扱っていた前提での推奨資料は、恣意的な選別につながらないか確認が要ります'],
+  cite:'資料02 第一条（規則227条の2第3項第4号ハの削除）／資料01 No.5、59、378、647'},
+
+ {id:'norikae', sev:'high', title:'生保1社＋損保1社でも「乗合代理店」です',
+  when:function(a,d){return d.has('life')&&d.has('nonlife');},
+  leadFn:function(a){
+    var pre = (a.count==='one')
+      ? '「1社だけ」とお答えいただきましたが、生命保険と損害保険の両方を扱うなら引受会社は別で、合計2社以上になります。'
+      : '';
+    return pre+'生命保険会社・損害保険会社・少額短期保険業者の別を問わず、二以上の所属保険会社等を有する保険募集人が乗合代理店にあたります。生保専属・損保専属のつもりでも、合わせて2社なら該当します。';},
+  todo:['意向に照らして「比較可能な同種の保険契約」があるかを確認してください',
+        '例として挙げられたのは、生保のがん保険と損保のがん保険、生保の就業不能保険と損保の所得補償保険です',
+        'ただし「二以上の比較可能な同種の保険契約」にあたるかは、顧客の具体的な意向やリスクの種類、保険給付の内容等を踏まえて個別具体的に判断されます'],
+  cite:'資料01 No.374、375、47'},
+
+ {id:'pre', sev:'high', title:'選別の「前」に、重視する事項を確認する',
+  when:function(a,d){return d.subject&&d.recommends;},
+  lead:'商品を出す前に、保障（補償）内容・保険料水準・特約など、顧客が重視する事項を丁寧かつ明確に確認する必要があります。順序が逆になると「意向に沿った選別」になりません。',
+  todo:['ヒアリング項目を決めて、募集フローの先頭に置く',
+        '価格重視か保障内容重視かの優先順位確認は意向把握に含まれ得ますが、それだけで常に十分というものではないとされました',
+        '勧めたい商品を先に決めて、それに合うように意向を形成・解釈することは不可'],
+  cite:'資料03 Ⅱ-4-2-9(5)①Ｂ 柱書／資料01 No.85、20'},
+
+ {id:'three', sev:'high', title:'特定の1本を勧めるときの3点セット',
+  when:function(a,d){return d.subject&&d.proposes;},
+  lead:'①合理的かつ一定の具体性を有する基準や理由　②推奨する契約以外にも保険契約がある旨　③求めがあればそれらの概要・契約内容を説明する旨。①と②は、顧客から求められなくても説明します。',
+  todo:['「他にもある旨」が指すのは、意向に沿って候補にしたが最終的に推奨しなかった契約です。最初から候補外だったものは含みません',
+        '「他にもある」は<b>その事実を告げれば足り</b>、求めがなければ概要や契約内容まで説明する必要はありません',
+        'ただし「求めがあれば説明する旨」も、あわせて伝える必要があります'],
+  cite:'資料03 Ⅱ-4-2-9(5)①Ｂ(a)／資料01 No.70、520、533'},
+
+ {id:'ng', sev:'high', title:'推奨理由に使えない言葉があります',
+  when:function(a,d){return d.subject&&d.recommends;},
+  lead:'手数料水準・販売目標・便宜供与・資本関係・取引関係・社内都合・経営方針・事務都合、そして募集人の主観的評価や属人的判断。「この会社の事務に慣れているから」も明確に否定されました。',
+  todo:['「当社の経営方針により選定している」「当社独自の基準に基づき選定している」は、具体的な説明ではないとされました',
+        '「人気のある商品である」「販売実績が多い」も抽象的で足りません',
+        '「事務連携のしやすさ」を「顧客への迅速な情報提供」と言い換えることも否定されました',
+        '推奨理由が複数あるときは、主たるものを説明する必要があります'],
+  cite:'資料01 No.59、71、77、412、416、435、481'},
+
+ {id:'gaiyo', sev:'mid', title:'「概要」はどこまで説明するか',
+  when:function(a,d){return d.subject&&d.proposes;},
+  lead:'商品名と引受保険会社名の一覧では足りません。主な保障（補償）内容、保険料水準、特約、免責、保険期間、主な不利益事項・留意点まで説明します。',
+  todo:['一方で、取り扱う全商品の概要を毎回説明する必要はありません。意向に沿って選別した契約について説明すれば足ります',
+        '一度概要を説明していれば、追加の意向で更に絞っても、同じ説明を形式的に繰り返す必要はありません',
+        'パンフレットや見積書を単に交付・提示するだけでは足りません',
+        '「お求めがあればいつでも全商品をご提示できます」とだけ言っても、概要説明の代わりにはなりません'],
+  cite:'資料01 No.518、522、523、524、526'},
+
+ {id:'omakase', sev:'high', title:'「お任せします」と言われたときの手順',
+  when:function(a,d){return d.subject&&a.omakase!=='rare';},
+  sevFn:function(a){return a.omakase==='often'?'high':'mid';},
+  lead:'その一言だけを根拠に会社を決めることはできません。重視し得る事項を例示して意向の形成を促し、それでも固まらないときに、当初意向・顧客属性・加入目的・既加入契約・保険料水準・必要な保障内容から組み立てます。',
+  todo:['例示する事項と順序を、社内で標準化しておく価値があります',
+        '「おすすめを希望する」「あなたならどこが良い？」と<b>言わせる話法や導線</b>をつくることは、明確に否定されました',
+        '意向把握・例示・提示・推奨理由・説明内容を記録に残してください'],
+  cite:'資料01 No.14、16、21、22'},
+
+ {id:'ionly', sev:'mid', title:'比較説明だけでも、守るルールがあります',
+  when:function(a,d){return d.subject&&a.method==='ionly';},
+  lead:'複数の契約内容を比較して説明する場合は、①比較する事項とその内容を適切に説明　②正確な判断に必要な事項を包括的に示す　③優位性を示すために他契約と比較するときは、その他契約の全体像・商品特性も正確に示し優位性の根拠を説明。',
+  todo:['顧客が特定の契約を選んだ<b>後</b>でも、他社と比較して説明すればこのルールが適用されます',
+        '一つでも特定の契約を提示・推奨するなら、そこからは推奨販売（ロ）の対応が必要になります',
+        '顧客にとって明白に最適だと判断した場合でも、比較推奨販売のプロセスは省略できないとされました'],
+  cite:'資料03 Ⅱ-4-2-9(5)①Ａ／資料01 No.26、390'},
+
+ {id:'renewal', sev:'mid', title:'更改・継続の案内文面を見直す',
+  when:function(a,d){return d.subject&&(a.mix==='renewal'||a.mix==='half');},
+  lead:'満期だから対象外、にはなりません。ただし短期の損害保険については、既契約と同条件または補償内容がほぼ変わらないプランの案内は一概に否定されない、とされました。条件が2つあります。',
+  todo:['①顧客の希望に応じて<b>他の保険契約を提案できることを明示する</b>',
+        '②リスク状況や意向を適切に把握できるよう<b>工夫して案内する</b>',
+        '補償拡充プランを併せて案内すること自体は否定されません（内容・既契約との差異・保険料への影響・主な留意点を説明）',
+        '自動継続特約で代理店が募集に関与していないなら、情報提供義務・意向把握確認義務の対象外です'],
+  cite:'資料01 No.108〜110、111、112、577、608'},
+
+ {id:'rec', sev:'mid', title:'記録は「なぜこの1本になったか」が追えること',
+  when:function(a,d){return d.subject;},
+  lead:'書式・媒体・保存期間に一律の指定はありません。紙でも電子でもシステム入力でも音声・録画でも構いません。署名押印も必須ではありません。',
+  todo:['残す項目 ── 主な意向／意向把握の方法／比較・選別の対象範囲／提示・推奨した契約／基準や理由／説明内容の概要',
+        '意向が変わったときは、その経緯と理由も',
+        '保存期間は社内規則等で合理的に定める（法令に特段の定めがある場合を除き一律の期間はない）',
+        '検証は全件でなく、サンプリングや重点確認を含むリスクベースの方法で構いません',
+        '「顧客の属性に応じた説明」とは、年齢・知識・経験等に応じて分かりやすく説明できているかを検証する趣旨で、属性で商品を選ぶ意味ではありません'],
+  cite:'資料03 Ⅱ-4-2-9(5)②ウ／資料01 No.153、156〜160、673、677'},
+
+ {id:'rules', sev:'high', title:'社内規則に書く5項目',
+  when:function(a,d){return d.subject&&!d.staff;},
+  lead:'①顧客意向の把握方法　②顧客が重視する事項の確認方法　③提示・推奨する基準や理由　④顧客への説明方法　⑤記録・検証方法。そのうえで各店舗・各募集人への教育・管理・指導を徹底します。',
+  todo:['商品ごと・顧客ごとの推奨理由をあらかじめ網羅的に書く必要はありません',
+        '商品名が並んだ推奨方針は、そのままでは新しい要件を満たしません（決め方の手順を書く文書に変わります）',
+        '「当社システムにより絞り込まれた保険契約を推奨する」と定めるだけでは足りません',
+        '同じ代理店内でも、意向や属性が違えば募集人ごとに提示する契約が異なることはあり得ます（属人的・恣意的な選別は不可）'],
+  cite:'資料03 Ⅱ-4-2-9(5)②ア／資料01 No.79、90、151、468、480'},
+
+ {id:'edu', sev:'mid', title:'教育・管理・指導',
+  when:function(a,d){return d.subject&&!d.staff;},
+  lead:'社内規則を踏まえた教育・管理・指導が求められます。体制整備義務は、個人・法人の別や代理店の規模を問わず課されます（求められる水準が規模・業務特性に応じて変わります）。',
+  todo:['「募集人が各社の商品内容や保険料体系を十分に理解していない」という状態自体が、保険契約者等の保護の観点から不適切と考える、との回答がありました',
+        '一律かつ画一的な対応や、過度なシステム投資を求める趣旨ではないとも明記されています'],
+  cite:'資料03 Ⅱ-4-2-9(5)②イ／資料01 No.132、135、184、656'},
+
+ {id:'memo', sev:'high', title:'取扱範囲を絞るなら、覚書が先です',
+  when:function(a,d){return d.subject&&a.narrow!=='none';},
+  lead:'社内規則や社内判断だけでは、比較推奨の対象から外れません。委託契約またはこれに基づく覚書等で、対象となる契約・停止時期・既契約の保全対応まで明確化されている必要があります。',
+  todo:['相手の合意が要るぶん、準備項目のなかで最も期間が読みにくい部分です。先に着手する価値があります',
+        '代理店内シェアや取扱件数が少ないことは、除外の理由になりません',
+        '販売停止したことだけ、他代理店へ移管したことだけでも外れません',
+        '顧客に説明して了承を得て証跡を残しただけでも、覚書を待たずに外すことはできません',
+        '顧客には権限明示に加え、「新規募集は行わず、既契約の保全・異動対応のみ」など取扱範囲を誤認させない説明を'],
+  cite:'資料01 No.39、45、46、50、52、469'},
+
+ {id:'sys', sev:'high', title:'使っているツールの選定ロジックを説明できますか',
+  when:function(a,d){return d.subject&&a.system==='using';},
+  lead:'単なる保険料比較やシステムの出力結果の提示だけでは、意向把握にも比較推奨販売の履行にもなりません。「当社システムによりA保険会社が推奨商品となりました」という説明では足りず、どのような基準・理由で推奨したのかを募集人が説明する必要があります。',
+  todo:['選定ロジック・使用データ・比較対象・表示順に代理店都合が介在していないか、確認・検証できる態勢を整える',
+        '商品データの正確性・最新性、選別ロジックの合理性を継続的に確認する',
+        'AIを使う場合も、出力を機械的に採用せず、使用データ・選定ロジック・推奨理由を確認・検証して説明できるようにする',
+        '事前アンケートを使う場合、設問・選択肢・導線が特定社への誘導にならないよう設計する'],
+  cite:'資料01 No.20、33、434、468、507、155、88'},
+
+ {id:'sysno', sev:'info', title:'システムの導入は義務ではありません',
+  when:function(a,d){return d.subject&&a.system!=='using';},
+  lead:'特定のシステムや選別ロジックの導入を一律に求める趣旨ではない、と明記されました。過度なシステム投資を求めるものでもありません。規模・業務特性に応じた実効的な態勢であれば足ります。',
+  todo:['導入する場合は、選定ロジックの適切性を自分で検証できることが条件になります'],
+  cite:'資料01 No.155、135'},
+
+ {id:'joint', sev:'mid', title:'共同募集での注意',
+  when:function(a,d){return a.joint&&a.joint!=='none';},
+  lead:'共同募集に関与する他の代理店が取り扱っていないことのみを理由に、自社の取扱契約を比較推奨の対象外にすることはできません。手数料按分の都合であらかじめ保険会社を絞ることも、代理店の都合による選別にあたります。',
+  todo:['権限明示は各代理店がそれぞれ行う必要があります。幹事代理店であることで、非幹事代理店の権限明示を代替することはできません',
+        '共同募集であることを理由に、比較・選別対象となる保険会社が決められている旨をあらかじめ顧客に開示することは、恣意的な誘導に該当するおそれがあるとされました',
+        '共同保険で現在A社が幹事であることのみを理由に、B社・C社を選別対象から除外することは適切ではありません',
+        '自社が事務のみを担う場合でも、委託契約上取り扱える契約は対象から外れません'],
+  cite:'資料01 No.102、103、104、105、106、373'},
+
+ {id:'form', sev:'mid', title:'事業報告書の様式が変わります',
+  when:function(a,d){return d.agency;},
+  leadFn:function(a){
+    var y=a.role==='corp'?'別紙様式第25号の2 の(16)':'別紙様式第25号の3 の(11)';
+    return '「比較・推奨販売の方法」欄（'+y+'）が3択のチェック方式から記述式に変わります。書くのは ア．推奨方針、イ．比較・推奨販売の適切性の確認方法 の2つです。';},
+  todoFn:function(a,d){
+    var t=['いずれも、推奨販売に関するマニュアル・社内規則等を記載した書面の添付で、記載を省略できます',
+           '「2.取扱保険契約等の状況」にあった（推奨保険会社・商品）の一覧表は削除されます',
+           '附則第2項により、<b>施行日前でも新様式で作成・提出できます</b>'];
+    if(d.solo) t.push('なお、比較推奨販売を行わない場合にこの欄をどう記載するかは、今回の公表資料からは確認できませんでした。所属保険会社等または提出先にご確認ください');
+    return t;},
+  cite:'資料02 第一条 別紙様式第25号の2・第25号の3、附則第2項'},
+
+ {id:'jibai', sev:'info', title:'自賠責保険は推奨販売の対応が不要です',
+  when:function(a,d){return d.has('jibai');},
+  lead:'補償内容や保険料が法令等により定められており、一般の任意保険のように比較して選択する性質が限定的であるため、複数社を取り扱っていてもロ（推奨販売）に係る対応が必要となるものではない、とされました。',
+  todo:['ただし複数社を扱うなら、各社を顧客に明示したうえで、前契約の保険会社や任意保険と同一の保険会社など、希望を確認することが重要とされています',
+        '便宜供与や取引関係など代理店側の都合で特定社を恣意的に優先することは不可です'],
+  cite:'資料01 No.128〜131'},
+
+ {id:'kyosai', sev:'info', title:'共済は比較推奨販売の対象外です',
+  when:function(a,d){return d.has('kyosai');},
+  lead:'規則227条の2第3項第4号は「所属保険会社等」が引き受ける保険契約を対象とします。ここでいう所属保険会社等は保険会社または少額短期保険業者を指し、共済事業者は含まれません。',
+  todo:['したがって、保険商品と類似する補償内容の共済を扱っていても、共済商品との比較推奨販売は求められません'],
+  cite:'資料01 No.376'},
+
+ {id:'fsi', sev:'high', title:'あなたが見るのは監督指針Ⅵ-1-1-2(3)です',
+  when:function(a,d){return d.fsi;},
+  lead:'保険媒介業務を行う金融サービス仲介業者については、金融サービス仲介業者向けの総合的な監督指針 Ⅵ-1-1-2(3) が同じ構造で改正されます。中身はほぼ同じで、参照する条文と項番が違います。',
+  todo:['情報提供 ＝ 準用保険業法294条1項（仲介業者等府令56条1項4号）',
+        '商号等の事前明示 ＝ 金融サービス提供法25条1項（同府令33条2項2号）',
+        '体制整備 ＝ 金融サービス提供法26条',
+        '項番は ①イ／ロ、（イ）（ロ）、② イ〜ニ',
+        '資料01の目次には、仲介業者向け監督指針に対応する分類が見当たりません（「保険業法施行規則」と「監督指針（保険会社向け）」の2系統のみ）。対応する乗合代理店側の分類を手がかりにしてください'],
+  cite:'資料04 Ⅵ-1-1-2(3)／資料02 第二条（仲介業者等府令56条1項4号）'},
+
+ {id:'staff', sev:'info', title:'保険会社の役員・使用人の場合',
+  when:function(a,d){return d.staff;},
+  lead:'規則227条の2第3項第4号が名宛人とするのは「二以上の所属保険会社等を有する保険募集人」です。監督指針Ⅱ-4-2-9(注1)では、保険会社の役員・使用人については、会社が募集の適切性を確保する観点から適切な研修・指導などの体制を整備している場合には、その指導に従い研修に参加することで基本的に足りるものと考えられる、とされています。',
+  todo:['ただし、二以上の比較可能な同種の保険契約がある場面で、顧客の意向を踏まえず「当該保険会社の営業職員等であること」を理由に自社商品のみを提示・推奨することは適切ではない、との回答があります',
+        'なお(注1)の文言は、今回「体制整備をしている場合」から「体制を整備している場合」に修正されます（字句修正）'],
+  cite:'資料03 Ⅱ-4-2-9(注1)／資料01 No.415'},
+
+ {id:'solo', sev:'info', title:'委託が1社なら、今回の改正の直接の対象ではありません',
+  when:function(a,d){return d.solo&&!d.mismatch;},
+  lead:'規則227条の2第3項第4号は「二以上の所属保険会社等を有する保険募集人」についての規定です。委託が1社だけであれば、イ（比較説明）・ロ（推奨販売）いずれの対応も、この規定に基づいて求められることはありません。',
+  todo:['ただし確認を ── 生保1社と損保1社を扱っているなら合計2社で、乗合代理店に該当します',
+        '少額短期保険業者との委託も社数に数えます（共済事業者は数えません）',
+        '誤解させるおそれのある比較表示の禁止（法300条1項6号）は、今回の改正にかかわらず全ての募集人に適用されます'],
+  cite:'資料01 No.374、375'},
+
+ {id:'sched', sev:'info', title:'施行は令和10年3月1日',
+  when:function(a,d){return true;},
+  lead:'「パブリックコメント結果の公表後1年程度の猶予を」という要望が22件寄せられましたが、回答は「体制整備に要する期間として、円滑な対応が可能となるよう適当と考えられる期間を設定しています」で、追加の猶予は示されませんでした。',
+  todo:['事業報告書の新様式だけは、附則第2項により施行前から使えます'],
+  cite:'資料02 附則第1項・第2項／資料01 No.163〜182'}
+];
+
+/* ============================================================
+   準備リスト
+   ============================================================ */
+var TASKS=[
+ {id:'t-talk', when:function(a,d){return d.subject&&d.proposes;},
+  t:'募集トークに「他にもある旨」と「求めがあれば説明する旨」を足す',
+  s:'求められなくても伝える2点。理由の説明とセットで。'},
+ {id:'t-hear', when:function(a,d){return d.subject&&d.recommends;},
+  t:'意向のヒアリング項目を決め、商品を出す前に置く',
+  s:'保障（補償）内容・保険料水準・特約・免責を軸に。'},
+ {id:'t-reason', when:function(a,d){return d.subject&&d.recommends;},
+  t:'推奨理由から、代理店の都合にあたる表現を外す',
+  s:'手数料・販売目標・便宜供与・資本関係・事務都合・慣れ。'},
+ {id:'t-policy', when:function(a,d){return d.subject&&(a.method==='ha'||a.method==='branch'||a.method==='unknown');},
+  t:'推奨方針を「どの商品を勧めるか」から「どうやって決めるか」に書き換える',
+  s:'商品名の一覧では、新しい要件を満たしません。'},
+ {id:'t-rules', when:function(a,d){return d.subject&&!d.staff;},
+  t:'社内規則に5項目を定める',
+  s:'意向把握／重視事項の確認／提示推奨の基準と理由／説明方法／記録検証。'},
+ {id:'t-form', when:function(a,d){return d.subject;},
+  t:'意向確認・推奨判断の帳票をつくる',
+  s:'「なぜこの1本になったか」が後からたどれる粒度で。'},
+ {id:'t-keep', when:function(a,d){return d.subject;},
+  t:'記録の保存期間と検証方法を社内規則に書く',
+  s:'一律の指定はないので、自社で決めて明文化します。'},
+ {id:'t-edu', when:function(a,d){return d.subject&&!d.staff;},
+  t:'募集人教育の計画をつくる（他社商品の理解を含む）',
+  s:'理解していない状態自体が不適切とされました。'},
+ {id:'t-renew', when:function(a,d){return d.subject&&(a.mix==='renewal'||a.mix==='half');},
+  t:'満期案内の文面に「他社のプランもご提案できます」を入れる',
+  s:'短期損保の同条件案内が認められる2条件のうちの1つ。'},
+ {id:'t-memo', when:function(a,d){return d.subject&&a.narrow!=='none';},
+  t:'保険会社との覚書の巻き直しに着手する',
+  s:'相手の合意が要るので、いちばん先に。'},
+ {id:'t-sys', when:function(a,d){return d.subject&&a.system==='using';},
+  t:'使用中のシステムの選定ロジックを検証できる状態にする',
+  s:'ベンダー任せにせず、表示順と選定根拠を説明できるように。'},
+ {id:'t-joint', when:function(a,d){return a.joint&&a.joint!=='none';},
+  t:'共同募集の役割分担と権限明示を確認する',
+  s:'権限明示は各代理店がそれぞれ。'},
+ {id:'t-report', when:function(a,d){return d.agency;},
+  t:'事業報告書を新様式に切り替える',
+  s:'施行前から使えます。先に慣らしておけます。'}
+];
+
+/* ============================================================
+   判定
+   ============================================================ */
+function verdict(a,d){
+  if(d.mismatch) return {lv:'high', label:'回答の確認が必要です',
+    h:'「1社だけ」ではなく、乗合代理店に該当する可能性が高いです',
+    why:'生命保険と損害保険の両方を取り扱っているとお答えいただきました。生命保険会社と損害保険会社は別の会社なので、委託先は<b>合計2社以上</b>になります。金融庁も「生命保険会社1社及び損害保険会社1社など、生命保険・損害保険の別を問わず二以上の所属保険会社等を有する保険募集人は、乗合代理店に該当します」と回答しています。以下は<b>乗合代理店に該当する前提</b>で表示しています。社数の認識が違う場合は、下の「回答の確認」から選び直してください。'};
+  if(d.staff) return {lv:'info', label:'直接の名宛人ではありません',
+    h:'今回の改正が直接の対象とするのは、乗合代理店です',
+    why:'規則227条の2第3項第4号は「二以上の所属保険会社等を有する保険募集人」についての規定です。保険会社の役員・使用人については、会社が適切な研修・指導などの体制を整備している場合には、その指導に従い研修に参加することで基本的に足りるものと考えられる、とされています。'};
+  if(d.solo) return {lv:'info', label:'直接の対象ではありません',
+    h:'委託が1社であれば、今回の改正の直接の対象ではありません',
+    why:'ただし<b>生保1社と損保1社を扱っているなら合計2社</b>で、乗合代理店に該当します。少額短期保険業者との委託も社数に数えます。下の確認事項をご覧ください。'};
+  if(a.method==='ha'||a.method==='branch') return {lv:'high', label:'影響 大',
+    h:'いまのやり方は、そのままでは続けられません',
+    why:'客観的な基準によらずに絞り込む型（規則227条の2第3項第4号ハ）が<b>削除されます</b>。提案は「意向を聞く → 意向に沿って選ぶ → 概要と理由を説明する」の一本道になり、拠点ごとに推奨会社を決めておく運用も、顧客の意向によらない選別として否定されました。募集トーク・帳票・社内規則・事業報告書が同時に動きます。'};
+  if(a.method==='unknown') return {lv:'high', label:'影響 大の可能性',
+    h:'まず、いまのやり方を確かめてください',
+    why:'現状がわからないままだと影響を測れません。事業報告書の「比較・推奨販売の方法」欄でどれに○をつけているかを確認してください。「2 客観的な基準や理由等に基づくことなく絞り込んで提示している」なら、それが廃止される「ハ」に対応する運用です。'};
+  if(a.method==='ionly') return {lv:'low', label:'影響 限定的',
+    h:'比較説明だけなら、影響は限定的です',
+    why:'比較説明（イ）のルールは内容が明文化されただけで、大きく変わりません。ただし<b>一つでも特定の契約を提示・推奨するなら</b>、そこからは推奨販売（ロ）の対応が必要になります。実務でそういう場面がないか、確認してください。'};
+  return {lv:'mid', label:'影響 中',
+    h:'大枠は合っています。足りないのは、伝え方と残し方です',
+    why:'意向を聞いてから選ぶ、という順序はすでに改正後の形です。新しく加わるのは、<b>推奨しなかった契約もある旨とその説明の申し出</b>、<b>理由の具体性の水準</b>、<b>後から検証できる記録</b>の3つです。'};
+}
+
+var SEVRANK={high:0,mid:1,low:2,info:3};
+var SEVLABEL={high:'重要',mid:'要対応',low:'確認',info:'参考'};
+
+function pickTopics(a,d){
+  var out=[];
+  for(var i=0;i<TOPICS.length;i++){
+    var t=TOPICS[i];
+    if(!t.when(a,d)) continue;
+    var sev=t.sevFn?t.sevFn(a):t.sev;
+    out.push({t:t,sev:sev,i:i});
+  }
+  out.sort(function(x,y){
+    var r=SEVRANK[x.sev]-SEVRANK[y.sev];
+    return r!==0?r:x.i-y.i;
+  });
+  return out;
+}
+
+/* ============================================================
+   状態
+   ============================================================ */
+var A={}, step=-1, DONE=false;
+var KEY='hs-check-v1', CKEY='hs-check-tasks-v1';
+function save(){try{localStorage.setItem(KEY,JSON.stringify({a:A,step:step,done:DONE}));}catch(e){}}
+function load(){try{var r=localStorage.getItem(KEY);if(r){var o=JSON.parse(r);A=o.a||{};step=typeof o.step==='number'?o.step:-1;DONE=!!o.done;}}catch(e){}}
+function ticks(){try{return JSON.parse(localStorage.getItem(CKEY)||'{}');}catch(e){return {};}}
+function tick(id,v){try{var o=ticks();o[id]=v;localStorage.setItem(CKEY,JSON.stringify(o));}catch(e){}}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function labelOf(q,v){
+  if(q.type==='multi'){
+    if(!v||!v.length) return '—';
+    return v.map(function(x){
+      for(var i=0;i<q.opts.length;i++) if(q.opts[i].v===x) return q.opts[i].t;
+      return x;
+    }).join('・');
+  }
+  for(var i=0;i<q.opts.length;i++) if(q.opts[i].v===v) return q.opts[i].t;
+  return '—';
+}
+function answered(){var n=0;for(var i=0;i<QUESTIONS.length;i++){var q=QUESTIONS[i];var v=A[q.id];if(q.type==='multi'?(v&&v.length):v) n++;}return n;}
+
+var stage=document.getElementById('stage'),
+    fill=document.getElementById('fill'),
+    cnt=document.getElementById('cnt'),
+    resetBtn=document.getElementById('reset');
+
+function chrome(){
+  var total=QUESTIONS.length;
+  if(DONE){fill.style.width='100%';cnt.textContent='結果';}
+  else if(step<0){fill.style.width='0%';cnt.textContent=total+'問';}
+  else{fill.style.width=Math.round(step/total*100)+'%';cnt.textContent=(step+1)+' / '+total;}
+  resetBtn.hidden=(step<0&&!DONE);
+  stage.className='wrap'+(DONE?' wide':'');
+}
+
+/* ============================================================
+   画面
+   ============================================================ */
+function renderIntro(){
+  var h='<section class="intro">'+
+    '<span class="eyebrow">金融庁 パブリックコメント結果 ／ 2026年8月28日公表</span>'+
+    '<h1>この改正は、<br />あなたにどう関係しますか</h1>'+
+    '<p class="lead">9つの質問に答えると、比較推奨販売の改正のうち<strong>あなたに関係する部分だけ</strong>が表示されます。回答に応じた準備リストもつきます。所要3分ほどです。</p>'+
+    '<div class="qlist"><h2>きくこと</h2><ol>'+
+      '<li>立場（代理店・保険会社・仲介業者）</li>'+
+      '<li>委託を受けている保険会社の数</li>'+
+      '<li>取り扱っている分野</li>'+
+      '<li>いま商品をどう決めているか</li>'+
+      '<li>共同募集の有無</li>'+
+      '<li>「お任せします」の頻度</li>'+
+      '<li>新規と更改の比率</li>'+
+      '<li>システム・比較ツールの利用</li>'+
+      '<li>取扱範囲を絞る予定</li>'+
+    '</ol></div>'+
+    '<button class="cta" id="start">はじめる →</button>'+
+    '<p class="caveat">回答はこのブラウザの中だけに保存され、どこにも送信されません。<br />'+
+    '判定は、金融庁が2026年8月28日に公表した「コメントの概要及びコメントに対する金融庁の考え方」（全450ページ・759件）と、内閣府令・監督指針の新旧対照表にもとづく参考情報です。金融庁の公式見解ではなく、個別の事案について法的な結論を示すものでもありません。実務上の判断は、原文および所属先の社内規則をご確認ください。</p>'+
+    '</section>';
+  stage.innerHTML=h;
+  document.getElementById('start').addEventListener('click',function(){step=0;save();render();});
+}
+
+function renderQuestion(){
+  var q=QUESTIONS[step], cur=A[q.id];
+  var h='<section class="qwrap">'+
+    '<div class="qnum">質問 '+(step+1)+' / '+QUESTIONS.length+'</div>'+
+    '<h2>'+q.q+'</h2>'+
+    (q.help?'<p class="qhelp">'+q.help+'</p>':'')+
+    '<div class="opts" role="group">';
+  for(var i=0;i<q.opts.length;i++){
+    var o=q.opts[i];
+    var on = q.type==='multi' ? (cur&&cur.indexOf(o.v)>=0) : cur===o.v;
+    h+='<button type="button" class="opt'+(q.type==='multi'?' multi':'')+'" data-v="'+o.v+'" aria-pressed="'+(on?'true':'false')+'">'+
+       '<span class="mk" aria-hidden="true">✓</span>'+
+       '<span class="tx"><b>'+o.t+'</b>'+(o.s?'<span>'+o.s+'</span>':'')+'</span></button>';
+  }
+  h+='</div><div class="qnav">';
+  if(step>0) h+='<button type="button" class="ghost" id="back">← 戻る</button>';
+  if(q.type==='multi') h+='<button type="button" class="next" id="next"'+((cur&&cur.length)?'':' disabled')+'>次へ →</button>';
+  h+='</div>';
+
+  if(step>0){
+    h+='<div class="sofar"><h3>ここまでの回答</h3><div class="chips">';
+    for(var j=0;j<step;j++){
+      var qq=QUESTIONS[j];
+      h+='<button type="button" data-go="'+j+'"><i>'+(j+1)+'</i>'+esc(labelOf(qq,A[qq.id]))+'</button>';
+    }
+    h+='</div></div>';
+  }
+  h+='</section>';
+  stage.innerHTML=h;
+
+  var opts=stage.querySelectorAll('.opt');
+  for(var k=0;k<opts.length;k++){
+    opts[k].addEventListener('click',function(e){
+      var v=e.currentTarget.getAttribute('data-v');
+      if(q.type==='multi'){
+        var arr=(A[q.id]||[]).slice();
+        var ix=arr.indexOf(v);
+        if(ix>=0) arr.splice(ix,1); else arr.push(v);
+        A[q.id]=arr; save(); renderQuestion(); chrome();
+      }else{
+        A[q.id]=v; save();
+        if(step<QUESTIONS.length-1){step++;} else {DONE=true;}
+        save(); render();
+      }
+    });
+  }
+  var b=document.getElementById('back');
+  if(b) b.addEventListener('click',function(){step--;save();render();});
+  var n=document.getElementById('next');
+  if(n) n.addEventListener('click',function(){
+    if(step<QUESTIONS.length-1){step++;} else {DONE=true;}
+    save(); render();
+  });
+  var gos=stage.querySelectorAll('[data-go]');
+  for(var m=0;m<gos.length;m++){
+    gos[m].addEventListener('click',function(e){
+      step=parseInt(e.currentTarget.getAttribute('data-go'),10);save();render();
+    });
+  }
+}
+
+function renderResult(){
+  var d=derive(A), v=verdict(A,d), list=pickTopics(A,d);
+  var tally={high:0,mid:0,low:0,info:0};
+  for(var i=0;i<list.length;i++) tally[list[i].sev]++;
+
+  var h='<section class="res">';
+
+  /* verdict */
+  h+='<div class="verdict">'+
+     '<div class="lv"><span class="lvbadge '+v.lv+'">'+v.label+'</span>'+
+       '<span style="font-size:12.5px;color:var(--ink-3)">施行 令和10年3月1日<span id="cd"></span></span></div>'+
+     '<h2>'+v.h+'</h2>'+
+     '<p class="why">'+v.why+'</p>'+
+     '<div class="tally">';
+  if(tally.high) h+='<span class="t-high">重要 '+tally.high+'</span>';
+  if(tally.mid)  h+='<span class="t-mid">要対応 '+tally.mid+'</span>';
+  if(tally.low)  h+='<span class="t-low">確認 '+tally.low+'</span>';
+  if(tally.info) h+='<span class="t-info">参考 '+tally.info+'</span>';
+  h+='</div></div>';
+
+  /* topics */
+  h+='<div class="rsec"><h2>あなたに関係するところ</h2>'+
+     '<p class="note">回答から、'+list.length+'件が該当しました。重要なものから並べています。かっこ内の No. は、金融庁「コメントの概要及びコメントに対する金融庁の考え方」の項目番号です。</p>'+
+     '<div class="cards">';
+  for(var j=0;j<list.length;j++){
+    var t=list[j].t, sev=list[j].sev;
+    var lead=t.leadFn?t.leadFn(A):t.lead;
+    h+='<div class="rc '+sev+'">'+
+       '<div class="rh"><span class="tag '+sev+'">'+SEVLABEL[sev]+'</span><b>'+t.title+'</b></div>'+
+       '<p class="lead">'+lead+'</p>';
+    var todo=t.todoFn?t.todoFn(A,d):t.todo;
+    if(todo&&todo.length){
+      h+='<div class="todo"><b>ポイント</b><ul>';
+      for(var k=0;k<todo.length;k++) h+='<li>'+todo[k]+'</li>';
+      h+='</ul></div>';
+    }
+    h+='<p class="cite"><b>出典</b>'+t.cite+'</p></div>';
+  }
+  h+='</div></div>';
+
+  /* tasks */
+  var tasks=[];
+  for(var m=0;m<TASKS.length;m++) if(TASKS[m].when(A,d)) tasks.push(TASKS[m]);
+  if(tasks.length){
+    var tk=ticks();
+    h+='<div class="rsec"><h2>あなたの準備リスト</h2>'+
+       '<p class="note">上の内容を、代理店として手を動かす項目に並べ直したものです。チェックはこのブラウザに保存されます。印刷して持ち回れます。</p>'+
+       '<div class="check">';
+    for(var n=0;n<tasks.length;n++){
+      var x=tasks[n];
+      h+='<label><input type="checkbox" data-t="'+x.id+'"'+(tk[x.id]?' checked':'')+' />'+
+         '<span class="ct"><b>'+x.t+'</b><span>'+x.s+'</span></span></label>';
+    }
+    h+='</div></div>';
+  }
+
+  /* recap */
+  h+='<div class="rsec"><h2>回答の確認</h2>'+
+     '<p class="note">選び直すと、結果もその場で変わります。</p><div class="recap">';
+  for(var p=0;p<QUESTIONS.length;p++){
+    var q=QUESTIONS[p];
+    h+='<div class="row"><span class="q">'+q.q+'</span>'+
+       '<span class="a">'+esc(labelOf(q,A[q.id]))+' <button type="button" data-edit="'+p+'">変更</button></span></div>';
+  }
+  h+='</div></div>';
+
+  h+='<div class="actions">'+
+     '<button class="ghost" id="print">この結果を印刷する</button>'+
+     '<button class="ghost" id="again">最初からやり直す</button>'+
+     '</div>';
+
+  h+='<div class="foot"><b>この結果について</b>'+
+     '金融庁が2026年8月28日に公表した資料にもとづく参考情報です。金融庁の公式見解ではなく、個別の事案について法的な結論を示すものでもありません。判定の分岐と準備リストは、公表資料を読み解いて編集部が組み立てたもので、原文にこの形の整理はありません。<br />'+
+     '「二以上の比較可能な同種の保険契約」が存在するかどうかは、顧客の具体的な意向、対象となるリスク、保険給付の内容、保険契約の特性・類型等を踏まえて<b>個別具体的かつ実質的に判断される</b>とされています。このチェックは、その判断を代替するものではありません。<br />'+
+     '実務上の判断は、必ず原文および所属先の社内規則を確認し、必要に応じて専門家にご相談ください。<br /><br />'+
+     '<b>出典</b>'+
+     '<a href="'+FSA+'01.pdf" target="_blank" rel="noopener noreferrer">資料01 コメントの概要及びコメントに対する金融庁の考え方</a>（全450ページ・759件）<br />'+
+     '<a href="'+FSA+'02.pdf" target="_blank" rel="noopener noreferrer">資料02 保険業法施行規則及び金融サービス仲介業者等に関する内閣府令の一部を改正する内閣府令 新旧対照表</a><br />'+
+     '<a href="'+FSA+'03.pdf" target="_blank" rel="noopener noreferrer">資料03 保険会社向けの総合的な監督指針（新旧対照表）</a><br />'+
+     '<a href="'+FSA+'04.pdf" target="_blank" rel="noopener noreferrer">資料04 金融サービス仲介業者向けの総合的な監督指針 新旧対照表</a>'+
+     '</div>';
+
+  h+='</section>';
+  stage.innerHTML=h;
+
+  var cd=document.getElementById('cd');
+  if(cd){var days=Math.ceil((new Date(2028,2,1)-new Date())/86400000);if(days>0)cd.textContent='（あと '+days.toLocaleString('ja-JP')+' 日）';}
+
+  var boxes=stage.querySelectorAll('[data-t]');
+  for(var b1=0;b1<boxes.length;b1++){
+    boxes[b1].addEventListener('change',function(e){tick(e.currentTarget.getAttribute('data-t'),e.currentTarget.checked);});
+  }
+  var eds=stage.querySelectorAll('[data-edit]');
+  for(var e1=0;e1<eds.length;e1++){
+    eds[e1].addEventListener('click',function(e){
+      step=parseInt(e.currentTarget.getAttribute('data-edit'),10);DONE=false;save();render();
+      window.scrollTo(0,0);
+    });
+  }
+  document.getElementById('print').addEventListener('click',function(){window.print();});
+  document.getElementById('again').addEventListener('click',doReset);
+}
+
+function doReset(){
+  A={};step=-1;DONE=false;save();render();window.scrollTo(0,0);
+}
+
+function render(){
+  chrome();
+  if(DONE) renderResult();
+  else if(step<0) renderIntro();
+  else renderQuestion();
+  if(!DONE&&step>=0) window.scrollTo(0,0);
+}
+
+resetBtn.addEventListener('click',doReset);
+load();
+if(step>=QUESTIONS.length){step=QUESTIONS.length-1;}
+render();
+})();
+</script>
+
+</body>
+</html>
