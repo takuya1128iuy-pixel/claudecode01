@@ -362,4 +362,26 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
 [data-mode="quick"] .srcline{display:block}
 [data-mode="deep"] .srcline,.sec.open .srcline{display:none}
 .srcline{display:none;margin-top:22px;font-size:12px;color:var(--ink-3)}
+
+/* ============ print ============ */
+@media print{
+  :root{--ground:#fff;--surface:#fff;--surface-2:#f4f5f7;--ink:#000;--ink-2:#222;--ink-3:#555;
+        --line:#bbb;--line-soft:#ddd;--accent:#1b3a63;--accent-2:#1b3a63;--accent-soft:#eef2f8;
+        --flag:#7a2c1f;--flag-soft:#faf1ee;--flag-line:#c9a79e;--mark:#f3e5b0;
+        --shadow-s:none;--shadow-m:none}
+  body{background:#fff;font-size:10.5pt;line-height:1.75}
+  .topbar,.chips,.rail,.more,.totop,.modehelp,.picker{display:none !important}
+  .cols{display:block}
+  .wrap{max-width:none;padding:0}
+  .deep{display:block !important}
+  .sec{break-inside:auto;page-break-inside:auto;padding:18px 0 20px}
+  .sec h2{page-break-after:avoid}
+  .qa,.step,.pane,.q,.note,.read,.wbox,.dd>div,.fact,.doccard{break-inside:avoid;page-break-inside:avoid;box-shadow:none}
+  .hero{padding:0 0 18px}
+  .hero h1{font-size:24pt}
+  a{color:inherit;text-decoration:none}
+  .card:hover{transform:none}
+  table{min-width:0;font-size:9.5pt}
+  .tablewrap{overflow:visible}
+}
 '''

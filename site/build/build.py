@@ -12,6 +12,7 @@ from c_ref import REF, SOURCES
 CARD_FIELD=[
  ("flow","現場 01","募集の流れが、こう変わる","意向を聞く → 選ぶ → 説明する → 記録する。4ステップで整理。","指針Ⅱ-4-2-9(5) ／ 資料01 多数"),
  ("words","現場 02","言える理由、言えない理由","推奨理由に使える言葉と、使えない言葉。159件が集中した論点。","資料01 No.59〜94 ／ 385〜507"),
+ ("scope","現場 03","「他にもあります」はどこまで言うか","伝える範囲と、概要説明の程度。負担が軽くなる回答が並んだ。","資料01 No.518〜533 情報提供"),
  ("q1","場面 01","「お任せします」と言われたら","その一言だけでは決められない。ではどうするか。","資料01 No.14〜25 意向がない場合"),
  ("q2","場面 02","保険会社を指定されたら","指名買いのとき、推奨販売の対応は要るのか。","資料01 No.26〜30 指名買い"),
  ("q3","場面 03","毎回、全社の見積もりが要るか","網羅義務はあるのか。絞り込むときの条件は。","資料01 No.10・48・63・83 ほか"),
@@ -22,6 +23,7 @@ CARD_FIELD=[
  ("q8","場面 08","社内規則に何を書くか","定めるべき5項目と、そこまでは求められないこと。","資料01 No.79・90・151 ほか"),
  ("q9","場面 09","自賠責・小規模代理店","自賠責は対象か。小規模でも同じ体制が要るのか。","資料01 No.128〜131・132〜151"),
  ("q10","場面 10","施行までにどれだけ猶予があるか","1年程度の猶予を求める声への回答は。","資料01 No.163〜184 施行時期"),
+ ("checklist","現場 04","施行までに用意するもの","代理店の準備を7項目に。覚書だけは相手の合意が要る。","本サイトの各テーマの整理"),
 ]
 CARD_LAW=[
  ("t1","条文 01","全体像と施行スケジュール","何がどう改正され、いつから効くのか。","資料02 附則1・2"),
@@ -180,6 +182,8 @@ __SEC_REF__
       var open=document.querySelectorAll('.sec.open');
       for(var i=0;i<open.length;i++) open[i].classList.remove('open');
     }
+    var mb=document.querySelectorAll('[data-more]');
+    for(var b2=0;b2<mb.length;b2++) mb[b2].setAttribute('aria-expanded',String(mode==='deep'));
     if(persist){try{localStorage.setItem('gd-mode',mode);}catch(e){}}
   }
   var saved='quick';
@@ -190,9 +194,11 @@ __SEC_REF__
 
   var buttons=document.querySelectorAll('[data-more]');
   for(var i=0;i<buttons.length;i++){
+    buttons[i].setAttribute('aria-expanded','false');
     buttons[i].addEventListener('click',function(e){
       var sec=e.currentTarget.closest('.sec');
       sec.classList.add('open');
+      e.currentTarget.setAttribute('aria-expanded','true');
       sec.scrollIntoView({block:'start'});
     });
   }
@@ -260,11 +266,8 @@ BODY = BODY.replace('__SEC_REF__', '\n\n'.join(section(s) for s in REF)+'\n\n'+S
 full = '<!doctype html>\n<html lang="ja">\n<head>\n<meta charset="UTF-8" />\n<meta name="viewport" content="width=device-width, initial-scale=1" />\n' \
      + '<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ctext y=\'.9em\' font-size=\'90\'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E" />\n' \
      + HEAD + '\n</head>\n<body>\n' + BODY + '\n</body>\n</html>\n'
-ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-open(os.path.join(ROOT,'index.html'),'w',encoding='utf-8').write(full)
+open('/home/user/claudecode01/site/index.html','w',encoding='utf-8').write(full)
 
 art = HEAD + '\n' + BODY + '\n'
-import pathlib
-_a=os.environ.get('ARTIFACT_OUT')
-if _a: open(_a,'w',encoding='utf-8').write(art)
+open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','artifact.html'),'w',encoding='utf-8').write(art)
 print('built:', len(full), 'bytes (site)  /', len(art), 'bytes (artifact)')
