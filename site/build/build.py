@@ -266,8 +266,16 @@ BODY = BODY.replace('__SEC_REF__', '\n\n'.join(section(s) for s in REF)+'\n\n'+S
 full = '<!doctype html>\n<html lang="ja">\n<head>\n<meta charset="UTF-8" />\n<meta name="viewport" content="width=device-width, initial-scale=1" />\n' \
      + '<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ctext y=\'.9em\' font-size=\'90\'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E" />\n' \
      + HEAD + '\n</head>\n<body>\n' + BODY + '\n</body>\n</html>\n'
-open('/home/user/claudecode01/site/index.html','w',encoding='utf-8').write(full)
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+out = os.path.join(ROOT, 'index.html')
+open(out, 'w', encoding='utf-8').write(full)
+print('built:', out, '(%d chars)' % len(full))
 
-art = HEAD + '\n' + BODY + '\n'
-open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','artifact.html'),'w',encoding='utf-8').write(art)
-print('built:', len(full), 'bytes (site)  /', len(art), 'bytes (artifact)')
+# The Artifact host wraps the page in its own <html>/<head>/<body>, so it needs
+# the same content without that shell. Written only on request, to a path the
+# caller names -- it is a byproduct of publishing, not part of the site.
+art_out = os.environ.get('ARTIFACT_OUT')
+if art_out:
+    art = HEAD + '\n' + BODY + '\n'
+    open(art_out, 'w', encoding='utf-8').write(art)
+    print('artifact body:', art_out, '(%d chars)' % len(art))
