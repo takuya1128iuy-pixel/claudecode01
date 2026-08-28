@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>比較推奨販売ルール改正ガイド</title>
+<meta name="description" content="金融庁が公表した比較推奨販売に関する内閣府令案・監督指針改正案を、乗合代理店の募集人向けに出典付きで整理したガイド。" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Zen+Old+Mincho:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ground:#F1F3F7;
+  --surface:#FFFFFF;
+  --surface-2:#E8ECF3;
+  --line:#D2D9E4;
+  --line-soft:#E2E7EF;
+  --ink:#131822;
+  --ink-2:#3B4554;
+  --ink-3:#69748A;
+  --accent:#26497D;
+  --accent-2:#3A6DA8;
+  --accent-soft:#E2EAF6;
+  --flag:#95382A;
+  --flag-soft:#F6E8E4;
+  --old:#7C7563;
+  --old-soft:#EFEDE5;
+  --mark:#FBE9B7;
+  --shadow:0 1px 2px rgba(19,24,34,.06),0 8px 24px -16px rgba(19,24,34,.22);
+  --radius:10px;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F1218;
+    --surface:#171C25;
+    --surface-2:#202734;
+    --line:#2B3342;
+    --line-soft:#232A36;
+    --ink:#E5E9F1;
+    --ink-2:#B2BBCA;
+    --ink-3:#8794A9;
+    --accent:#8FB4E4;
+    --accent-2:#6D97CE;
+    --accent-soft:#1D2839;
+    --flag:#DE9484;
+    --flag-soft:#2C1F1B;
+    --old:#A79D89;
+    --old-soft:#24211A;
+    --mark:#4A3F1B;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F1218;
+  --surface:#171C25;
+  --surface-2:#202734;
+  --line:#2B3342;
+  --line-soft:#232A36;
+  --ink:#E5E9F1;
+  --ink-2:#B2BBCA;
+  --ink-3:#8794A9;
+  --accent:#8FB4E4;
+  --accent-2:#6D97CE;
+  --accent-soft:#1D2839;
+  --flag:#DE9484;
+  --flag-soft:#2C1F1B;
+  --old:#A79D89;
+  --old-soft:#24211A;
+  --mark:#4A3F1B;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  font-size:16px;
+  line-height:1.85;
+  font-feature-settings:"palt" 1;
+}
+h1,h2,h3,h4{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;text-wrap:balance;margin:0;line-height:1.45}
+p{margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:4px}
+ul,ol{margin:0;padding-left:1.35em}
+li{margin:.28em 0}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{
+  max-width:var(--maxw);margin:0 auto;padding:10px 20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.brand{display:flex;flex-direction:column;gap:1px;margin-right:auto;min-width:0}
+.brand b{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;letter-spacing:.01em;white-space:nowrap}
+.brand span{font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+
+.modeswitch{display:flex;align-items:center;gap:10px}
+.modeswitch>span{font-size:11px;letter-spacing:.12em;color:var(--ink-3);font-weight:700}
+.seg{display:flex;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+.seg button{
+  font:inherit;font-size:13px;font-weight:700;font-family:"Zen Kaku Gothic New",sans-serif;
+  border:0;background:transparent;color:var(--ink-3);
+  padding:5px 15px;border-radius:999px;cursor:pointer;white-space:nowrap;
+  transition:background .18s ease,color .18s ease;
+}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+:root[data-theme="dark"] .seg button[aria-pressed="true"],
+:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{color:var(--ground)}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .seg button[aria-pressed="true"]{color:#fff}}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px 80px}
+.cols{display:grid;grid-template-columns:236px minmax(0,1fr);gap:44px;align-items:start}
+@media (max-width:920px){.cols{grid-template-columns:minmax(0,1fr);gap:0}.rail{display:none}}
+
+.rail{position:sticky;top:74px;padding:28px 0;font-size:13px}
+.rail h2{font-size:11px;letter-spacing:.14em;color:var(--ink-3);font-weight:700;margin-bottom:12px}
+.rail ol{list-style:none;padding:0;margin:0;border-left:1px solid var(--line)}
+.rail li{margin:0}
+.rail a{
+  display:block;padding:7px 0 7px 14px;margin-left:-1px;
+  border-left:2px solid transparent;color:var(--ink-2);text-decoration:none;line-height:1.5;
+  transition:color .15s ease,border-color .15s ease;
+}
+.rail a:hover{color:var(--ink)}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:700}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 8px;border-bottom:1px solid var(--line);margin-bottom:38px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11.5px;letter-spacing:.14em;font-weight:700;color:var(--accent);
+  background:var(--accent-soft);padding:5px 12px;border-radius:999px;
+}
+.hero h1{font-size:clamp(30px,5.2vw,50px);font-weight:900;letter-spacing:-.01em;margin:20px 0 0;line-height:1.24}
+.hero .lead{margin-top:16px;max-width:34em;color:var(--ink-2);font-size:16.5px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.fact{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:10px 16px;min-width:0;
+}
+.fact dt{font-size:10.5px;letter-spacing:.12em;color:var(--ink-3);font-weight:700;margin-bottom:2px}
+.fact dd{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;font-variant-numeric:tabular-nums}
+
+/* ---------- gist / summary ---------- */
+.tldr{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:26px 28px;margin:34px 0 46px;
+}
+.tldr h2{font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px}
+.tldr h2::before{content:"";width:16px;height:2px;background:var(--accent);display:block}
+.tldr ol{margin-top:16px;padding-left:0;list-style:none;counter-reset:t;display:grid;gap:14px}
+.tldr li{counter-increment:t;position:relative;padding-left:38px;margin:0}
+.tldr li::before{
+  content:counter(t);position:absolute;left:0;top:5px;
+  font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:12px;
+  width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);
+  display:grid;place-items:center;
+}
+
+/* ---------- theme cards ---------- */
+.picker{margin-bottom:56px}
+.picker h2{font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px}
+.picker h2::before{content:"";width:16px;height:2px;background:var(--accent);display:block}
+.picker>p{color:var(--ink-3);font-size:13.5px;margin-top:6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:12px;margin-top:20px}
+.card{
+  display:flex;flex-direction:column;gap:8px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px 15px;text-decoration:none;color:inherit;
+  transition:border-color .16s ease,transform .16s ease,box-shadow .16s ease;
+}
+.card:hover{border-color:var(--accent-2);transform:translateY(-2px);box-shadow:var(--shadow)}
+.card b{font-family:"Zen Kaku Gothic New",sans-serif;font-size:15.5px;font-weight:700;line-height:1.5}
+.card span{font-size:13px;color:var(--ink-2);line-height:1.65}
+.card .tag{
+  margin-top:auto;font-size:11px;letter-spacing:.03em;color:var(--ink-3);
+  border-top:1px dashed var(--line);padding-top:9px;font-variant-numeric:tabular-nums;
+}
+@media (prefers-reduced-motion:reduce){.card:hover{transform:none}*{scroll-behavior:auto !important}}
+
+/* ---------- sections ---------- */
+html{scroll-behavior:smooth}
+.sec{scroll-margin-top:82px;padding:34px 0 40px;border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+.sec-no{
+  font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;
+  color:var(--accent);
+}
+.sec h2{font-size:clamp(21px,3vw,27px);font-weight:900;letter-spacing:-.005em;width:100%;margin-top:2px}
+.sec-sub{color:var(--ink-3);font-size:13px;margin-top:8px}
+
+.gist{
+  margin-top:22px;background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:var(--radius);padding:20px 24px;
+}
+.gist .lbl{font-size:11px;letter-spacing:.14em;font-weight:700;color:var(--accent);margin-bottom:10px}
+.gist ul{padding-left:1.2em}
+
+.more{
+  margin-top:16px;display:inline-flex;align-items:center;gap:8px;
+  font-family:"Zen Kaku Gothic New",sans-serif;font-size:13px;font-weight:700;
+  background:transparent;border:1px solid var(--line);color:var(--ink-2);
+  padding:8px 16px;border-radius:999px;cursor:pointer;
+}
+.more:hover{border-color:var(--accent-2);color:var(--accent)}
+.more .plus{font-size:15px;line-height:1;color:var(--accent)}
+
+/* two reading modes */
+.deep{display:none;margin-top:26px}
+[data-mode="deep"] .deep{display:block}
+.sec.open .deep{display:block}
+[data-mode="deep"] .more{display:none}
+.sec.open .more{display:none}
+
+.deep h3{
+  font-size:15.5px;font-weight:700;margin:30px 0 12px;
+  padding-bottom:7px;border-bottom:1px solid var(--line-soft);
+}
+.deep h3:first-child{margin-top:0}
+.deep p+p{margin-top:12px}
+.deep p,.deep ul,.deep ol{max-width:66ch}
+
+/* quotations */
+.q{
+  font-family:"Zen Old Mincho","Yu Mincho",serif;
+  background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent-2);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:16px 20px;margin:12px 0;font-size:15px;line-height:2.0;
+}
+.q .cite{
+  display:block;font-family:"Noto Sans JP",sans-serif;font-size:11.5px;letter-spacing:.04em;
+  color:var(--ink-3);margin-bottom:8px;font-weight:700;
+}
+mark{background:var(--mark);color:inherit;padding:.1em .12em;border-radius:2px}
+
+/* old / new comparison */
+.compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+@media (max-width:700px){.compare{grid-template-columns:minmax(0,1fr)}}
+.pane{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;min-width:0}
+.pane.now{background:var(--old-soft);border-color:color-mix(in srgb,var(--old) 40%,transparent)}
+.chip{
+  display:inline-block;font-size:11px;letter-spacing:.1em;font-weight:700;
+  padding:3px 10px;border-radius:999px;margin-bottom:10px;
+}
+.pane.new .chip{background:var(--accent-soft);color:var(--accent)}
+.pane.now .chip{background:color-mix(in srgb,var(--old) 22%,transparent);color:var(--old)}
+.pane .body{font-family:"Zen Old Mincho","Yu Mincho",serif;font-size:14.5px;line-height:1.95}
+.pane .del{color:var(--flag);font-weight:600;font-family:"Noto Sans JP",sans-serif;font-size:14px}
+
+/* callouts */
+.note{
+  background:var(--flag-soft);border:1px solid color-mix(in srgb,var(--flag) 32%,transparent);
+  border-radius:var(--radius);padding:14px 18px;margin:14px 0;font-size:14.5px;
+}
+.note b{color:var(--flag);font-family:"Zen Kaku Gothic New",sans-serif;display:block;margin-bottom:4px;font-size:13px;letter-spacing:.04em}
+.read{
+  background:var(--surface-2);border:1px dashed var(--line);border-radius:var(--radius);
+  padding:14px 18px;margin:16px 0;font-size:14.5px;
+}
+.read b{display:block;font-size:11px;letter-spacing:.14em;color:var(--ink-3);margin-bottom:5px;font-family:"Zen Kaku Gothic New",sans-serif}
+
+/* checklist */
+.checks{list-style:none;padding:0;display:grid;gap:10px;margin:14px 0;max-width:66ch}
+.checks li{
+  position:relative;padding:13px 16px 13px 44px;margin:0;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+}
+.checks li::before{
+  content:"✓";position:absolute;left:18px;top:13px;
+  color:var(--accent);font-weight:700;font-size:14px;line-height:1.85;
+}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--line-soft);vertical-align:top;line-height:1.7}
+thead th{
+  font-family:"Zen Kaku Gothic New",sans-serif;font-size:11.5px;letter-spacing:.08em;
+  color:var(--ink-3);background:var(--surface-2);border-bottom:1px solid var(--line);white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td.k{font-weight:700;white-space:nowrap}
+
+/* source footer */
+.src{
+  margin-top:26px;border-top:1px solid var(--line);padding-top:14px;
+  font-size:12.5px;color:var(--ink-2);line-height:1.8;
+}
+.src b{
+  display:block;font-size:10.5px;letter-spacing:.14em;color:var(--ink-3);
+  font-family:"Zen Kaku Gothic New",sans-serif;margin-bottom:6px;
+}
+.src ul{list-style:none;padding:0;display:grid;gap:5px}
+.src li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;margin:0}
+.src .doc{
+  font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--accent);
+  background:var(--accent-soft);border-radius:4px;padding:1px 7px;height:fit-content;margin-top:4px;white-space:nowrap;
+}
+
+/* sources page section */
+.docs{display:grid;gap:12px;margin-top:20px}
+.doccard{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 20px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;
+}
+.doccard .n{
+  font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;color:var(--accent);
+  font-variant-numeric:tabular-nums;
+}
+.doccard b{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px}
+.doccard p{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+.doccard a{font-size:13px;display:inline-block;margin-top:6px;word-break:break-all}
+
+.disclaimer{
+  margin-top:44px;padding:22px 24px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--surface-2);font-size:13px;color:var(--ink-2);line-height:1.9;
+}
+.disclaimer b{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);display:block;margin-bottom:6px;font-size:13.5px}
+
+.totop{
+  display:inline-flex;gap:7px;align-items:center;margin-top:18px;
+  font-size:12.5px;color:var(--ink-3);text-decoration:none;font-weight:700;
+}
+.totop:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <b>比較推奨販売ルール改正ガイド</b>
+      <span>金融庁 意見募集資料（2026年8月28日公表）にもとづく整理</span>
+    </div>
+    <div class="modeswitch">
+      <span>読み方</span>
+      <div class="seg" role="group" aria-label="読み方の切り替え">
+        <button type="button" id="m-quick" aria-pressed="true">サクッと</button>
+        <button type="button" id="m-deep" aria-pressed="false">じっくり</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="cols">
+
+  <nav class="rail" aria-label="テーマ一覧">
+    <h2>テーマ</h2>
+    <ol>
+      <li><a href="#t1">全体像と施行スケジュール</a></li>
+      <li><a href="#t2">「ハ」の削除で何が変わるか</a></li>
+      <li><a href="#t3">出発点は誠実公正義務</a></li>
+      <li><a href="#t4">比較説明（Ａ）のルール</a></li>
+      <li><a href="#t5">推奨販売（Ｂ）のルール</a></li>
+      <li><a href="#t6">意向が不明確なとき</a></li>
+      <li><a href="#t7">体制整備の4項目</a></li>
+      <li><a href="#t8">事業報告書の様式変更</a></li>
+      <li><a href="#t9">金融サービス仲介業者版</a></li>
+      <li><a href="#sources">出典一覧</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section class="hero">
+      <span class="eyebrow">金融庁 意見募集資料 ／ 2026年8月28日公表</span>
+      <h1>比較推奨販売のルールが<br />書き換わります</h1>
+      <p class="lead">乗合代理店の募集人と、保険媒介業務を行う金融サービス仲介業者のための早わかりガイド。内閣府令案と監督指針改正案の新旧対照表から、変わる点だけを出典付きで整理しました。</p>
+      <div class="facts">
+        <dl class="fact"><dt>施行予定日</dt><dd>令和10年3月1日</dd></dl>
+        <dl class="fact"><dt>改正対象</dt><dd>府令2本＋監督指針2本</dd></dl>
+        <dl class="fact"><dt>主な対象者</dt><dd>乗合代理店・保険媒介業者</dd></dl>
+        <dl class="fact"><dt>先行して使える</dt><dd>事業報告書の新様式</dd></dl>
+      </div>
+    </section>
+
+    <section class="tldr">
+      <h2>3行でわかる改正のポイント</h2>
+      <ol>
+        <li>「顧客の意向に沿った選別をせずに提案する」という説明の型（規則227条の2第3項第4号ハなど）が削除され、提案は<strong>「意向に沿って選別 → その概要と理由を説明」</strong>の一本道になります。</li>
+        <li>そこからさらに特定の保険契約を推奨するときは、<strong>①合理的かつ一定の具体性を有する基準・理由、②ほかにも保険契約がある旨、③求めがあれば説明する旨</strong>の3点を伝えることが求められます。</li>
+        <li>事業報告書は<strong>3択のチェック方式と推奨商品一覧表が廃止</strong>され、「推奨方針」と「適切性の確認方法」を書く記述式に変わります（施行前でも新様式で提出可）。</li>
+      </ol>
+    </section>
+
+    <section class="picker" id="top">
+      <h2>知りたいテーマから読む</h2>
+      <p>カードをクリックすると、そのテーマの詳細へ移動します。「サクッと」では要点だけ、「じっくり」では条文の引用と新旧比較まで表示されます。</p>
+      <div class="cards">
+        <a class="card" href="#t1"><b>全体像と施行スケジュール</b><span>何がどう改正され、いつから効くのかを最初に押さえる。</span><span class="tag">資料02 附則1・2</span></a>
+        <a class="card" href="#t2"><b>「ハ」の削除で何が変わるか</b><span>今回の改正で最も構造的な変更。説明の型が3つから2つへ。</span><span class="tag">規則227条の2③四／234条の21の2①二</span></a>
+        <a class="card" href="#t3"><b>出発点は誠実公正義務</b><span>柱書に「顧客の最善の利益」が置かれ、募集人の行為規範として書かれる。</span><span class="tag">指針Ⅱ-4-2-9(5) 柱書</span></a>
+        <a class="card" href="#t4"><b>比較説明（Ａ）のルール</b><span>複数契約を並べて説明するときに守る3点。</span><span class="tag">指針Ⅱ-4-2-9(5)①Ａ</span></a>
+        <a class="card" href="#t5"><b>推奨販売（Ｂ）のルール</b><span>実務インパクト最大。選別の前後で何を確認し、何を伝えるか。</span><span class="tag">指針Ⅱ-4-2-9(5)①Ｂ(a)</span></a>
+        <a class="card" href="#t6"><b>意向が不明確なとき</b><span>「わからない」で止めない。ただし誘導は禁止。</span><span class="tag">指針Ⅱ-4-2-9(5)①Ｂ(b)</span></a>
+        <a class="card" href="#t7"><b>体制整備の4項目</b><span>社内規則・教育・記録の保存と検証・見直し。便宜供与と出向も検証対象。</span><span class="tag">指針Ⅱ-4-2-9(5)②</span></a>
+        <a class="card" href="#t8"><b>事業報告書の様式変更</b><span>チェック方式と推奨商品一覧が消え、記述式になる。</span><span class="tag">別紙様式25号の2／25号の3</span></a>
+        <a class="card" href="#t9"><b>金融サービス仲介業者版</b><span>保険媒介業務も同じ構造で改正。参照条文の読み替え表つき。</span><span class="tag">指針Ⅵ-1-1-2(3)</span></a>
+      </div>
+    </section>
+
+    <!-- ============ T1 ============ -->
+    <section class="sec" id="t1">
+      <div class="sec-head">
+        <span class="sec-no">テーマ 01</span>
+        <h2>全体像と施行スケジュール</h2>
+      </div>
+      <p class="sec-sub">改正されるのは4つの文書。テーマはすべて「比較推奨販売」です。</p>
+
+      <div class="gist">
+        <div class="lbl">サクッと</div>
+        <ul>
+          <li>改正対象は、<strong>保険業法施行規則</strong>、<strong>金融サービス仲介業者等に関する内閣府令</strong>、<strong>保険会社向けの総合的な監督指針</strong>、<strong>金融サービス仲介業者向けの総合的な監督指針</strong>の4本。</li>
+          <li>施行予定日は<strong>令和10年3月1日</strong>。準備期間はおよそ1年半あります。</li>
+          <li>ただし<strong>事業報告書の新様式（別紙様式第25号の2・第25号の3）は施行前でも使える</strong>経過措置が置かれています。</li>
+        </ul>
+      </div>
+      <button class="more" type="button" data-more><span class="plus">＋</span>詳しく読む</button>
+
+      <div class="deep">
+        <h3>改正される文書と中身</h3>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>資料</th><th>改正対象</th><th>主な内容</th></tr></thead>
+            <tbody>
+              <tr><td class="k">資料02</td><td>保険業法施行規則<br />金融サービス仲介業者等に関する内閣府令</td><td>情報提供義務の類型（イ・ロ・ハ）からハを削除。事業報告書の別紙様式を改正。</td></tr>
+              <tr><td class="k">資料03</td><td>保険会社向けの総合的な監督指針</td><td>Ⅱ-4-2-9(5) に「乗合代理店における比較推奨販売」の見出しを新設し、本文を全面改訂。</td></tr>
+              <tr><td class="k">資料04</td><td>金融サービス仲介業者向けの総合的な監督指針</td><td>Ⅵ-1-1-2(3) を同じ構造で全面改訂。</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>附則（改正案）</h3>
+        <div class="q">
+          <span class="cite">資料02 附則 第1項（施行期日）</span>
+          この府令は、<mark>令和十年三月一日</mark>から施行する。
+        </div>
+        <div class="q">
+          <span class="cite">資料02 附則 第2項（経過措置）</span>
+          保険業法第三百四条の規定により事業報告書を作成し、これを提出しようとする者は、<mark>この府令の施行前においても</mark>、第一条の規定による改正後の保険業法施行規則別紙様式第二十五号の二及び別紙様式第二十五号の三によりその作成及び提出をすることができる。
+        </div>
+
+        <div class="read">
+          <b>読み解き（編集部の整理）</b>
+          府令の条文と監督指針は同じ日に動きます。実務側の準備としては、①募集トークと帳票（比較推奨の理由の記録）、②社内規則、③事業報告書の作り方、の3つが同時に走ることになります。事業報告書だけは経過措置で先行できるため、様式変更を先に済ませて運用を慣らす、という進め方が取れます。
+        </div>
+      </div>
+
+      <div class="src">
+        <b>出典</b>
+        <ul>
+          <li><span class="doc">資料02</span><span>保険業法施行規則及び金融サービス仲介業者等に関する内閣府令の一部を改正する内閣府令（案）新旧対照表 ― 附則第1項・第2項</span></li>
+          <li><span class="doc">資料03</span><span>保険会社向けの総合的な監督指針（新旧対照表）― Ⅱ-4-2-9(5)</span></li>
+          <li><span class="doc">資料04</span><span>金融サービス仲介業者向けの総合的な監督指針 新旧対照表 ― Ⅵ-1-1-2(3)</span></li>
+        </ul>
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+    <!-- ============ T2 ============ -->
+    <section class="sec" id="t2">
+      <div class="sec-head">
+        <span class="sec-no">テーマ 02</span>
+        <h2>「ハ」の削除で何が変わるか</h2>
+      </div>
+      <p class="sec-sub">今回の改正で最も構造的な変更。情報提供の型が3つから2つになります。</p>
+
+      <div class="gist">
+        <div class="lbl">サクッと</div>
+        <ul>
+          <li>現行の規則227条の2第3項第4号は、<strong>イ（比較説明）／ロ（意向に沿った選別による提案）／ハ（選別をせずに提案）</strong>の3類型でした。</li>
+          <li>改正案では<strong>ハが削除</strong>され、イ・ロの2類型になります。「意向に沿った選別をしないまま提案し、提案理由だけ説明する」という型がなくなります。</li>
+          <li>ロの文言も変わり、説明すべきものが「顧客の意向に沿った契約の概要」から<strong>「顧客の意向に沿って“募集人が選別した”契約の概要」</strong>になります。選別が募集人の行為として条文上明示されます。</li>
+          <li>同じ改正が、特定保険契約向けの規則234条の21の2第1項第2号と、金融サービス仲介業者等府令56条1項4号にも入ります。</li>
+        </ul>
+      </div>
+      <button class="more" type="button" data-more><span class="plus">＋</span>詳しく読む</button>
+
+      <div class="deep">
+        <h3>削除される「ハ」</h3>
+        <div class="compare">
+          <div class="pane now">
+            <span class="chip">現行 ハ</span>
+            <div class="body">二以上の所属保険会社等が引き受ける保険に係る二以上の比較可能な同種の保険契約の中から<mark>ロの規定による選別をすることなく</mark>、提案契約の提案をしようとする場合　当該提案の理由</div>
+          </div>
+          <div class="pane new">
+            <span class="chip">改正案</span>
+            <div class="body"><span class="del">［号の細分を削る。］</span></div>
+          </div>
+        </div>
+
+        <h3>書き換えられる「ロ」</h3>
+        <div class="compare">
+          <div class="pane now">
+            <span class="chip">現行 ロ</span>
+            <div class="body">…二以上の比較可能な同種の保険契約の中から<mark>顧客の意向に沿った保険契約を選別することにより</mark>、保険契約の締結又は保険契約への加入をすべき一又は二以上の保険契約（以下「提案契約」という。）の提案をしようとする場合　当該…保険募集人が取り扱う保険契約のうち<mark>顧客の意向に沿った</mark>比較可能な同種の保険契約の概要及び当該提案の理由</div>
+          </div>
+          <div class="pane new">
+            <span class="chip">改正案 ロ</span>
+            <div class="body">…二以上の比較可能な同種の保険契約の中から保険契約の締結又は保険契約への加入をすべき一又は二以上の保険契約（以下「提案契約」という。）の提案をしようとする場合　当該…保険募集人が取り扱う保険契約のうち<mark>顧客の意向に沿って当該二以上の所属保険会社等を有する保険募集人が選別した</mark>比較可能な同種の保険契約の概要及び当該提案の理由</div>
+          </div>
+        </div>
+
+        <h3>同じ改正が入る3か所</h3>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>条文</th><th>対象</th><th>改正内容</th></tr></thead>
+            <tbody>
+              <tr><td class="k">規則227条の2第3項第4号</td><td>保険契約一般（法294条1項）</td><td>「イからハまで」→「イ又はロ」。ハを削除、ロを修文。</td></tr>
+              <tr><td class="k">規則234条の21の2第1項第2号</td><td>特定保険契約（準用金商法37条の3第1項）</td><td>同上。</td></tr>
+              <tr><td class="k">仲介業者等府令56条1項4号</td><td>金融サービス仲介業者の保険媒介業務</td><td>同上。</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note">
+          <b>あわせて消えるもの</b>
+          監督指針の現行③（客観的な基準や理由等に基づかずに商品を絞り込む場合に、その基準や理由等〈特定の保険会社との資本関係やその他の事務手続・経営方針上の理由を含む〉を説明する、という規定）も、改正案では対応する項目がありません。府令の「ハ」削除と対をなす変更です。
+        </div>
+
+        <div class="read">
+          <b>読み解き（編集部の整理）</b>
+          現行の「ハ」に乗せて運用していた説明（たとえば、資本関係や事務手続上の都合で取扱いを絞っている旨を開示して提案する、といった型）は、改正後は独立した類型として存在しません。提案を行う以上は「ロ」のルート、すなわち顧客の意向に沿った選別を行い、その概要と理由を説明する形に整理する必要があります。
+        </div>
+      </div>
+
+      <div class="src">
+        <b>出典</b>
+        <ul>
+          <li><span class="doc">資料02</span><span>第一条（保険業法施行規則の一部改正）― 第227条の2第3項第4号ロ・ハ、第234条の21の2第1項第2号ロ・ハ</span></li>
+          <li><span class="doc">資料02</span><span>第二条（金融サービス仲介業者等に関する内閣府令の一部改正）― 第56条第1項第4号ロ・ハ</span></li>
+          <li><span class="doc">資料03</span><span>Ⅱ-4-2-9(5) 現行③（改正案に対応項目なし）</span></li>
+        </ul>
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+    <!-- ============ T3 ============ -->
+    <section class="sec" id="t3">
+      <div class="sec-head">
+        <span class="sec-no">テーマ 03</span>
+        <h2>出発点は誠実公正義務と顧客の最善の利益</h2>
+      </div>
+      <p class="sec-sub">監督指針 Ⅱ-4-2-9(5) の柱書が、募集人の行為規範として書き直されます。</p>
+
+      <div class="gist">
+        <div class="lbl">サクッと</div>
+        <ul>
+          <li>Ⅱ-4-2-9(5) に<strong>「乗合代理店における比較推奨販売」という見出しが新設</strong>され、本文が全面的に書き換わります。「乗合代理店」が定義語として使われるようになります。</li>
+          <li>冒頭に<strong>金融サービス提供法2条1項の誠実公正義務の趣旨</strong>と<strong>「顧客の最善の利益を勘案しつつ」</strong>が置かれます。</li>
+          <li>手順も明示。<strong>法294条3項</strong>であらかじめ所属保険会社等の商号等を明らかにし、そのうえで<strong>法294条1項</strong>に基づき情報提供・わかりやすい説明を行う、という順序です。</li>
+        </ul>
+      </div>
+      <button class="more" type="button" data-more><span class="plus">＋</span>詳しく読む</button>
+
+      <div class="deep">
+        <h3>改正案の柱書</h3>
+        <div class="q">
+          <span class="cite">資料03 Ⅱ-4-2-9(5) 柱書</span>
+          乗合代理店（規則第227条の2第3項第4号及び規則第234条の21の2第1項第2号に規定する二以上の所属保険会社等を有する保険募集人をいう。以下、（5）において同じ。）は、<mark>金融サービス提供法(同法第2条第1項)に基づく顧客等に対する誠実公正義務の趣旨も踏まえ、顧客の最善の利益を勘案しつつ</mark>、適切な比較推奨販売（規則第227条の2第3項第4号及び規則第234条の21の2第1項第2号に規定する保険契約への加入の提案をいう。以下、同じ。）を<mark>行わなければならない</mark>。
+        </div>
+        <div class="q">
+          <span class="cite">資料03 Ⅱ-4-2-9(5) 柱書（続き）</span>
+          このため、以下の点に留意しつつ、<mark>法第294条第3項に基づき、あらかじめ所属保険会社等の商号等を明らかにした上で</mark>、法第294条第1項（規則第227条の2第3項第4号及び規則第234条の21の2第1項第2号）に基づき、保険契約の内容、その他保険契約者等の参考となるべき情報を提供し、わかりやすく説明しているか。<br />また、乗合代理店の健全かつ適切な業務運営を確保するための措置が講じられているか。
+        </div>
+
+        <h3>現行の柱書との違い</h3>
+        <div class="compare">
+          <div class="pane now">
+            <span class="chip">現行</span>
+            <div class="body">二以上の所属保険会社等を有する保険募集人…<mark>においては</mark>、以下の点に留意しつつ、規則第227条の2第3項第4号及び規則第234条の21の2第1項第2号に規定する保険契約への加入の提案（以下、「比較推奨販売」という。）を行う理由の説明その他…業務の健全かつ適切な運営を確保するための措置が講じられているか<mark>どうかを確認するものとする</mark>。</div>
+          </div>
+          <div class="pane new">
+            <span class="chip">改正案</span>
+            <div class="body">乗合代理店<mark>は</mark>、…誠実公正義務の趣旨も踏まえ、顧客の最善の利益を勘案しつつ、適切な比較推奨販売を<mark>行わなければならない</mark>。<br />このため、以下の点に留意しつつ…情報を提供し、わかりやすく説明しているか。また、…措置が講じられているか。</div>
+          </div>
+        </div>
+
+        <div class="read">
+          <b>読み解き（編集部の整理）</b>
+          現行は監督当局が「確認するものとする」という監督目線の書きぶりでしたが、改正案は「乗合代理店は…行わなければならない」という行為規範を先に置き、そのうえで確認事項を並べる構成に変わっています。比較推奨販売が、情報提供義務の手続の問題であると同時に、誠実公正義務の履行の問題として位置づけられたことになります。
+        </div>
+
+        <h3>あわせて入る字句修正</h3>
+        <div class="compare">
+          <div class="pane now">
+            <span class="chip">現行 Ⅱ-4-2-9(注1)</span>
+            <div class="body">…適切な研修・指導などの<mark>体制整備をしている</mark>場合には、当該指導に従い研修に参加することで基本的に足りるものと考えられる。</div>
+          </div>
+          <div class="pane new">
+            <span class="chip">改正案 Ⅱ-4-2-9(注1)</span>
+            <div class="body">…適切な研修・指導などの<mark>体制を整備している</mark>場合には、当該指導に従い研修に参加することで基本的に足りるものと考えられる。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="src">
+        <b>出典</b>
+        <ul>
+          <li><span class="doc">資料03</span><span>Ⅱ-4-2-9 保険募集人の体制整備義務（法第294条の3関係）(注1)</span></li>
+          <li><span class="doc">資料03</span><span>Ⅱ-4-2-9(5) 乗合代理店における比較推奨販売 柱書</span></li>
+        </ul>
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+    <!-- ============ T4 ============ -->
+    <section class="sec" id="t4">
+      <div class="sec-head">
+        <span class="sec-no">テーマ 04</span>
+        <h2>比較説明（Ａ）のルール</h2>
+      </div>
+      <p class="sec-sub">複数の保険契約の内容を並べて説明する場面。規則227条の2第3項第4号イの趣旨を踏まえます。</p>
+
+      <div class="gist">
+        <div class="lbl">サクッと</div>
+        <ul>
+          <li>守るべきことは3つ。<strong>(a) 比較する事項とその内容を適切に説明する</strong>／<strong>(b) 正確な判断に必要な事項を包括的に示す</strong>／<strong>(c) 優位性を示すために他契約と比較するときは、他契約の全体像・商品特性も正確に示し、優位性の根拠を説明する</strong>。</li>
+          <li>根拠として<strong>法300条1項6号</strong>（誤解させるおそれのある比較表示等の禁止）と<strong>Ⅱ-4-2-2(9)②</strong>が参照されます。</li>
+          <li>内容自体は現行②の(注2)にあったものですが、改正案では<strong>「比較説明」として独立の項目に整理</strong>されました。</li>
+        </ul>
+      </div>
+      <button class="more" type="button" data-more><span class="plus">＋</span>詳しく読む</button>
+
+      <div class="deep">
+        <h3>改正案の本文</h3>
+        <div class="q">
+          <span class="cite">資料03 Ⅱ-4-2-9(5)①Ａ</span>
+          乗合代理店が取り扱う複数の保険契約の契約内容を比較して説明する場合には、規則第227条の2第3項第4号イの規定の趣旨を踏まえた上で、<mark>保険募集の実務や募集形態等に応じて</mark>、以下の事項を遵守しているか。<br />
+          （a）複数の保険契約の契約内容を比較する場合には、比較する事項やその内容を適切に説明しているか。<br />
+          （b）顧客が保険契約の契約内容について、正確な判断を行うに必要な事項を包括的に示しているか。<br />
+          （c）特定の保険契約の優位性を示すために他の保険契約と比較を行う場合には、当該他の保険契約についても、その全体像や商品特性を顧客に対して正確に示すとともに自らが勧める保険契約の優位性の根拠を説明しているか。
+        </div>
+
+        <h3>現行はどこに書かれていたか</h3>
+        <div class="q">
+          <span class="cite">資料03 Ⅱ-4-2-9(5)② 現行(注2)</span>
+          例えば、自らが勧める商品の優位性を示すために他の商品との比較を行う場合には、当該他の商品についても、その全体像や特性について正確に顧客に示すとともに自らが勧める商品の優位性の根拠を説明するなど、顧客が保険契約の契約内容について、正確な判断を行うに必要な事項を包括的に示す必要がある点に留意する（法第300条第1項第6号、Ⅱ-4-2-2(9)②参照）。
+        </div>
+
+        <div class="read">
+          <b>読み解き（編集部の整理）</b>
+          改正案は「比較説明（Ａ）」と「推奨販売（Ｂ）」を明確に分けました。パンフレットや比較表を並べて説明する場面と、そこから絞り込んで勧める場面とでは、求められる説明が違うという整理です。また「保険募集の実務や募集形態等に応じて」という限定が付いており、対面・非対面など募集形態に応じた運用が想定されています。
+        </div>
+      </div>
+
+      <div class="src">
+        <b>出典</b>
+        <ul>
+          <li><span class="doc">資料03</span><span>Ⅱ-4-2-9(5)① 比較推奨販売の方法 Ａ.（比較説明）(a)〜(c)</span></li>
+          <li><span class="doc">資料03</span><span>同 現行②(注2)</span></li>
+        </ul>
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+    <!-- ============ T5 ============ -->
+    <section class="sec" id="t5">
+      <div class="sec-head">
+        <span class="sec-no">テーマ 05</span>
+        <h2>推奨販売（Ｂ）のルール</h2>
+      </div>
+      <p class="sec-sub">実務インパクトが最も大きい部分。選別の「前」と「後」で、それぞれやることが決まります。</p>
+
+      <div class="gist">
+        <div class="lbl">サクッと</div>
+        <ul>
+          <li><strong>選別の前に</strong>：商品特性や保険料水準等、<strong>顧客が重視する事項を丁寧かつ明確に確認する</strong>必要があります。</li>
+          <li><strong>提示・推奨するときは</strong>：その契約の<strong>概要</strong>と、<strong>提示・推奨する基準や理由等</strong>を説明。求めがあれば契約内容も説明します。</li>
+          <li><strong>さらに特定の契約を推奨するときは</strong>：顧客の最善の利益を勘案し、代理店・募集人の都合によらない<strong>「合理的かつ一定の具体性を有する基準や理由等」</strong>を説明。加えて<strong>「他にも保険契約がある旨」</strong>と<strong>「求めに応じてその概要または契約内容を説明する旨」</strong>を伝えます。</li>
+          <li>手数料水準の高さや便宜供与の実績で選別しておきながら、もっともらしい理由を装うことは明確に否定されています。</li>
+        </ul>
+      </div>
+      <button class="more" type="button" data-more><span class="plus">＋</span>詳しく読む</button>
+
+      <div class="deep">
+        <h3>特定の保険契約を推奨するときに伝える3点</h3>
+        <ul class="checks">
+          <li>顧客の最善の利益を勘案したものとして、募集人や乗合代理店の都合によらない、<strong>合理的かつ一定の具体性を有する基準や理由等</strong></li>
+          <li>推奨する特定の保険契約<strong>以外の保険契約もある旨</strong></li>
+          <li>顧客の求めに応じて、<strong>それらの保険契約の概要または契約内容を説明する旨</strong></li>
+        </ul>
+
+        <h3>改正案の本文</h3>
+        <div class="q">
+          <span class="cite">資料03 Ⅱ-4-2-9(5)①Ｂ 柱書</span>
+          乗合代理店が二以上の比較可能な同種の保険契約の中から顧客の意向に沿って保険契約を選別することにより、保険契約を提示・推奨しようとする場合には、規則第227条の2第3項第4号ロの規定の趣旨を踏まえた上で、保険募集の実務や募集形態等に応じて、以下の事項を遵守しているか。<br />
+          また、顧客の意向に沿って保険契約を選別する場合には、<mark>事前に商品特性や保険料水準等の顧客が重視する事項を丁寧かつ明確に確認する必要がある</mark>ことに留意する。
+        </div>
+        <div class="q">
+          <span class="cite">資料03 Ⅱ-4-2-9(5)①Ｂ(a)</span>
+          乗合代理店が二以上の比較可能な同種の保険契約の中から顧客の意向に沿って保険契約を選別し、一又は二以上の保険契約を提示・推奨する場合には、<mark>当該提示・推奨する保険契約の概要及び提示・推奨する基準や理由等を説明しているか</mark>。また、顧客の求めに応じて契約内容を説明しているか。<br />
+          特に、顧客の意向に沿って選別した保険契約の中から、商品特性や保険料水準等により、特定の保険契約を推奨する場合には、<mark>顧客の最善の利益を勘案したものとして、保険募集人や乗合代理店の都合によることなく、合理的かつ一定の具体性を有する基準や理由等を説明しているか</mark>。その場合、<mark>推奨する特定の保険契約以外の保険契約もある旨及び顧客の求めに応じて、それらの保険契約の概要又は契約内容を説明する旨を説明しているか</mark>。
+        </div>
+
+        <h3>3つの「やってはいけない」</h3>
+        <div class="note">
+          <b>(注1) もっともらしい理由で装わない</b>
+          保険契約を提示・推奨する基準や理由等について、合理的かつ一定の具体性を有する説明をしているように装いながら、実質的には、例えば、乗合代理店が受け取る<strong>手数料水準の高さ</strong>や乗合代理店への<strong>便宜供与等の実績</strong>など、乗合代理店の都合による保険契約の選別や提示・推奨を行うことのないよう留意する。
+        </div>
+        <div class="note">
+          <b>(注2) 本当の理由を隠さない・すり替えない</b>
+          提示・推奨する<strong>本来の基準や理由等を告げない行為</strong>、提示・推奨する基準や理由等が複数ある場合に<strong>主たるものを告げず、他の基準や理由等を告げる行為</strong>を行うことのないよう留意する。
+        </div>
+        <div class="note">
+          <b>(注3) 意向の「推定」を都合よく使わない</b>
+          顧客の意向を把握することには、Ⅱ-4-2-2(3)①ア.(注2)のとおり、例えば<strong>顧客属性や生活環境等に基づき推定する</strong>といった方法が含まれるが、当該方法を用いて、比較推奨販売に係る規定の趣旨・目的に反する対応が行われないよう留意する。
+        </div>
+
+        <h3>現行②との比較</h3>
+        <div class="compare">
+          <div class="pane now">
+            <span class="chip">現行 ②</span>
+            <div class="body">顧客に対し、特定の商品を提示・推奨する際には、当該提示・推奨理由を分かりやすく説明することとしているか。特に、自らの取扱商品のうち顧客の意向に合致している商品の中から、…判断により、さらに絞込みを行った上で、商品を提示・推奨する場合には、<mark>商品特性や保険料水準などの客観的な基準や理由等</mark>について、説明を行っているか。</div>
+          </div>
+          <div class="pane new">
+            <span class="chip">改正案 Ｂ(a)</span>
+            <div class="body">…特定の保険契約を推奨する場合には、<mark>顧客の最善の利益を勘案したものとして</mark>、保険募集人や乗合代理店の都合によることなく、<mark>合理的かつ一定の具体性を有する基準や理由等</mark>を説明しているか。その場合、<mark>推奨する特定の保険契約以外の保険契約もある旨</mark>及び顧客の求めに応じて、それらの保険契約の概要又は契約内容を説明する旨を説明しているか。</div>
+          </div>
+        </div>
+
+        <div class="read">
+          <b>読み解き（編集部の整理）</b>
+          変化は3点あります。第一に、判断基準が「客観的」から「合理的かつ一定の具体性を有する」＋「顧客の最善の利益」へ。第二に、選別の<em>前</em>に顧客が重視する事項を確認する工程が明記されたこと。第三に、推奨しなかった契約の存在と、求めがあれば説明する旨を伝えるという新しい説明義務が加わったことです。募集記録の項目設計を見直す必要が出てくる部分です。
+        </div>
+      </div>
+
+      <div class="src">
+        <b>出典</b>
+        <ul>
+          <li><span class="doc">資料03</span><span>Ⅱ-4-2-9(5)① 比較推奨販売の方法 Ｂ.（推奨販売）柱書・(a)</span></li>
+          <li><span class="doc">資料03</span><span>同 Ｂ(a)(注1)(注2)(注3)</span></li>
+          <li><span class="doc">資料03</span><span>同 現行②・(注1)</span></li>
+        </ul>
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+    <!-- ============ T6 ============ -->
+    <section class="sec" id="t6">
+      <div class="sec-head">
+        <span class="sec-no">テーマ 06</span>
+        <h2>意向が不明確なとき</h2>
+      </div>
+      <p class="sec-sub">「わからない」で止めない。ただし例示は誘導の道具ではありません。</p>
+
+      <div class="gist">
+        <div class="lbl">サクッと</div>
+        <ul>
+          <li>顧客の意向がはっきりしない場合でも、<strong>可能な限り意向を把握したうえで、Ｂ(a) に従って対応する</strong>ことが求められます。</li>
+          <li>把握の方法として<strong>「顧客が特に重視すると考えられる事項を例示する」</strong>ことが挙げられています。</li>
+          <li>ただし、意向を顧みず営業上の理由で<strong>恣意的に特定の契約へ誘導すると、内容や態様によっては法300条1項1号・6号に抵触するおそれ</strong>があると明記されました。</li>
+        </ul>
+      </div>
+      <button class="more" type="button" data-more><span class="plus">＋</span>詳しく読む</button>
+
+      <div class="deep">
+        <h3>改正案の本文</h3>
+        <div class="q">
+          <span class="cite">資料03 Ⅱ-4-2-9(5)①Ｂ(b)</span>
+          顧客の意向が不明確な場合であっても、保険契約の選別に当たっては、例えば、<mark>顧客が特に重視すると考えられる事項を例示するなど、可能な限り顧客の意向を把握した上で</mark>、上記（a）に基づき対応しているか。
+        </div>
+        <div class="note">
+          <b>(注4) 例示を誘導に使わない</b>
+          顧客が特に重視すると考えられる事項を例示するに当たっては、顧客の意向を顧みず営業上の理由から恣意的に特定の保険契約へ誘導することのないよう留意する。なお、恣意的に特定の保険契約へ誘導するその行為が、内容や態様等によっては、<strong>法第300条第1項第1号及び第6号に抵触するおそれ</strong>があることに留意する。
+        </div>
+
+        <div class="read">
+          <b>読み解き（編集部の整理）</b>
+          意向が不明確なことは、選別をしない理由にはなりません。「ハ」が削除された結果、意向が固まっていない顧客に対しても、例示などで意向を引き出したうえで選別・説明する流れに乗せることが前提になります。一方で、その例示が実質的な誘導になれば禁止行為に触れ得る、という歯止めが同時に置かれています。例示の内容と順序を、社内で標準化しておく価値がある部分です。
+        </div>
+      </div>
+
+      <div class="src">
+        <b>出典</b>
+        <ul>
+          <li><span class="doc">資料03</span><span>Ⅱ-4-2-9(5)①Ｂ(b) 及び (注4)</span></li>
+        </ul>
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+    <!-- ============ T7 ============ -->
+    <section class="sec" id="t7">
+      <div class="sec-head">
+        <span class="sec-no">テーマ 07</span>
+        <h2>体制整備の4項目</h2>
+      </div>
+      <p class="sec-sub">現行は一文だった体制整備が、ア〜エの4項目に具体化されます。</p>
+
+      <div class="gist">
+        <div class="lbl">サクッと</div>
+        <ul>
+          <li><strong>ア．</strong>提示・推奨する基準や理由等を<strong>社内規則等に規定する</strong>。</li>
+          <li><strong>イ．</strong>その社内規則等を踏まえた<strong>教育・管理・指導</strong>を実施する。</li>
+          <li><strong>ウ．</strong>確認・検証に必要な<strong>記録や証跡等の保存期間等を社内規則等で定めた</strong>うえで、効率的かつ効果的に確認・検証する。</li>
+          <li><strong>エ．</strong>確認・検証結果を踏まえ、必要に応じて<strong>比較推奨販売方法の見直し・改善</strong>を行う。</li>
+          <li>確認・検証では、<strong>便宜供与（Ⅱ-4-2-12）や出向（Ⅱ-4-2-13）によって顧客の適切な商品選択の機会を阻害していないか</strong>も見ることとされています。</li>
+        </ul>
+      </div>
+      <button class="more" type="button" data-more><span class="plus">＋</span>詳しく読む</button>
+
+      <div class="deep">
+        <h3>改正案の本文</h3>
+        <div class="q">
+          <span class="cite">資料03 Ⅱ-4-2-9(5)② 比較推奨販売に係る体制整備関係 柱書</span>
+          比較推奨販売を適切に行うための措置について、以下のような点を含めて、法第294条の3の規定の趣旨を踏まえた上で、<mark>乗合代理店自身の規模や業務特性を踏まえつつ</mark>、定期的かつ必要に応じて、その実施状況を確認・検証する態勢が構築されているか。また、確認・検証に当たっては、<mark>保険代理店等に対する便宜供与（Ⅱ-4-2-12）や保険代理店に対する出向（Ⅱ-4-2-13）により、顧客の適切な商品選択の機会を阻害していないか否かも含めて確認する</mark>必要があることに留意する。
+        </div>
+
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>項目</th><th>改正案の内容</th></tr></thead>
+            <tbody>
+              <tr><td class="k">ア</td><td>上記①における提示・推奨する基準や理由等について、社内規則等に規定しているか。</td></tr>
+              <tr><td class="k">イ</td><td>上記ア．の社内規則等を踏まえた、適切な比較推奨販売を行うための教育・管理・指導を実施しているか。</td></tr>
+              <tr><td class="k">ウ</td><td>比較推奨販売の適切性等の確認・検証に必要となる記録や証跡等の保存期間等を社内規則等にて定めた上で、比較推奨販売の適切性に関して、効率的かつ効果的に確認・検証しているか。</td></tr>
+              <tr><td class="k">エ</td><td>上記ウ．における確認・検証結果を踏まえ、必要に応じて比較推奨販売方法の見直しや改善を行っているか。</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="q">
+          <span class="cite">資料03 Ⅱ-4-2-9(5)②ウ（注）</span>
+          証跡等の保存に当たっては、顧客保護等（Ⅱ-4-4）の規定も踏まえつつ、<mark>顧客の意向や属性に応じた比較推奨販売に係る説明が適切に行われているか確認・検証できるもの</mark>であること。
+        </div>
+
+        <h3>現行④との比較</h3>
+        <div class="compare">
+          <div class="pane now">
+            <span class="chip">現行 ④</span>
+            <div class="body">上記①から③に基づき、商品の提示・推奨や保険代理店の立場の表示等を適切に行うための措置について、社内規則等において定めたうえで、定期的かつ必要に応じて、その実施状況を確認・検証する態勢が構築されているか。</div>
+          </div>
+          <div class="pane new">
+            <span class="chip">改正案 ②</span>
+            <div class="body">（柱書に規模・業務特性、便宜供与・出向の観点を追加したうえで）<mark>ア．社内規則等への規定／イ．教育・管理・指導／ウ．記録・証跡の保存期間の設定と確認・検証／エ．見直し・改善</mark>の4項目に分解。</div>
+          </div>
+        </div>
+
+        <div class="read">
+          <b>読み解き（編集部の整理）</b>
+          「一文」から「PDCAの4段」への具体化です。とくにウ．は、推奨理由を口頭で伝えて終わりにするのではなく、後から検証できる形で残すことを求めています。残す内容は「顧客の意向や属性に応じた説明が適切に行われたか」を確認できる粒度、とされている点が設計上のポイントです。
+        </div>
+      </div>
+
+      <div class="src">
+        <b>出典</b>
+        <ul>
+          <li><span class="doc">資料03</span><span>Ⅱ-4-2-9(5)② 比較推奨販売に係る体制整備関係 柱書・ア〜エ・(注)</span></li>
+          <li><span class="doc">資料03</span><span>同 現行④</span></li>
+        </ul>
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+    <!-- ============ T8 ============ -->
+    <section class="sec" id="t8">
+      <div class="sec-head">
+        <span class="sec-no">テーマ 08</span>
+        <h2>事業報告書の様式変更</h2>
+      </div>
+      <p class="sec-sub">チェックボックスと推奨商品一覧が消え、記述式になります。施行前でも新様式が使えます。</p>
+
+      <div class="gist">
+        <div class="lbl">サクッと</div>
+        <ul>
+          <li>「比較・推奨販売の方法」欄が、<strong>3択のチェック方式から記述式に変わります</strong>（法人＝別紙様式第25号の2 の(16)、個人＝第25号の3 の(11)）。</li>
+          <li>書く内容は<strong>ア．推奨方針</strong>（意向に沿って選別した契約の中から特定の契約を提案・推奨する場合の基準や理由等）と<strong>イ．比較・推奨販売の適切性の確認方法</strong>の2つ。</li>
+          <li>いずれも<strong>マニュアル・社内規則等を記載した書面の添付で記載を省略できます</strong>。</li>
+          <li>「2.取扱保険契約等の状況」にあった<strong>（推奨保険会社・商品）の一覧表は削除</strong>されます（生命保険・損害保険・少額短期保険のいずれも）。</li>
+          <li>附則第2項により、<strong>施行日前でも新様式で作成・提出できます</strong>。</li>
+        </ul>
+      </div>
+      <button class="more" type="button" data-more><span class="plus">＋</span>詳しく読む</button>
+
+      <div class="deep">
+        <h3>「比較・推奨販売の方法」欄</h3>
+        <div class="compare">
+          <div class="pane now">
+            <span class="chip">現行</span>
+            <div class="body">「比較・推奨販売の方法／該当」の表<br />
+              1 商品特性や保険料水準等の客観的な基準や理由等により、保険商品を絞り込んで、顧客に提示している。<br />
+              2 商品特性や保険料水準等の客観的な基準や理由等に基づくことなく、保険商品を絞り込んで、顧客に提示している。<br />
+              3 その他<br />
+              ＋ 備考欄<br />
+              （記載上の注意）該当する箇所に○を記載。2又は3を選択した場合には備考欄に簡潔に補足すること。</div>
+          </div>
+          <div class="pane new">
+            <span class="chip">改正案</span>
+            <div class="body">ア．<mark>推奨方針</mark>（顧客の意向に沿って選別した保険契約の中から、特定の保険契約の提案・推奨を行う場合の基準や理由等）<br />
+              イ．<mark>比較・推奨販売の適切性の確認方法</mark><br />
+              （記載上の注意）推奨販売に関するマニュアル・社内規則等の内容を記載した書面がある場合には、その書面の添付をもって記載を省略することができる。（ア・イそれぞれについて同旨）</div>
+          </div>
+        </div>
+
+        <h3>（推奨保険会社・商品）一覧表</h3>
+        <div class="compare">
+          <div class="pane now">
+            <span class="chip">現行</span>
+            <div class="body">2.取扱保険契約等の状況 ⑴ 取扱保険契約等 ア．生命保険／イ．損害保険／ウ．少額短期保険 の各項目に、<br />
+              「取扱保険会社名／保険商品名／左記『保険商品名』の愛称（いわゆるペットネーム）／推奨理由」の一覧表（生命保険30行、損害保険10行、少額短期保険10行）を記載。</div>
+          </div>
+          <div class="pane new">
+            <span class="chip">改正案</span>
+            <div class="body"><span class="del">［削る。］</span></div>
+          </div>
+        </div>
+
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>様式</th><th>対象</th><th>「比較・推奨販売の方法」の位置</th></tr></thead>
+            <tbody>
+              <tr><td class="k">別紙様式第25号の2</td><td>法人</td><td>1.事業概要 (16)</td></tr>
+              <tr><td class="k">別紙様式第25号の3</td><td>個人</td><td>1.事業概要 (11)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="read">
+          <b>読み解き（編集部の整理）</b>
+          チェック方式の「2（客観的な基準によらず絞り込んでいる）」という選択肢は、府令の「ハ」に対応する枠でした。ハの削除にあわせて選択肢ごと廃止され、代わりに推奨方針そのものを書かせる形になります。商品単位の一覧提出はなくなる一方、方針と検証方法を文書として持っているかが問われる構造です。テーマ07のア・ウで整備した社内規則等が、そのまま添付書面として使えます。
+        </div>
+      </div>
+
+      <div class="src">
+        <b>出典</b>
+        <ul>
+          <li><span class="doc">資料02</span><span>第一条 ― 別紙様式第25号の2（第238条第1項関係）（法人の場合）1.事業概要(16)、2.取扱保険契約等の状況⑴ア〜ウ</span></li>
+          <li><span class="doc">資料02</span><span>第一条 ― 別紙様式第25号の3（第238条第1項関係）（個人の場合）1.事業概要(11)、2.取扱保険契約等の状況⑴ア〜ウ</span></li>
+          <li><span class="doc">資料02</span><span>附則第2項（経過措置）</span></li>
+        </ul>
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+    <!-- ============ T9 ============ -->
+    <section class="sec" id="t9">
+      <div class="sec-head">
+        <span class="sec-no">テーマ 09</span>
+        <h2>金融サービス仲介業者版</h2>
+      </div>
+      <p class="sec-sub">保険媒介業務についても、同じ構造の改正が入ります（監督指針 Ⅵ-1-1-2(3)）。</p>
+
+      <div class="gist">
+        <div class="lbl">サクッと</div>
+        <ul>
+          <li>対象は<strong>二以上の保険会社等が引き受ける保険契約を取り扱う保険媒介業者</strong>（仲介業者等府令56条1項4号）。</li>
+          <li>中身は乗合代理店版とほぼ同じ。<strong>①比較推奨販売の方法（イ 比較説明／ロ 推奨販売）</strong>と<strong>②体制整備（イ〜ニ）</strong>の2本立てです。</li>
+          <li>違うのは<strong>参照条文</strong>。情報提供は準用保険業法294条1項、商号等の事前明示は金融サービス提供法25条1項、体制整備は同法26条が根拠になります。</li>
+          <li>項番の付け方も、乗合代理店版が「Ａ／Ｂ・(a)(b)」なのに対し、こちらは「イ／ロ・（イ）（ロ）」です。</li>
+        </ul>
+      </div>
+      <button class="more" type="button" data-more><span class="plus">＋</span>詳しく読む</button>
+
+      <div class="deep">
+        <h3>改正案の柱書</h3>
+        <div class="q">
+          <span class="cite">資料04 Ⅵ-1-1-2(3) 柱書</span>
+          二以上の保険会社等が引き受ける保険契約を取り扱う保険媒介業者…は、<mark>金融サービス提供法第2条第1項に基づく顧客等に対する誠実公正義務の趣旨も踏まえ、顧客の最善の利益を勘案しつつ</mark>、適切な比較推奨販売…を行わなければならない。<br />
+          このため、以下の点に留意しつつ、<mark>金融サービス提供法第25条第1項（仲介業者等府令第33条第2項第2号）に基づき、あらかじめ顧客が締結しようとする金融サービス契約に係る相手方保険会社等の商号等を明らかにした上で</mark>、準用保険業法第294条第1項（仲介業者等府令第56条第1項第4号）に基づき、保険契約の内容、その他保険契約者等の参考となるべき情報を提供し、わかりやすく説明しているかを確認するものとする。
+        </div>
+
+        <h3>読み替え対応表</h3>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>論点</th><th>乗合代理店（資料03）</th><th>保険媒介業者（資料04）</th></tr></thead>
+            <tbody>
+              <tr><td class="k">該当箇所</td><td>Ⅱ-4-2-9(5)</td><td>Ⅵ-1-1-2(3)</td></tr>
+              <tr><td class="k">情報提供の根拠</td><td>法294条1項（規則227条の2③四）</td><td>準用保険業法294条1項（仲介業者等府令56条1項4号）</td></tr>
+              <tr><td class="k">商号等の事前明示</td><td>法294条3項</td><td>金融サービス提供法25条1項（仲介業者等府令33条2項2号）</td></tr>
+              <tr><td class="k">体制整備の根拠</td><td>法294条の3</td><td>金融サービス提供法26条</td></tr>
+              <tr><td class="k">比較表示の禁止規定</td><td>法300条1項6号／Ⅱ-4-2-2(9)②</td><td>準用保険業法300条1項6号／Ⅵ-1-1-2(10)②</td></tr>
+              <tr><td class="k">誘導行為の抵触先</td><td>法300条1項1号及び6号</td><td>準用保険業法300条1項1号及び6号</td></tr>
+              <tr><td class="k">便宜供与</td><td>Ⅱ-4-2-12</td><td>Ⅵ-1-4-1-3(1)②</td></tr>
+              <tr><td class="k">出向</td><td>Ⅱ-4-2-13</td><td>Ⅵ-1-4-1-3(1)③</td></tr>
+              <tr><td class="k">顧客保護等</td><td>Ⅱ-4-4</td><td>Ⅵ-1-2</td></tr>
+              <tr><td class="k">意向把握（推定）の参照先</td><td>Ⅱ-4-2-2(3)①ア.(注2)</td><td>Ⅵ-1-1-2(4)①イ.(注2)</td></tr>
+              <tr><td class="k">項番の付け方</td><td>①Ａ／Ｂ、(a)(b)</td><td>①イ／ロ、（イ）（ロ）</td></tr>
+              <tr><td class="k">体制整備の項目</td><td>ア〜エ</td><td>イ〜ニ</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note">
+          <b>現行③・④も同様に削除</b>
+          乗合代理店版と同じく、「客観的な基準や理由等に基づくことなく商品を絞込み又は特定の商品を提示・推奨する場合」に関する現行③と、その注（「公平・中立」を掲げる場合の留意）は、改正案に対応する項目がありません。
+        </div>
+      </div>
+
+      <div class="src">
+        <b>出典</b>
+        <ul>
+          <li><span class="doc">資料04</span><span>Ⅵ-1-1-2(3) 仲介業者等府令第56条第1項第4号関係 柱書</span></li>
+          <li><span class="doc">資料04</span><span>同 ① 比較推奨販売の方法 イ・ロ（イ）（ロ）、(注1)〜(注4)</span></li>
+          <li><span class="doc">資料04</span><span>同 ② 比較推奨販売に係る体制整備関係 イ〜ニ・(注)</span></li>
+          <li><span class="doc">資料04</span><span>同 現行①〜④</span></li>
+        </ul>
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+    <!-- ============ SOURCES ============ -->
+    <section class="sec" id="sources">
+      <div class="sec-head">
+        <span class="sec-no">出典</span>
+        <h2>出典一覧</h2>
+      </div>
+      <p class="sec-sub">本サイトの記載はすべて、金融庁が2026年8月28日に公表した以下の資料に基づいています。</p>
+
+      <div class="docs">
+        <div class="doccard">
+          <span class="n">01</span>
+          <div>
+            <b>金融庁 公表資料（意見募集）</b>
+            <p>今回の意見募集の公表資料です。正式名称・意見募集期間・意見の提出方法は、この資料および金融庁の公表ページでご確認ください。</p>
+            <a href="https://www.fsa.go.jp/news/r8/hoken/20260828/01.pdf" target="_blank" rel="noopener noreferrer">https://www.fsa.go.jp/news/r8/hoken/20260828/01.pdf</a>
+          </div>
+        </div>
+        <div class="doccard">
+          <span class="n">02</span>
+          <div>
+            <b>保険業法施行規則及び金融サービス仲介業者等に関する内閣府令の一部を改正する内閣府令（案）新旧対照表</b>
+            <p>規則227条の2第3項第4号、規則234条の21の2第1項第2号、仲介業者等府令56条1項4号、別紙様式第25号の2・第25号の3、附則。</p>
+            <a href="https://www.fsa.go.jp/news/r8/hoken/20260828/02.pdf" target="_blank" rel="noopener noreferrer">https://www.fsa.go.jp/news/r8/hoken/20260828/02.pdf</a>
+          </div>
+        </div>
+        <div class="doccard">
+          <span class="n">03</span>
+          <div>
+            <b>保険会社向けの総合的な監督指針（新旧対照表）</b>
+            <p>Ⅱ-4-2-9 保険募集人の体制整備義務（法第294条の3関係）、同(5) 乗合代理店における比較推奨販売。</p>
+            <a href="https://www.fsa.go.jp/news/r8/hoken/20260828/03.pdf" target="_blank" rel="noopener noreferrer">https://www.fsa.go.jp/news/r8/hoken/20260828/03.pdf</a>
+          </div>
+        </div>
+        <div class="doccard">
+          <span class="n">04</span>
+          <div>
+            <b>金融サービス仲介業者向けの総合的な監督指針 新旧対照表</b>
+            <p>Ⅵ-1-1-2 保険契約の締結の媒介上の留意点(3) 仲介業者等府令第56条第1項第4号関係。</p>
+            <a href="https://www.fsa.go.jp/news/r8/hoken/20260828/04.pdf" target="_blank" rel="noopener noreferrer">https://www.fsa.go.jp/news/r8/hoken/20260828/04.pdf</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <b>ご利用にあたって</b>
+        本サイトは、上記資料02〜04の新旧対照表を読み解いて整理した参考情報であり、金融庁の公式見解ではありません。引用は改正案（意見募集段階）の文言であり、確定した内容ではありません。<br />
+        「読み解き（編集部の整理）」と表示した部分は、条文そのものではなく編集上の解釈です。実務上の判断は、必ず原文および所属先の社内規則を確認し、必要に応じて専門家にご相談ください。<br />
+        資料01は本サイト作成環境からアクセスできなかったため、意見募集の正式名称・募集期間等は記載していません。上記リンクからご確認ください。
+      </div>
+      <a class="totop" href="#top">↑ テーマ一覧へ戻る</a>
+    </section>
+
+  </main>
+</div>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var qb = document.getElementById('m-quick');
+  var db = document.getElementById('m-deep');
+
+  function setMode(mode, persist){
+    root.setAttribute('data-mode', mode);
+    qb.setAttribute('aria-pressed', String(mode === 'quick'));
+    db.setAttribute('aria-pressed', String(mode === 'deep'));
+    if (mode === 'deep') {
+      var open = document.querySelectorAll('.sec.open');
+      for (var i = 0; i < open.length; i++) open[i].classList.remove('open');
+    }
+    if (persist) { try { localStorage.setItem('gd-mode', mode); } catch (e) {} }
+  }
+
+  var saved = 'quick';
+  try { saved = localStorage.getItem('gd-mode') || 'quick'; } catch (e) {}
+  setMode(saved === 'deep' ? 'deep' : 'quick', false);
+
+  qb.addEventListener('click', function(){ setMode('quick', true); });
+  db.addEventListener('click', function(){ setMode('deep', true); });
+
+  // per-section expand while in quick mode
+  var buttons = document.querySelectorAll('[data-more]');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function(e){
+      e.currentTarget.closest('.sec').classList.add('open');
+    });
+  }
+
+  // theme cards / rail: open the target section when arriving in quick mode
+  function openTarget(hash){
+    if (!hash || hash === '#top') return;
+    var el = document.querySelector(hash);
+    if (el && el.classList.contains('sec')) el.classList.add('open');
+  }
+  var jumps = document.querySelectorAll('.card, .rail a');
+  for (var j = 0; j < jumps.length; j++) {
+    jumps[j].addEventListener('click', function(e){
+      openTarget(e.currentTarget.getAttribute('href'));
+    });
+  }
+  openTarget(location.hash);
+
+  // scrollspy: highlight the last section whose top has passed the header
+  var railLinks = document.querySelectorAll('.rail a');
+  var targets = [];
+  for (var k = 0; k < railLinks.length; k++) {
+    var el = document.getElementById(railLinks[k].getAttribute('href').slice(1));
+    if (el) targets.push({ link: railLinks[k], el: el });
+  }
+  var ticking = false;
+  function spy(){
+    ticking = false;
+    var y = window.scrollY + 120;
+    var cur = null;
+    for (var i = 0; i < targets.length; i++) {
+      if (targets[i].el.offsetTop <= y) cur = targets[i].link;
+    }
+    for (var j = 0; j < railLinks.length; j++) railLinks[j].classList.remove('on');
+    if (cur) cur.classList.add('on');
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking) { ticking = true; requestAnimationFrame(spy); }
+  }, { passive: true });
+  window.addEventListener('resize', spy);
+  spy();
+})();
+</script>
+</body>
+</html>
