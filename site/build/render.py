@@ -67,8 +67,9 @@ def section(s):
             b.append('          <ul>'); b+=['            <li>%s</li>'%x for x in s['do']]; b.append('          </ul>')
             b.append('        </div>')
         if s.get('dont'):
-            b.append('        <div class="ng">')
-            b.append('          <h4><i>✕</i>%s</h4>'%s.get('dont_title','これはできない'))
+            info = s.get('tone')=='info'
+            b.append('        <div class="%s">'%('info' if info else 'ng'))
+            b.append('          <h4><i>%s</i>%s</h4>'%('i' if info else '✕', s.get('dont_title','これはできない')))
             b.append('          <ul>'); b+=['            <li>%s</li>'%x for x in s['dont']]; b.append('          </ul>')
             b.append('        </div>')
         b.append('      </div>')

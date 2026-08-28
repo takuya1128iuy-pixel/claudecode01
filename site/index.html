@@ -216,6 +216,12 @@ u{text-decoration:underline;text-decoration-color:var(--flag);text-underline-off
 .dd li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%}
 .dd .ok li::before{background:var(--accent-2)}
 .dd .ng li::before{background:var(--flag)}
+.dd .info{background:var(--surface-2);border-color:var(--line)}
+.dd .info h4{color:var(--ink-3)}
+.dd .info h4 i{background:var(--ink-3);color:var(--surface)}
+:root[data-theme="dark"] .dd .info h4 i{color:#0D1116}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .dd .info h4 i{color:#0D1116}}
+.dd .info li::before{background:var(--ink-3)}
 
 /* more button */
 .more{
@@ -1989,8 +1995,8 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
             <li>金融サービス仲介業者向けの総合的な監督指針（Ⅵ-1-1-2(3)）</li>
           </ul>
         </div>
-        <div class="ng">
-          <h4><i>✕</i>変わらないもの</h4>
+        <div class="info">
+          <h4><i>i</i>変わらないもの</h4>
           <ul>
             <li>意向把握・確認義務そのもの（保険業法294条の2）</li>
             <li>記録保存の基本的な考え方（今回はその考え方を監督指針上明確化するもの）</li>
@@ -2047,8 +2053,8 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
             <li><b>ロ</b>：意向に沿って選別し、提案する場合 ── 説明するのは「顧客の意向に沿って<b>募集人が選別した</b>比較可能な同種の保険契約の概要」と「提案の理由」</li>
           </ul>
         </div>
-        <div class="ng">
-          <h4><i>✕</i>なくなる型</h4>
+        <div class="info">
+          <h4><i>i</i>なくなる型</h4>
           <ul>
             <li><b>ハ</b>：ロの選別をすることなく提案契約の提案をしようとする場合に、提案の理由だけを説明する型</li>
             <li>監督指針の現行③（客観的な基準や理由等に基づかずに絞り込む場合の説明）も、対応する項目がなくなります</li>
@@ -2109,8 +2115,8 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
             <li>手順の明示 ── 法294条3項で商号等を事前に明らかにし、そのうえで法294条1項に基づき情報提供・わかりやすい説明</li>
           </ul>
         </div>
-        <div class="ng">
-          <h4><i>✕</i>書きぶりの変化</h4>
+        <div class="info">
+          <h4><i>i</i>書きぶりの変化</h4>
           <ul>
             <li>現行：「二以上の所属保険会社等を有する保険募集人<b>においては</b>…措置が講じられているか<b>どうかを確認するものとする</b>」（監督者目線）</li>
             <li>改正案：「乗合代理店<b>は</b>…適切な比較推奨販売を<b>行わなければならない</b>」＋確認事項（行為規範として先に置く）</li>
@@ -2160,8 +2166,8 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
             <li><b>(c)</b> 優位性を示すために他の契約と比較するときは、その他の契約についても全体像や商品特性を正確に示し、優位性の根拠を説明する</li>
           </ul>
         </div>
-        <div class="ng">
-          <h4><i>✕</i>注意点</h4>
+        <div class="info">
+          <h4><i>i</i>注意点</h4>
           <ul>
             <li>根拠は法300条1項6号（誤解させるおそれのある比較表示等）とⅡ-4-2-2(9)②</li>
             <li>内容自体は現行②の(注2)にあったもの。改正案では「比較説明」として独立の項目に整理された</li>
@@ -2265,8 +2271,8 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
             <li>顧客が特に重視すると考えられる事項を例示するなどして、<b>可能な限り意向を把握したうえで</b>、Ｂ(a) に従って対応する</li>
           </ul>
         </div>
-        <div class="ng">
-          <h4><i>✕</i>注意点</h4>
+        <div class="info">
+          <h4><i>i</i>注意点</h4>
           <ul>
             <li>例示にあたって、顧客の意向を顧みず営業上の理由から<b>恣意的に特定の保険契約へ誘導</b>する</li>
             <li>その誘導行為は、内容や態様等によっては<b>法300条1項1号及び6号に抵触するおそれ</b>があると明記された</li>
@@ -2309,8 +2315,8 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
             <li><b>エ</b> 確認・検証結果を踏まえ、必要に応じて比較推奨販売方法の見直し・改善を行う</li>
           </ul>
         </div>
-        <div class="ng">
-          <h4><i>✕</i>確認・検証で見るもの</h4>
+        <div class="info">
+          <h4><i>i</i>確認・検証で見るもの</h4>
           <ul>
             <li>乗合代理店<b>自身の規模や業務特性</b>を踏まえること（一律の水準ではない）</li>
             <li><b>便宜供与（Ⅱ-4-2-12）</b>により顧客の適切な商品選択の機会を阻害していないか</li>
@@ -2375,8 +2381,8 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
             <li>法人＝別紙様式第25号の2 の(16)／個人＝第25号の3 の(11)</li>
           </ul>
         </div>
-        <div class="ng">
-          <h4><i>✕</i>なくなるもの</h4>
+        <div class="info">
+          <h4><i>i</i>なくなるもの</h4>
           <ul>
             <li>3択のチェック方式（1 客観的な基準等により絞り込み／2 客観的な基準等によらず絞り込み／3 その他＋備考）</li>
             <li>「2.取扱保険契約等の状況」の<b>（推奨保険会社・商品）一覧表</b>（生命保険30行・損害保険10行・少額短期保険10行）</li>
@@ -2433,8 +2439,8 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
             <li>柱書に誠実公正義務と「顧客の最善の利益を勘案しつつ」が置かれる点も同じ</li>
           </ul>
         </div>
-        <div class="ng">
-          <h4><i>✕</i>違うところ</h4>
+        <div class="info">
+          <h4><i>i</i>違うところ</h4>
           <ul>
             <li>情報提供の根拠 ── 準用保険業法294条1項（仲介業者等府令56条1項4号）</li>
             <li>商号等の事前明示 ── 金融サービス提供法25条1項（同府令33条2項2号）</li>
@@ -2505,8 +2511,8 @@ td.rng{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
             <li>最多は「合理的かつ一定の具体性を有する基準や理由」<b>159件</b>（全体の21%）</li>
           </ul>
         </div>
-        <div class="ng">
-          <h4><i>✕</i>注意</h4>
+        <div class="info">
+          <h4><i>i</i>注意</h4>
           <ul>
             <li>目次のNo.対応は「保険業法施行規則」と「監督指針（保険会社向け）」の<b>2系統のみ</b></li>
             <li>資料04（金融サービス仲介業者向け監督指針）に対応する分類は目次上に見当たらない</li>

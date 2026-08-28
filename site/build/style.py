@@ -206,6 +206,12 @@ u{text-decoration:underline;text-decoration-color:var(--flag);text-underline-off
 .dd li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%}
 .dd .ok li::before{background:var(--accent-2)}
 .dd .ng li::before{background:var(--flag)}
+.dd .info{background:var(--surface-2);border-color:var(--line)}
+.dd .info h4{color:var(--ink-3)}
+.dd .info h4 i{background:var(--ink-3);color:var(--surface)}
+:root[data-theme="dark"] .dd .info h4 i{color:#0D1116}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .dd .info h4 i{color:#0D1116}}
+.dd .info li::before{background:var(--ink-3)}
 
 /* more button */
 .more{

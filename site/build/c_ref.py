@@ -16,7 +16,7 @@ _tr="".join(
  '<td class="mid"><div class="barcell"><div class="bar"><i style="width:%.1f%%"></i></div>'
  '<span class="num">%d</span></div></td></tr>'%(n,a,b,c/_mx*100,c) for n,a,b,c in ROWS)
 
-REF=[dict(id="t0", kicker="資料 01", title="金融庁の考え方を引く",
+REF=[dict(id="t0", tone="info", kicker="資料 01", title="金融庁の考え方を引く",
   sub="450ページ・759件の回答集から、自分の疑問に近い箇所へ当たりをつけるための早見表です。",
   lede="このサイトに載せたのは<em>抜粋</em>です。手元のケースに近い分類のNo.を確かめて、原文にあたってください。",
   do_title="資料01の構造",
