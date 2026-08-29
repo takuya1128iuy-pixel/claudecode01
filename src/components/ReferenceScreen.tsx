@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CARE_SYMBOLS, COLOR_RULES, SILHOUETTES } from "../data/index.ts";
-import { Card, SectionTitle } from "./common.tsx";
+import { Card, SectionTitle, SourceNote } from "./common.tsx";
 
 type Topic = "rules" | "care" | "silhouette";
 
@@ -39,7 +39,10 @@ export default function ReferenceScreen() {
 
       {topic === "rules" && (
         <div>
-          <p className="mt-4 text-sm text-muted">シーズンが変わっても使える考え方です。</p>
+          <div className="mt-4">
+            <SourceNote source={COLOR_RULES[0].source} />
+          </div>
+          <p className="mt-3 text-sm text-muted">シーズンが変わっても使える考え方です。</p>
           {COLOR_RULES.map((r) => (
             <details
               key={r.id}
@@ -66,7 +69,10 @@ export default function ReferenceScreen() {
 
       {topic === "care" && (
         <div>
-          <p className="mt-4 text-sm text-muted">
+          <div className="mt-4">
+            <SourceNote source={CARE_SYMBOLS[0].source} />
+          </div>
+          <p className="mt-3 text-sm text-muted">
             「洗えますか？」に答えるための一覧です。実際の判断は商品のタグを一緒に見てください。
           </p>
           {CARE_SYMBOLS.map((g) => (
@@ -85,15 +91,15 @@ export default function ReferenceScreen() {
               </Card>
             </section>
           ))}
-          <p className="mt-4 text-xs leading-relaxed text-muted">
-            出典: {CARE_SYMBOLS[0].source.title}（{CARE_SYMBOLS[0].source.publisher}）
-          </p>
         </div>
       )}
 
       {topic === "silhouette" && (
         <div>
-          <p className="mt-4 text-sm text-muted">
+          <div className="mt-4">
+            <SourceNote source={SILHOUETTES[0].source} />
+          </div>
+          <p className="mt-3 text-sm text-muted">
             「なんかしっくりこない」の正体は、たいていシルエットが定まっていないことです。
           </p>
           {SILHOUETTES.map((s) => (

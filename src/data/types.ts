@@ -140,6 +140,24 @@ export interface Silhouette {
  * L2: シーズン情報
  * ------------------------------------------------------------------ */
 
+/**
+ * 色の系統。29色を一度に見せると選べないので、まずここで絞る。
+ * 販売員が口に出す呼び方に合わせている（色相環の厳密な分類ではない）。
+ */
+export type ColorFamily =
+  | "ニュートラル"
+  | "ベージュ・ブラウン"
+  | "レッド"
+  | "オレンジ"
+  | "イエロー"
+  | "グリーン"
+  | "ブルー"
+  | "パープル"
+  | "ピンク";
+
+/** 暖色・寒色。最初のひと絞りに使う */
+export type ColorTemperature = "暖色" | "寒色" | "中性";
+
 /** トレンドカラー1色 */
 export interface SeasonColor {
   id: string;
@@ -149,6 +167,10 @@ export interface SeasonColor {
   hex: string;
   /** 明度・彩度の傾向 */
   tone: "ペール" | "ライト" | "ソフト" | "モデレート" | "ディープ" | "ダーク" | "ビビッド";
+  /** 色の系統。一覧を絞りこむのに使う */
+  family: ColorFamily;
+  /** 暖色・寒色 */
+  temperature: ColorTemperature;
   /** ベース向きか、差し色向きか */
   role: "ベース" | "アソート" | "アクセント";
   /** どんな印象か */
@@ -171,6 +193,26 @@ export interface ColorGroup {
   colors: SeasonColor[];
 }
 
+/**
+ * その年を象徴する色（JAFCA「時代の色 — メッセージカラー」）。
+ * シーズンのトレンドカラーとは別物で、世の中のムードを表すもの。
+ */
+export interface YearColor {
+  year: number;
+  nameJa: string;
+  nameEn: string;
+  /** 発表元が参考値として公開している16進数 */
+  hex: string;
+  /** マンセル値（発表元の表記どおり） */
+  munsell: string;
+  /** 系統色名 */
+  systematicName: string;
+  /** なぜこの色が選ばれたか */
+  reason: string;
+  keywords: string[];
+  source: Source;
+}
+
 export interface Season {
   id: string;
   label: string;
@@ -183,6 +225,10 @@ export interface Season {
     /** 販売員向けの読み替え */
     inStore: string;
   };
+  /** シーズンを一言で表すことば。売場での会話のとっかかりに使う */
+  keywords: string[];
+  /** その年のメッセージカラー */
+  yearColor?: YearColor;
   groups: ColorGroup[];
   sources: Source[];
 }

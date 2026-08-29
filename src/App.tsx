@@ -5,9 +5,10 @@ import ColorScreen from "./components/ColorScreen.tsx";
 import HomeScreen from "./components/HomeScreen.tsx";
 import MaterialScreen from "./components/MaterialScreen.tsx";
 import ReferenceScreen from "./components/ReferenceScreen.tsx";
+import TrendScreen from "./components/TrendScreen.tsx";
 import { Swatch } from "./components/common.tsx";
 
-type Tab = "home" | "color" | "material" | "ref";
+type Tab = "home" | "color" | "material" | "trend" | "ref";
 
 /* 端末のフォントに左右されないよう、タブのアイコンは自前の SVG にする */
 function TabIcon({ name }: { name: Tab }) {
@@ -38,6 +39,14 @@ function TabIcon({ name }: { name: Tab }) {
       </svg>
     );
   }
+  if (name === "trend") {
+    return (
+      <svg {...common}>
+        <path d="M4 16 9 10l4 4 7-8" />
+        <path d="M15 6h5v5" />
+      </svg>
+    );
+  }
   if (name === "material") {
     return (
       <svg {...common}>
@@ -58,6 +67,7 @@ const TABS: { key: Tab; label: string }[] = [
   { key: "home", label: "ホーム" },
   { key: "color", label: "カラー" },
   { key: "material", label: "素材" },
+  { key: "trend", label: "トレンド" },
   { key: "ref", label: "参考" },
 ];
 
@@ -168,7 +178,12 @@ export default function App() {
             </div>
           </div>
         ) : tab === "home" ? (
-          <HomeScreen favoriteIds={fav.ids} onOpenColor={openColor} onOpenMaterial={openMaterial} />
+          <HomeScreen
+            favoriteIds={fav.ids}
+            onOpenColor={openColor}
+            onOpenMaterial={openMaterial}
+            onOpenTrend={() => setTab("trend")}
+          />
         ) : tab === "color" ? (
           <ColorScreen
             openId={openColorId}
@@ -176,6 +191,8 @@ export default function App() {
             isFav={fav.has}
             toggleFav={fav.toggle}
           />
+        ) : tab === "trend" ? (
+          <TrendScreen onOpenColor={openColor} />
         ) : tab === "material" ? (
           <MaterialScreen
             openId={openMaterialId}
@@ -197,7 +214,7 @@ export default function App() {
         }}
         aria-label="メインナビゲーション"
       >
-        <div className="mx-auto grid max-w-2xl grid-cols-4">
+        <div className="mx-auto grid max-w-2xl grid-cols-5">
           {TABS.map((t) => {
             const on = !results && tab === t.key;
             return (

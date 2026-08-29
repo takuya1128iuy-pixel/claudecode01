@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Source } from "../data/index.ts";
 import { needsBorder, textOn } from "../lib/contrast.ts";
 
 export function Swatch({
@@ -141,6 +142,37 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
           <p className="mt-2 text-sm leading-relaxed">{f.a}</p>
         </details>
       ))}
+    </div>
+  );
+}
+
+/**
+ * 出典。トレンドの説明は「誰が言っているか」で重みが変わるので、
+ * 解説より先に、本文の頭に出す。
+ */
+export function SourceNote({ source, label = "出典" }: { source: Source; label?: string }) {
+  return (
+    <div
+      className="rounded-lg px-3 py-2 text-sm leading-relaxed"
+      style={{ background: "var(--color-sunk)" }}
+    >
+      <span className="mr-2 text-xs font-bold tracking-wider text-muted">{label}</span>
+      {source.url ? (
+        <a
+          href={source.url}
+          target="_blank"
+          rel="noreferrer"
+          className="font-semibold underline decoration-1 underline-offset-2"
+        >
+          {source.title}
+        </a>
+      ) : (
+        <span className="font-semibold">{source.title}</span>
+      )}
+      <span className="mt-0.5 block text-xs text-muted">
+        {source.publisher ?? "自前でまとめたもの"} ・ {source.checkedAt} 確認
+      </span>
+      {source.note && <span className="mt-1 block text-xs leading-relaxed text-muted">{source.note}</span>}
     </div>
   );
 }

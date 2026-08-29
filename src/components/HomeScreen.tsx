@@ -17,10 +17,12 @@ export default function HomeScreen({
   favoriteIds,
   onOpenColor,
   onOpenMaterial,
+  onOpenTrend,
 }: {
   favoriteIds: string[];
   onOpenColor: (id: string) => void;
   onOpenMaterial: (id: string) => void;
+  onOpenTrend: () => void;
 }) {
   const { color, material, rule } = pickOfTheDay();
 
@@ -36,11 +38,19 @@ export default function HomeScreen({
   return (
     <div className="px-4 pb-28">
       <SectionTitle note={CURRENT_SEASON.label}>今季のテーマ</SectionTitle>
-      <Card>
-        <div className="text-lg font-bold">{CURRENT_SEASON.theme.titleEn}</div>
-        <div className="text-xs text-muted">{CURRENT_SEASON.theme.titleJa}</div>
-        <p className="mt-2 text-sm leading-relaxed">{CURRENT_SEASON.theme.inStore}</p>
-      </Card>
+      <button
+        type="button"
+        onClick={onOpenTrend}
+        className="w-full rounded-lg bg-surface p-4 text-left"
+        style={{ boxShadow: "inset 0 0 0 1px var(--color-line)" }}
+      >
+        <span className="block text-lg font-bold">{CURRENT_SEASON.theme.titleEn}</span>
+        <span className="block text-xs text-muted">{CURRENT_SEASON.theme.titleJa}</span>
+        <span className="mt-2 block text-sm leading-relaxed">{CURRENT_SEASON.theme.inStore}</span>
+        <span className="mt-2 block text-xs font-semibold text-accent">
+          トレンドをくわしく見る →
+        </span>
+      </button>
 
       <SectionTitle note="1分で読める">今日の1枚</SectionTitle>
       <div className="flex flex-col gap-2">
