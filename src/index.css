@@ -1,44 +1,86 @@
 @import "tailwindcss";
 
+/*
+ * 売場で使う前提の配色。
+ * カラーチップを正しく見せるため、UI側は彩度を落とした中間色でそろえ、
+ * アクセントは小さな印にだけ使う。
+ */
 @theme {
-  --color-sumi: #1f2933;
-  --color-indigo: #223a5e;
-  --color-indigo-dark: #16283f;
-  --color-cream: #faf6ee;
-  --color-washi: #f3ece0;
-  --color-seal: #a6362c;
-  --color-gold: #b8924a;
-  --font-sans: "Hiragino Sans", "Yu Gothic", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --color-ground: #f4f2f1;
+  --color-surface: #ffffff;
+  --color-sunk: #ebe8e6;
+  --color-ink: #23201f;
+  --color-muted: #6e6763;
+  --color-line: #dfdad6;
+  --color-accent: #8a5a6b;
+  --color-accent-soft: #f3e7eb;
+  --color-onaccent: #ffffff;
+
+  /* オフラインで確実に出る端末フォントだけを使う（Webフォントを読みに行かない） */
+  --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP",
+    system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 暗い店内・夜間の通勤用。@theme のカスタムプロパティを上書きすると、
+   bg-surface などのユーティリティがそのまま追随する */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ground: #171514;
+    --color-surface: #201d1c;
+    --color-sunk: #2a2624;
+    --color-ink: #ede8e5;
+    --color-muted: #a29a95;
+    --color-line: #37312e;
+    --color-accent: #d9a0ae;
+    --color-accent-soft: #33232a;
+    --color-onaccent: #201d1c;
+  }
 }
 
 :root {
-  color-scheme: light;
-}
-
-body {
-  margin: 0;
-  background: var(--color-cream);
-  color: var(--color-sumi);
-  font-family: var(--font-sans);
+  color-scheme: light dark;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* iOS Safari は 16px 未満の入力欄にフォーカスすると画面を自動拡大するため、
-   モバイル幅では 16px を明示して拡大を防ぐ */
-@media (max-width: 640px) {
-  input,
-  select,
-  textarea {
-    font-size: 16px;
-  }
+body {
+  margin: 0;
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  /* 売場の照明と、目からの距離を考えて本文は 16px 以上 */
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  /* ホーム画面から起動したときにセーフエリアを避ける */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* ホーム画面から起動したときにセーフエリア（ノッチ・ホームバー）を避ける */
-body {
-  padding-bottom: env(safe-area-inset-bottom);
+/* iOS Safari は 16px 未満の入力欄で画面を自動拡大するため明示する */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -46,6 +88,6 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d9cdb8;
+  background: var(--color-line);
   border-radius: 4px;
 }

@@ -1,5 +1,5 @@
 {
-  "name": "claudecode01",
+  "name": "fw-sales-assistant",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,10 +11,7 @@
   },
   "dependencies": {
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "recharts": "^3.10.1",
-    "tesseract.js": "^7.0.0",
-    "uuid": "^14.0.1"
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
