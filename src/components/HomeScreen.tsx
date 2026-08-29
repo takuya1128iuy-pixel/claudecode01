@@ -10,7 +10,8 @@ function pickOfTheDay() {
   const color = ALL_COLORS[days % ALL_COLORS.length];
   const material = MATERIALS[days % MATERIALS.length];
   const rule = COLOR_RULES[days % COLOR_RULES.length];
-  return { color, material, rule };
+  const topic = CURRENT_SEASON.topics[days % CURRENT_SEASON.topics.length];
+  return { color, material, rule, topic };
 }
 
 export default function HomeScreen({
@@ -24,7 +25,7 @@ export default function HomeScreen({
   onOpenMaterial: (id: string) => void;
   onOpenTrend: () => void;
 }) {
-  const { color, material, rule } = pickOfTheDay();
+  const { color, material, rule, topic } = pickOfTheDay();
 
   const favColors = favoriteIds
     .filter((id) => id.startsWith("color:"))
@@ -77,6 +78,17 @@ export default function HomeScreen({
           <span className="block text-xs text-muted">今日の素材</span>
           <span className="block text-sm font-bold">{material.nameJa}</span>
           <span className="mt-1 block text-sm leading-relaxed">{material.talk}</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={onOpenTrend}
+          className="rounded-lg bg-surface p-3 text-left"
+          style={{ boxShadow: "inset 0 0 0 1px var(--color-line)" }}
+        >
+          <span className="block text-xs text-muted">今日のトレンド · {topic.category}</span>
+          <span className="block text-sm font-bold">{topic.title}</span>
+          <span className="mt-1 block text-sm leading-relaxed">{topic.inStore}</span>
         </button>
 
         <Card>

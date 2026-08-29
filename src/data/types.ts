@@ -213,6 +213,31 @@ export interface YearColor {
   source: Source;
 }
 
+/** トレンド項目の分類 */
+export type TrendCategory =
+  | "キーワード"
+  | "シルエット"
+  | "アイテム"
+  | "スタイリング"
+  | "柄"
+  | "カラー"
+  | "素材"
+  | "店頭";
+
+/**
+ * 今季のトレンド1項目。
+ * summary は出典の内容を自分の言葉でまとめたもの、
+ * inStore は「売場でどう使うか」というアプリ独自の読み替え。
+ */
+export interface TrendTopic {
+  id: string;
+  category: TrendCategory;
+  title: string;
+  summary: string;
+  inStore: string;
+  source: Source;
+}
+
 export interface Season {
   id: string;
   label: string;
@@ -229,6 +254,8 @@ export interface Season {
   keywords: string[];
   /** その年のメッセージカラー */
   yearColor?: YearColor;
+  /** 今季のトレンド項目 */
+  topics: TrendTopic[];
   groups: ColorGroup[];
   sources: Source[];
 }

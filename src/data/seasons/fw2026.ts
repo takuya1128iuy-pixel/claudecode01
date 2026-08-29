@@ -1,4 +1,5 @@
 import type { Season, Source } from "../types.ts";
+import { FW2026_TOPICS } from "./fw2026-topics.ts";
 
 const jafcaYear: Source = {
   kind: "public",
@@ -65,6 +66,7 @@ export const FW2026: Season = {
     keywords: ["希望", "優しさ", "幸福感", "平和", "前向き", "寛容", "明るさ", "幸運", "休息", "リラックス", "柔らかさ"],
     source: jafcaYear,
   },
+  topics: FW2026_TOPICS,
   groups: [
     {
       id: "sensory-receptors",

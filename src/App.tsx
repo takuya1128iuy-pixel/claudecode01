@@ -99,6 +99,9 @@ export default function App() {
           .toLowerCase()
           .includes(q),
       ),
+      topics: CURRENT_SEASON.topics.filter((t) =>
+        [t.title, t.category, t.summary, t.inStore].join(" ").toLowerCase().includes(q),
+      ),
     };
   }, [query]);
 
@@ -140,7 +143,8 @@ export default function App() {
         {results ? (
           <div className="px-4 pb-28">
             <p className="mt-3 text-sm text-muted">
-              色 {results.colors.length}件 / 素材 {results.materials.length}件
+              色 {results.colors.length}件 / 素材 {results.materials.length}件 / トレンド{" "}
+              {results.topics.length}件
             </p>
             <div className="mt-2 flex flex-col gap-2">
               {results.colors.map((c) => (
@@ -170,9 +174,25 @@ export default function App() {
                   <span className="mt-1 block truncate text-xs text-muted">{m.talk}</span>
                 </button>
               ))}
-              {results.colors.length + results.materials.length === 0 && (
+              {results.topics.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => {
+                    setQuery("");
+                    setTab("trend");
+                  }}
+                  className="rounded-lg bg-surface p-3 text-left"
+                  style={{ boxShadow: "inset 0 0 0 1px var(--color-line)" }}
+                >
+                  <span className="block text-xs text-muted">トレンド · {t.category}</span>
+                  <span className="block text-sm font-bold">{t.title}</span>
+                  <span className="mt-1 block truncate text-xs text-muted">{t.summary}</span>
+                </button>
+              ))}
+              {results.colors.length + results.materials.length + results.topics.length === 0 && (
                 <p className="text-sm leading-relaxed text-muted">
-                  見つかりませんでした。「洗える」「毛玉」「くすみ」など、お客様の言葉でも探せます。
+                  見つかりませんでした。「洗える」「毛玉」「くすみ」「肩」など、お客様の言葉でも探せます。
                 </p>
               )}
             </div>
