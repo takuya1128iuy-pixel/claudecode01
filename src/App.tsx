@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CURRENT_SEASON, MATERIALS } from "./data/index.ts";
 import { useFavorites } from "./hooks/useFavorites.ts";
 import ColorScreen from "./components/ColorScreen.tsx";
@@ -69,6 +69,12 @@ export default function App() {
   const [openMaterialId, setOpenMaterialId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const fav = useFavorites();
+
+  /* 画面が切り替わったら先頭から読ませる。
+     前の画面のスクロール位置が残っていると、詳細を開いても本文の途中が出てしまう */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [tab, openColorId, openMaterialId]);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
