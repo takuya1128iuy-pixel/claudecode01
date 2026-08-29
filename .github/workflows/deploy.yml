@@ -15,23 +15,61 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+# GitHub Pages は1リポジトリにつき1サイトなので、デプロイのたびにサイト全体が
+# 置き換わる。既存の2アプリを消さないよう、それぞれの置き場所のブランチから
+# 取得して同じ1サイトに組み立てる。
+#   /        きき酒ノート        （claude/kanji-learning-app-jqnn9u のルート）
+#   /kanji/  かんじドリル        （同ブランチの kanji/）
+#   /fw/     秋冬カラー&素材ノート（このブランチ）
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: このブランチ（秋冬カラー&素材ノート）
+        uses: actions/checkout@v4
+        with:
+          path: assistant
+
+      - name: 既存アプリ（きき酒ノート / かんじドリル）
+        uses: actions/checkout@v4
+        with:
+          ref: claude/kanji-learning-app-jqnn9u
+          path: base
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm run build
+          cache-dependency-path: |
+            assistant/package-lock.json
+            base/package-lock.json
+            base/kanji/package-lock.json
+
+      - name: きき酒ノートをビルド
+        run: npm ci --prefix base && npm run build --prefix base
+
+      - name: かんじドリルをビルド
+        run: npm ci --prefix base/kanji && npm run build --prefix base/kanji
+
+      - name: 秋冬カラー&素材ノートをビルド
+        run: npm ci --prefix assistant && npm run build --prefix assistant
+
+      - name: サイトを組み立てる
+        run: |
+          mkdir -p site/kanji site/fw
+          cp -r base/dist/. site/
+          cp -r base/kanji/dist/. site/kanji/
+          cp -r assistant/dist/. site/fw/
+          echo "--- 公開されるトップレベル ---"
+          ls site
+
       - uses: actions/configure-pages@v5
         with:
           enablement: true
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: site
 
   deploy:
     needs: build

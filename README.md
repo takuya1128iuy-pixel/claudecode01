@@ -71,15 +71,26 @@ npm run build   # 型検査（tsc -b）＋ 本番ビルド
 
 ## 公開URL
 
-**https://takuya1128iuy-pixel.github.io/claudecode01/**
+**https://takuya1128iuy-pixel.github.io/claudecode01/fw/**
 
 `claude/apparel-sales-assistant-app-35na6q` ブランチに push すると、GitHub Actions
 (`.github/workflows/deploy.yml`) が自動でビルドして公開する。
 
-> このURLでは以前「きき酒ノート」のデモを公開していた。GitHub Pages は1リポジトリにつき
-> 1サイトなので、こちらに切り替えている。きき酒ノートのソースは
-> `claude/sake-tasting-app-demo-bbnia0` ブランチにそのまま残っており、
-> ワークフローの対象ブランチを戻せば元に戻せる。
+### 同じサイトに同居しているアプリ
+
+GitHub Pages は1リポジトリにつき1サイトで、デプロイのたびにサイト全体が置き換わる。
+そのためこのワークフローは、既存アプリのソースを置き場所のブランチから取得して
+1サイトに組み立てている。
+
+| パス | アプリ | ソース |
+| --- | --- | --- |
+| `/` | きき酒ノート | `claude/kanji-learning-app-jqnn9u` のルート |
+| `/kanji/` | かんじドリル | 同ブランチの `kanji/` |
+| `/fw/` | このアプリ | このブランチ |
+
+> **注意**: `claude/kanji-learning-app-jqnn9u` ブランチに push すると、そちらの
+> ワークフローが動いて `/fw/` を含まないサイトに置き換わる。3アプリを同時に扱うなら、
+> どちらか一方のワークフローに寄せる必要がある。
 
 ## 技術構成
 
