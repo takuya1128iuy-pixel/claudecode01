@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - claude/sake-tasting-app-demo-bbnia0
+      - claude/apparel-sales-assistant-app-35na6q
   workflow_dispatch:
 
 permissions:

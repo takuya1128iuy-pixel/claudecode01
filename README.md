@@ -69,11 +69,17 @@ npm run build   # 型検査（tsc -b）＋ 本番ビルド
 
 シーズンが変わったら `src/data/seasons/` に追加して `src/data/index.ts` に並べる。過去シーズンも残す。
 
-## 公開について
+## 公開URL
 
-`.github/workflows/deploy.yml` は別ブランチ（きき酒ノートのデモ）向けの設定のままにしてある。
-このアプリを GitHub Pages で公開すると、同じURLで公開されている既存のデモが置き換わるため、
-**意図的に変更していない**。公開する場合はワークフローの対象ブランチを切り替える。
+**https://takuya1128iuy-pixel.github.io/claudecode01/**
+
+`claude/apparel-sales-assistant-app-35na6q` ブランチに push すると、GitHub Actions
+(`.github/workflows/deploy.yml`) が自動でビルドして公開する。
+
+> このURLでは以前「きき酒ノート」のデモを公開していた。GitHub Pages は1リポジトリにつき
+> 1サイトなので、こちらに切り替えている。きき酒ノートのソースは
+> `claude/sake-tasting-app-demo-bbnia0` ブランチにそのまま残っており、
+> ワークフローの対象ブランチを戻せば元に戻せる。
 
 ## 技術構成
 
