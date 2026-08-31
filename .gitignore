@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python virtualenv (LINE stamp pipeline tooling)
+.venv/
+__pycache__/
+*.pyc
