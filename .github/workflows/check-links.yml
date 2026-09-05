@@ -1,0 +1,26 @@
+name: お手続きナビのリンク確認
+
+# 保険会社のサイトはリニューアルでURLが変わりやすいので、
+# 変更時と毎月1日に、収録している各社URLが生きているか確かめる。
+on:
+  push:
+    branches:
+      - claude/line-rich-menu-dev-ck37z0
+    paths:
+      - 'hoken-navi/**'
+      - '.github/workflows/check-links.yml'
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: リンクを確認する
+        working-directory: hoken-navi
+        run: node tools/check-links.mjs
