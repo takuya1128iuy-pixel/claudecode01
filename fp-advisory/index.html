@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>家計の顧問FP</title>
+<meta name="description" content="お金のことで何かあったら、とりあえずFPに聞けばいい。年額50,000円で、家計・保険・NISA・書類の対応まで一年を通して見守る「家計の顧問FP」の年間顧問契約（デモLP）。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Kurenaido&display=swap">
+<style>
+  :root {
+    --ground: #f5f7fb;
+    --surface: #ffffff;
+    --surface-2: #eaf0f8;
+    --ink: #1b2a4a;
+    --ink-2: #4a5872;
+    --ink-3: #7a869d;
+    --line: #d3dbe8;
+    --primary: #2b5ba8;
+    --primary-ink: #ffffff;
+    --primary-soft: #dfe9f8;
+    --accent: #f2b33d;
+    --accent-ink: #3a2a05;
+    --accent-soft: #fff3d6;
+    --house: #b2453b;   --house-soft: #fbe9e6;
+    --insure: #2e7d5b;  --insure-soft: #e3f3ea;
+    --nisa: #2b5ba8;    --nisa-soft: #dfe9f8;
+    --net: #6b4fa0;     --net-soft: #ece6f7;
+    --shadow: 0 10px 30px rgba(27, 42, 74, 0.08);
+    --radius: 14px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #111827;
+      --surface: #1a2336;
+      --surface-2: #222d45;
+      --ink: #e9eef7;
+      --ink-2: #b6c0d3;
+      --ink-3: #8c98b0;
+      --line: #33405a;
+      --primary: #7aa6ea;
+      --primary-ink: #0d1626;
+      --primary-soft: #223558;
+      --accent: #f4c15e;
+      --accent-ink: #2a1d02;
+      --accent-soft: #3d3117;
+      --house: #e8877d;   --house-soft: #3f2320;
+      --insure: #6cc59c;  --insure-soft: #1c3a2c;
+      --nisa: #7aa6ea;    --nisa-soft: #223558;
+      --net: #b59be3;     --net-soft: #2f2545;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #111827;
+    --surface: #1a2336;
+    --surface-2: #222d45;
+    --ink: #e9eef7;
+    --ink-2: #b6c0d3;
+    --ink-3: #8c98b0;
+    --line: #33405a;
+    --primary: #7aa6ea;
+    --primary-ink: #0d1626;
+    --primary-soft: #223558;
+    --accent: #f4c15e;
+    --accent-ink: #2a1d02;
+    --accent-soft: #3d3117;
+    --house: #e8877d;   --house-soft: #3f2320;
+    --insure: #6cc59c;  --insure-soft: #1c3a2c;
+    --nisa: #7aa6ea;    --nisa-soft: #223558;
+    --net: #b59be3;     --net-soft: #2f2545;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 16px;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "palt";
+  }
+  a { color: var(--primary); }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  h1, h2, h3, h4 { margin: 0; line-height: 1.35; text-wrap: balance; font-weight: 700; }
+  p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  .wrap { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
+  .hand { font-family: "Zen Kurenaido", "Zen Kaku Gothic New", sans-serif; font-weight: 400; }
+  .num { font-variant-numeric: tabular-nums; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+  section { padding-block: 4.5rem; }
+  .section-head { max-width: 40rem; margin-bottom: 2.25rem; }
+  .section-head h2 { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2rem); }
+  .section-head p { color: var(--ink-2); margin-top: 0.75rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    font: inherit; font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--primary); color: var(--primary-ink); }
+  .btn-accent { background: var(--accent); color: var(--accent-ink); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .demo-flag {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--accent); color: var(--accent-ink);
+    font-size: 0.8rem; font-weight: 700; text-align: center;
+    padding: 0.35rem 1rem; letter-spacing: 0.04em;
+  }
+
+  /* header */
+  header.site {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding-block: 1.1rem;
+  }
+  .brand { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; color: var(--ink); }
+  .brand b { font-size: 1.1rem; font-weight: 900; letter-spacing: 0.02em; }
+  .brand small { color: var(--ink-3); font-size: 0.75rem; letter-spacing: 0.1em; }
+  nav.site ul { display: flex; gap: 1.4rem; font-size: 0.9rem; font-weight: 500; }
+  nav.site a { color: var(--ink-2); text-decoration: none; }
+  nav.site a:hover { color: var(--primary); }
+  @media (max-width: 760px) { nav.site { display: none; } }
+
+  /* hero */
+  .hero { padding-block: 3rem 4.5rem; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center;
+  }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  .hero h1 {
+    font-size: clamp(2rem, 1.1rem + 2.9vw, 3rem);
+    font-weight: 900; line-height: 1.25; letter-spacing: 0.01em;
+  }
+  .hero h1 em { font-style: normal; color: var(--primary); }
+  .hero .lede { margin-top: 1.25rem; color: var(--ink-2); font-size: 1.05rem; max-width: 34rem; }
+  .hero-hand {
+    font-size: clamp(1.4rem, 1rem + 1.6vw, 1.9rem);
+    color: var(--ink); line-height: 1.5;
+    margin-bottom: 1rem;
+    transform: rotate(-1.2deg); transform-origin: left;
+  }
+  .hero-hand span { background: linear-gradient(transparent 55%, var(--accent-soft) 55%); padding-inline: 0.15em; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+  .ticket {
+    background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 1.6rem 1.7rem; position: relative; overflow: hidden;
+    border-top: 6px solid var(--primary);
+  }
+  .ticket::after {
+    content: ""; position: absolute; inset: auto -40px -40px auto;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: var(--accent-soft); z-index: 0;
+  }
+  .ticket > * { position: relative; z-index: 1; }
+  .ticket .label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; color: var(--ink-3); }
+  .ticket .plan { font-size: 1.5rem; font-weight: 900; margin-top: 0.2rem; }
+  .ticket .price { display: flex; align-items: baseline; gap: 0.35rem; margin-top: 0.75rem; }
+  .ticket .price b { font-size: 2.6rem; font-weight: 900; color: var(--primary); letter-spacing: -0.01em; }
+  .ticket .price span { color: var(--ink-2); font-weight: 500; }
+  .ticket .incl { margin-top: 1rem; display: grid; gap: 0.35rem; font-size: 0.9rem; color: var(--ink-2); }
+  .ticket .incl li { display: flex; gap: 0.5rem; align-items: flex-start; }
+  .ticket .incl li::before { content: "✓"; color: var(--insure); font-weight: 900; flex: none; }
+  .ticket .foot { margin-top: 1rem; font-size: 0.78rem; color: var(--ink-3); }
+
+  /* value */
+  .value {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 2.25rem clamp(1.25rem, 4vw, 3rem);
+    display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 2rem; align-items: center;
+    box-shadow: var(--shadow);
+  }
+  @media (max-width: 700px) { .value { grid-template-columns: 1fr; } }
+  .bulb {
+    width: 84px; height: 84px; border-radius: 50%;
+    background: var(--accent-soft); display: grid; place-items: center;
+  }
+  .bulb svg { width: 44px; height: 44px; }
+  .value h2 { font-size: 1.4rem; }
+  .value p { color: var(--ink-2); margin-top: 0.5rem; }
+  .value .hand { display: block; font-size: 1.55rem; color: var(--ink); margin: 0.5rem 0; line-height: 1.45; }
+
+  /* services list */
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  @media (max-width: 900px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .svc-grid { grid-template-columns: 1fr; } }
+  .svc {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.2rem 1.25rem; display: grid; grid-template-rows: auto auto 1fr; gap: 0.35rem;
+  }
+  .svc .ic {
+    width: 40px; height: 40px; border-radius: 10px; background: var(--primary-soft);
+    display: grid; place-items: center; color: var(--primary); margin-bottom: 0.4rem;
+  }
+  .svc .ic svg { width: 22px; height: 22px; }
+  .svc h3 { font-size: 1.05rem; }
+  .svc p { font-size: 0.9rem; color: var(--ink-2); }
+  .svc .when { font-size: 0.75rem; color: var(--ink-3); font-weight: 700; letter-spacing: 0.08em; margin-top: 0.4rem; }
+
+  /* option sections */
+  .opt { border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); padding: 2rem clamp(1.25rem, 3vw, 2.25rem); }
+  .opt + .opt { margin-top: 1.5rem; }
+  .opt-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .opt-head .no {
+    width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+    font-weight: 900; font-size: 1.15rem; color: #fff; flex: none;
+  }
+  .opt-head h3 { font-size: 1.45rem; font-weight: 900; }
+  .opt-head .hand { color: var(--ink-2); font-size: 1.05rem; margin-left: auto; }
+  @media (max-width: 640px) { .opt-head .hand { margin-left: 0; width: 100%; } }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .col { border-radius: 12px; padding: 1.25rem 1.35rem; background: var(--surface-2); }
+  .col .who {
+    display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+    padding: 0.2rem 0.7rem; border-radius: 999px; color: #fff; margin-bottom: 0.6rem;
+  }
+  .col .fee { font-size: 1.7rem; font-weight: 900; line-height: 1.2; }
+  .col .fee small { font-size: 0.9rem; font-weight: 500; color: var(--ink-2); margin-left: 0.2rem; }
+  .col .desc { font-size: 0.92rem; color: var(--ink-2); margin: 0.6rem 0 0.9rem; }
+  .checks li { display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.93rem; padding-block: 0.15rem; }
+  .checks li::before { content: "✓"; font-weight: 900; flex: none; }
+  .steps { counter-reset: step; display: grid; gap: 0.35rem; }
+  .steps li { counter-increment: step; display: flex; gap: 0.6rem; align-items: baseline; font-size: 0.93rem; }
+  .steps li::before {
+    content: counter(step); width: 1.4rem; height: 1.4rem; border-radius: 50%; flex: none;
+    display: inline-grid; place-items: center; font-size: 0.75rem; font-weight: 900; color: #fff;
+    transform: translateY(0.15rem);
+  }
+  .note { margin-top: 1.1rem; padding: 0.9rem 1.1rem; border-radius: 10px; font-size: 0.85rem; color: var(--ink-2); background: var(--surface-2); border-left: 4px solid var(--line); }
+  .note b { color: var(--ink); }
+
+  /* theme colors per option */
+  .t-house .no, .t-house .who, .t-house .steps li::before { background: var(--house); }
+  .t-house .checks li::before, .t-house .fee { color: var(--house); }
+  .t-house .col.member { background: var(--house-soft); }
+  .t-insure .no, .t-insure .who, .t-insure .steps li::before { background: var(--insure); }
+  .t-insure .checks li::before, .t-insure .fee { color: var(--insure); }
+  .t-insure .col.member { background: var(--insure-soft); }
+  .t-nisa .no, .t-nisa .who { background: var(--nisa); }
+  .t-nisa .checks li::before, .t-nisa .fee { color: var(--nisa); }
+  .t-nisa .col.member { background: var(--nisa-soft); }
+  .t-net .no, .t-net .who, .t-net .steps li::before { background: var(--net); }
+  .t-net .checks li::before, .t-net .fee { color: var(--net); }
+  .t-net .col.member { background: var(--net-soft); }
+  .col.visitor .who { background: var(--ink-3); }
+
+  /* price table */
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.92rem; }
+  th, td { padding: 0.85rem 1rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  thead th { background: var(--surface-2); font-size: 0.8rem; letter-spacing: 0.08em; color: var(--ink-2); }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.fee { font-weight: 900; white-space: nowrap; }
+  td .sub { display: block; font-size: 0.8rem; color: var(--ink-3); font-weight: 400; white-space: normal; }
+  th.member { color: var(--primary); }
+
+  /* estimator */
+  .est { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.5rem; }
+  @media (max-width: 820px) { .est { grid-template-columns: 1fr; } }
+  .est-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
+  .seg { display: inline-flex; background: var(--surface-2); border-radius: 999px; padding: 4px; gap: 4px; }
+  .seg label { position: relative; }
+  .seg input { position: absolute; inset: 0; opacity: 0; }
+  .seg span {
+    display: inline-block; padding: 0.45rem 1.1rem; border-radius: 999px; font-weight: 700; font-size: 0.9rem;
+    cursor: pointer; color: var(--ink-2);
+  }
+  .seg input:checked + span { background: var(--primary); color: var(--primary-ink); }
+  .seg input:focus-visible + span { outline: 3px solid var(--accent); }
+  .opts { display: grid; gap: 0.5rem; margin-top: 1.25rem; }
+  .opts label {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 0.75rem; align-items: center;
+    padding: 0.7rem 0.9rem; border: 1px solid var(--line); border-radius: 10px; cursor: pointer;
+    background: var(--surface);
+  }
+  .opts label:has(input:checked) { border-color: var(--primary); background: var(--primary-soft); }
+  .opts input { width: 18px; height: 18px; accent-color: var(--primary); }
+  .opts .n { font-weight: 700; font-size: 0.95rem; }
+  .opts .d { display: block; font-size: 0.8rem; color: var(--ink-3); font-weight: 400; }
+  .opts .p { font-weight: 900; white-space: nowrap; }
+  .opts .p.free { color: var(--insure); }
+  .total { background: var(--ink); color: var(--ground); border-radius: var(--radius); padding: 1.5rem; display: grid; gap: 0.9rem; align-content: start; }
+  .total .row { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.92rem; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 0.5rem; }
+  .total .grand { display: flex; justify-content: space-between; align-items: baseline; margin-top: 0.4rem; }
+  .total .grand b { font-size: 2.2rem; font-weight: 900; color: var(--accent); }
+  .total .hint { font-size: 0.8rem; opacity: 0.75; }
+
+  /* flow */
+  .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; counter-reset: flow; }
+  @media (max-width: 860px) { .flow { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .flow { grid-template-columns: 1fr; } }
+  .flow li { counter-increment: flow; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; }
+  .flow li::before { content: "STEP " counter(flow); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.14em; color: var(--primary); }
+  .flow h3 { font-size: 1.05rem; margin-top: 0.3rem; }
+  .flow p { font-size: 0.88rem; color: var(--ink-2); margin-top: 0.4rem; }
+
+  /* faq */
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0 1.25rem; }
+  .faq details + details { margin-top: 0.6rem; }
+  .faq summary { cursor: pointer; font-weight: 700; padding: 1rem 0; list-style: none; display: flex; gap: 0.75rem; align-items: center; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "Q"; color: var(--primary); font-weight: 900; }
+  .faq details p { padding: 0 0 1rem 1.6rem; color: var(--ink-2); font-size: 0.93rem; }
+
+  /* contact */
+  .contact { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 2.25rem clamp(1.25rem, 3vw, 2.5rem); display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  @media (max-width: 820px) { .contact { grid-template-columns: 1fr; } }
+  .contact h2 { font-size: 1.6rem; font-weight: 900; }
+  .contact .hand { font-size: 1.3rem; color: var(--ink-2); margin-top: 0.5rem; }
+  form { display: grid; gap: 0.9rem; }
+  form label { display: grid; gap: 0.3rem; font-size: 0.85rem; font-weight: 700; }
+  form input, form select, form textarea {
+    font: inherit; font-size: 0.95rem; padding: 0.7rem 0.85rem; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  }
+  form textarea { min-height: 96px; resize: vertical; }
+  .thanks { background: var(--insure-soft); color: var(--ink); border-radius: 10px; padding: 1rem 1.2rem; font-size: 0.93rem; }
+
+  footer.site { padding-block: 2.5rem 3rem; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--ink-3); }
+  footer.site p + p { margin-top: 0.5rem; }
+  footer.site .links { margin-top: 1rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<div class="demo-flag">デモ用LPです。事務所名・連絡先・料金の税表記などは仮のものです。</div>
+
+<div class="wrap">
+  <header class="site">
+    <a class="brand" href="#top"><b>家計の顧問FP</b><small>○○FP事務所</small></a>
+    <nav class="site" aria-label="ページ内リンク">
+      <ul>
+        <li><a href="#annual">年間顧問でできること</a></li>
+        <li><a href="#options">個別サポート</a></li>
+        <li><a href="#pricing">料金</a></li>
+        <li><a href="#flow">ご契約の流れ</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+        <li><a href="#contact">ご相談</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+
+<main id="top">
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="hero-hand"><span>お金のことで何かあったら、とりあえずFPに聞けばいい。</span></p>
+        <h1>家計の<em>顧問FP</em>として、<br>一年を通して、そばに。</h1>
+        <p class="lede">ライフプランを作って終わりではありません。届いた書類の読み方から、保険・NISA・ふるさと納税まで、日常の「これどうしたらいい？」を継続的に見守る年間顧問契約です。</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contact">初回相談を申し込む</a>
+          <a class="btn btn-ghost" href="#annual">サービス内容を見る</a>
+        </div>
+      </div>
+      <aside class="ticket" aria-label="年間顧問契約の概要">
+        <p class="label">ANNUAL PLAN</p>
+        <p class="plan">年間顧問契約</p>
+        <p class="price"><span>年額</span><b class="num">50,000</b><span>円</span></p>
+        <ul class="incl">
+          <li>ライフプランの作成・毎年の更新</li>
+          <li>資産・目標・保険・運用の年次チェック</li>
+          <li>届いた書類の「丸投げ」と対応案内</li>
+          <li>ふるさと納税の上限額計算</li>
+          <li>日常のお金相談（家計・制度・税金・年金・保険）</li>
+        </ul>
+        <p class="foot">保険相談・NISA/iDeCo・運用方針の相談も顧問料に含まれます。</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- value -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="value">
+        <div class="bulb" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6.5 6.5 0 0 0-3.6 11.9c.6.5 1.1 1.2 1.1 2.1h5c0-.9.5-1.6 1.1-2.1A6.5 6.5 0 0 0 12 3z"/></svg>
+        </div>
+        <div>
+          <p class="eyebrow">年間顧問の大きな価値</p>
+          <h2>単にライフプランを作ることではありません。</h2>
+          <span class="hand">「お金のことで何かあったら、とりあえずFPに聞けばいい」</span>
+          <p>という状態を作ることです。家計・制度・税金・年金・保険。判断に迷ったとき、調べる前に聞ける相手がいる。それが年間顧問の役割です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- annual services -->
+  <section id="annual" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">年間顧問契約　年額50,000円</p>
+        <h2>日常のお金のことを、継続的に見てもらえる「家計の顧問FP」</h2>
+        <p>年間顧問料に含まれる9つのサポートです。定期的に行うものと、必要なときにいつでも使えるものがあります。</p>
+      </div>
+      <ul class="svc-grid">
+        <li class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17l5-6 4 3 5-7 4 4"/><path d="M3 21h18"/></svg></div>
+          <h3>ライフプラン</h3>
+          <p>初年度は新規作成。次年度以降は毎年更新し、家族の変化に合わせて見直します。</p>
+          <p class="when">初年度作成・毎年更新</p>
+        </li>
+        <li class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+          <h3>資産状況の確認</h3>
+          <p>預貯金・運用資産などを確認し、1年間でどれくらい増減したかをチェックします。</p>
+          <p class="when">年1回</p>
+        </li>
+        <li class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div>
+          <h3>目標進捗の確認</h3>
+          <p>教育費・住宅・老後など、設定した目標に対して予定どおり進んでいるかを確認します。</p>
+          <p class="when">年1回</p>
+        </li>
+        <li class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>保険の確認</h3>
+          <p>現在の保障内容が、家族状況・資産状況に合っているかを確認します。</p>
+          <p class="when">年1回・随時</p>
+        </li>
+        <li class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 20V10M12 20V4M19 20v-8"/></svg></div>
+          <h3>資産運用の確認</h3>
+          <p>NISA・iDeCo等を含め、積立額や運用状況、今後の方針を確認します。</p>
+          <p class="when">年1回・随時</p>
+        </li>
+        <li class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div>
+          <h3>書類丸投げ</h3>
+          <p>学校・会社・市区町村などから届いたお金・保険・税金・年金の書類を、写真・PDF・必要に応じて郵送で共有してください。</p>
+          <p class="when">随時</p>
+        </li>
+        <li class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+          <h3>書類への対応案内</h3>
+          <p>「何の書類か」「手続きが必要か」「この家庭ならどう対応するのがいいか」まで個別に解説します。</p>
+          <p class="when">随時</p>
+        </li>
+        <li class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v4H3zM5 12v8h14v-8M12 8v12"/><path d="M12 8c-2-3-5-3-5-1s3 1 5 1zm0 0c2-3 5-3 5-1s-3 1-5 1z"/></svg></div>
+          <h3>ふるさと納税</h3>
+          <p>その年の上限額を計算します。年末の駆け込みにも間に合うように。</p>
+          <p class="when">年1回</p>
+        </li>
+        <li class="svc">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h12v8H7l-4 3z"/><path d="M15 10h6v8h-2l-3 3v-3h-1z"/></svg></div>
+          <h3>日常のお金相談</h3>
+          <p>家計・制度・税金・年金・保険など、日常的な「これどうしたらいい？」を相談できます。</p>
+          <p class="when">随時</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- options -->
+  <section id="options" style="background: var(--surface-2); ">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">個別サポート</p>
+        <h2>必要なときに、必要な部分だけ。</h2>
+        <p>年間顧問のお客様（顧問顧客）は、家計とライフプランをすでに把握しているため、追加部分だけを低価格で。顧問契約のない方（ビジター）も単発でご利用いただけます。</p>
+      </div>
+
+      <!-- 2 住宅購入 -->
+      <article class="opt t-house">
+        <div class="opt-head">
+          <span class="no">2</span>
+          <h3>住宅購入相談</h3>
+          <span class="hand">マイホームの夢を、無理のない計画で。</span>
+        </div>
+        <div class="cols">
+          <div class="col member">
+            <span class="who">顧問顧客</span>
+            <p class="fee"><span class="num">20,000</span><small>円</small></p>
+            <p class="desc">年間顧問ですでに家計やライフプランを把握しているため、住宅購入に必要な部分を追加でサポートします。</p>
+            <ul class="checks">
+              <li>住宅ローンの組み方</li>
+              <li>借入額・返済方法の検討</li>
+              <li>固定・変動など金利タイプの考え方</li>
+              <li>ペアローン等の検討</li>
+              <li>団信の選び方</li>
+              <li>購入後の確定申告の補助 など</li>
+            </ul>
+          </div>
+          <div class="col visitor">
+            <span class="who">ビジター</span>
+            <p class="fee"><span class="num">50,000</span><small>円</small></p>
+            <p class="desc">まずライフプランを作成し、「いくら借りられるか」ではなく<b>「いくらなら無理なく買えるか」</b>という住宅購入予算を決定。そのうえで顧問顧客向けの住宅購入サポートまで行います。</p>
+            <ol class="steps">
+              <li>ライフプラン作成</li>
+              <li>住宅購入予算決定</li>
+              <li>住宅ローン</li>
+              <li>団信</li>
+              <li>購入後の確定申告サポート</li>
+            </ol>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 保険 -->
+      <article class="opt t-insure">
+        <div class="opt-head">
+          <span class="no">3</span>
+          <h3>保険相談</h3>
+          <span class="hand">今も、これからも。家族の安心を一緒に考えます。</span>
+        </div>
+        <div class="cols">
+          <div class="col member">
+            <span class="who">顧問顧客</span>
+            <p class="fee">年間顧問料に含む</p>
+            <ul class="checks">
+              <li>現在加入している保険の確認</li>
+              <li>必要保障額の整理</li>
+              <li>新規加入・見直し相談</li>
+              <li>ライフステージが変わったときの保障確認</li>
+            </ul>
+          </div>
+          <div class="col visitor">
+            <span class="who">ビジター</span>
+            <p class="fee">基本無料</p>
+            <ul class="checks">
+              <li>現在加入している保険の確認</li>
+              <li>必要保障額の整理</li>
+              <li>新規加入・見直し相談</li>
+              <li>ライフステージが変わったときの保障確認</li>
+            </ul>
+          </div>
+        </div>
+        <div class="note">
+          <b>ビジターの保険相談について</b><br>
+          保険に入る・入らないにかかわらず、必要に応じて当社取扱商品のご提案をしてもよい場合は相談無料です。「今入っている保険の内容だけ解説してほしい」「団体保険や学校の保険を比較してほしい」「商品の提案は一切してほしくない」など、解説・比較のみをご希望の場合はスポット相談として承ります。<br>
+          ※ご提案をした場合でも、加入をおすすめすることや契約を前提とするものではありません。
+        </div>
+      </article>
+
+      <!-- 4 NISA iDeCo -->
+      <article class="opt t-nisa">
+        <div class="opt-head">
+          <span class="no">4</span>
+          <h3>NISA・iDeCo</h3>
+          <span class="hand">将来のために、今できる一歩を。</span>
+        </div>
+        <div class="cols">
+          <div class="col member">
+            <span class="who">自社・取扱金融機関を利用する場合</span>
+            <p class="fee">相談・サポート無料</p>
+            <p class="desc">制度説明から、開設・運用開始までを一緒に。</p>
+            <ul class="checks">
+              <li>NISA・iDeCoの考え方</li>
+              <li>積立金額</li>
+              <li>運用方針</li>
+              <li>商品選択の考え方</li>
+              <li>開設・運用開始までのサポート など</li>
+            </ul>
+          </div>
+          <div class="col visitor">
+            <span class="who">ご案内</span>
+            <p class="desc" style="margin-top:0">当社取扱金融機関をご利用の場合など、IFA（金融商品仲介業者）としての立場に合わせた表現にしています。ご提案は情報提供であり、契約を前提とするものではありません。</p>
+            <p class="desc">ネット証券など他社口座で運用したい方は、下の「ネット証券等のサポート」をご覧ください。</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 ネット証券 -->
+      <article class="opt t-net">
+        <div class="opt-head">
+          <span class="no">5</span>
+          <h3>ネット証券等のサポート</h3>
+          <span class="hand">慣れない手続きも、一緒にサポートします。</span>
+        </div>
+        <div class="cols">
+          <div class="col member">
+            <span class="who">顧問顧客</span>
+            <p class="desc" style="margin-top:0;font-weight:700;color:var(--ink)">運用方針・ファンド選びの相談</p>
+            <p class="fee">年間顧問料に含む</p>
+            <ul class="checks">
+              <li>NISA・iDeCo制度の確認</li>
+              <li>積立金額の検討</li>
+              <li>資産配分の考え方</li>
+              <li>ファンド選びの相談</li>
+              <li>現在の運用内容の確認</li>
+            </ul>
+            <div class="note">実際の口座開設や積立設定などは、基本的にご自身で行っていただきます。<br><b>設定まで一緒にサポートする場合：5,000円</b></div>
+          </div>
+          <div class="col visitor">
+            <span class="who">ビジター</span>
+            <p class="desc" style="margin-top:0;font-weight:700;color:var(--ink)">ネット証券サポート</p>
+            <p class="fee"><span class="num">10,000</span><small>円</small></p>
+            <ul class="checks">
+              <li>証券会社選びの考え方</li>
+              <li>NISA・iDeCo制度説明</li>
+              <li>積立金額・運用方針の整理</li>
+              <li>ファンド選びの相談</li>
+              <li>口座開設・初期設定</li>
+              <li>積立設定等のサポート</li>
+            </ul>
+            <div class="note">※当社取扱金融機関をご利用の場合は、相談・開設サポートは無料です。</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- pricing table + estimator -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">料金一覧</p>
+        <h2>顧問顧客とビジターの料金</h2>
+        <p>すべて税込表示（デモ）。顧問契約の年額に含まれるものは「含む」と表示しています。</p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>サービス</th><th class="member">顧問顧客</th><th>ビジター</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>年間顧問契約（別表1の9項目）</td><td class="fee num">年額 50,000円</td><td>ー</td></tr>
+            <tr><td>住宅購入相談</td><td class="fee num">20,000円<span class="sub">追加部分のみ</span></td><td class="fee num">50,000円<span class="sub">ライフプラン作成から確定申告サポートまで</span></td></tr>
+            <tr><td>保険相談</td><td class="fee">含む</td><td class="fee">基本無料<span class="sub">解説・比較のみはスポット相談</span></td></tr>
+            <tr><td>NISA・iDeCo（自社・取扱金融機関を利用）</td><td class="fee">無料</td><td class="fee">無料</td></tr>
+            <tr><td>ネット証券等：運用方針・ファンド選びの相談</td><td class="fee">含む</td><td class="fee num">10,000円<span class="sub">口座開設・初期設定・積立設定まで含む</span></td></tr>
+            <tr><td>ネット証券等：口座開設・積立設定まで同席サポート</td><td class="fee num">5,000円</td><td class="fee">上記に含む</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-head" style="margin-top:3.5rem">
+        <p class="eyebrow">かんたん見積り</p>
+        <h2>あなたの場合、いくらになる？</h2>
+        <p>使いたいサポートを選ぶと、初年度の合計額の目安が出ます。</p>
+      </div>
+      <div class="est">
+        <div class="est-panel">
+          <div class="seg" role="radiogroup" aria-label="契約の種類">
+            <label><input type="radio" name="mode" value="member" checked><span>年間顧問契約を結ぶ</span></label>
+            <label><input type="radio" name="mode" value="visitor"><span>ビジター（単発）</span></label>
+          </div>
+          <div class="opts" id="opts">
+            <label><input type="checkbox" data-key="house"><span><span class="n">住宅購入相談</span><span class="d">ローン・金利・団信・確定申告の補助</span></span><span class="p" data-price></span></label>
+            <label><input type="checkbox" data-key="insure"><span><span class="n">保険相談</span><span class="d">保障の確認・必要保障額・見直し</span></span><span class="p" data-price></span></label>
+            <label><input type="checkbox" data-key="nisa"><span><span class="n">NISA・iDeCo（取扱金融機関を利用）</span><span class="d">制度説明から開設・運用開始まで</span></span><span class="p" data-price></span></label>
+            <label><input type="checkbox" data-key="net"><span><span class="n">ネット証券等の運用方針・ファンド選び</span><span class="d">他社口座で運用したい方向け</span></span><span class="p" data-price></span></label>
+            <label><input type="checkbox" data-key="setup"><span><span class="n">口座開設・積立設定まで同席サポート</span><span class="d">画面を見ながら一緒に設定</span></span><span class="p" data-price></span></label>
+          </div>
+        </div>
+        <div class="total" aria-live="polite">
+          <div class="row"><span id="baseLabel">年間顧問料</span><span class="num" id="baseFee">50,000円</span></div>
+          <div id="lines"></div>
+          <div class="grand"><span>初年度の目安</span><b class="num" id="grand">50,000円</b></div>
+          <p class="hint" id="hint">保険相談・NISA/iDeCo・運用方針の相談は顧問料に含まれるため、追加料金はかかりません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- flow -->
+  <section id="flow" style="background: var(--surface-2)">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">ご契約の流れ</p>
+        <h2>初回相談から、顧問契約のスタートまで</h2>
+      </div>
+      <ol class="flow">
+        <li><h3>初回相談（無料）</h3><p>今のお金の状況と気になっていることをお聞きします。オンラインでも対面でも。</p></li>
+        <li><h3>ご契約・お支払い</h3><p>年間顧問契約書と重要事項をご確認のうえ、年額50,000円をお振込みいただきます。</p></li>
+        <li><h3>ライフプラン作成</h3><p>家計・資産・保険・目標をヒアリングし、初年度のライフプランを作成します。</p></li>
+        <li><h3>一年を通して見守り</h3><p>書類が届いたら写真を送るだけ。年次チェックで資産・目標・保険・運用を確認し、翌年に更新します。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- faq -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">よくある質問</p>
+        <h2>ご契約前によくいただく質問</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>年間顧問契約で、相談回数に上限はありますか？</summary>
+          <p>日常のお金相談と書類の対応案内は随時ご利用いただけます。ライフプランの更新や資産・目標・保険・運用のチェックは年1回が基本です。相談の頻度が極端に多い場合は、事前にご相談させていただくことがあります。</p>
+        </details>
+        <details>
+          <summary>保険や金融商品を勧められますか？</summary>
+          <p>必要に応じて当社取扱商品をご提案することはありますが、加入や契約を前提とするものではありません。当社が取扱金融機関から手数料を受け取る場合は、契約前に必ずご説明します。「提案は一切いらない」というご要望にも対応します。</p>
+        </details>
+        <details>
+          <summary>確定申告や税務相談もお願いできますか？</summary>
+          <p>制度の一般的な説明や必要書類の整理などの「補助」は行いますが、申告書の作成や税務代理は税理士の業務のため行えません。必要に応じて専門家をご紹介します。</p>
+        </details>
+        <details>
+          <summary>途中で解約できますか？</summary>
+          <p>1か月前までにご連絡いただければ解約できます。お支払い済みの顧問料の取扱いは契約書（第12条）に定めています。</p>
+        </details>
+        <details>
+          <summary>家族の分も相談できますか？</summary>
+          <p>はい。顧問契約の対象は、ご契約者と生計を一にするご家族の家計です。お子さまの学校から届いた書類や、配偶者の職場の制度についてもご相談いただけます。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <p class="eyebrow">初回相談（無料）</p>
+          <h2>まずは、今のお金の状況を聞かせてください。</h2>
+          <p class="hand">あなたの家計のパートナーとして、ずっとそばに。</p>
+          <p style="margin-top:1rem;color:var(--ink-2);font-size:0.93rem">初回相談では、年間顧問が合うかどうかを一緒に考えます。契約のご案内は、ご希望の方にだけ行います。</p>
+          <p style="margin-top:1rem;font-size:0.85rem;color:var(--ink-3)">契約書のドラフト：<a href="contract/contract.md">Markdown版</a> ／ <a href="contract/顧問契約書_ドラフト.docx">Word版</a></p>
+        </div>
+        <form id="form" novalidate>
+          <label>お名前<input type="text" name="name" placeholder="山田 花子" required></label>
+          <label>メールアドレス<input type="email" name="email" placeholder="hanako@example.com" required></label>
+          <label>ご希望の相談
+            <select name="topic">
+              <option>年間顧問契約について</option>
+              <option>住宅購入相談</option>
+              <option>保険相談</option>
+              <option>NISA・iDeCo</option>
+              <option>ネット証券等のサポート</option>
+              <option>その他</option>
+            </select>
+          </label>
+          <label>ご相談内容（任意）<textarea name="body" placeholder="例：来年に住宅購入を考えていて、いくらまでなら無理がないか知りたい"></textarea></label>
+          <button class="btn btn-accent" type="submit">初回相談を申し込む</button>
+          <p class="thanks" id="thanks" hidden>デモのため送信は行っていません。実際のサイトでは、ここで受付完了メールをお送りします。</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="wrap">
+  <footer class="site">
+    <p>○○FP事務所は、【所属金融商品取引業者名】を所属金融商品取引業者とする金融商品仲介業者（IFA）および【取扱保険会社名】の保険募集人です。当社のご提案は情報提供であり、加入・契約を前提とするものではありません。金融商品の価格・利回りは変動し、元本が保証されるものではありません。最終的な判断はご自身の責任で行ってください。</p>
+    <p>税務書類の作成・税務代理、法律事務などの他資格者の独占業務は行いません。</p>
+    <div class="links">
+      <a href="#top">ページの先頭へ</a>
+      <a href="contract/contract.md">年間顧問契約書（ドラフト）</a>
+    </div>
+    <p style="margin-top:1rem">© ○○FP事務所（デモ）</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var PRICES = {
+    member:  { base: 50000, house: 20000, insure: 0, nisa: 0, net: 0,     setup: 5000 },
+    visitor: { base: 0,     house: 50000, insure: 0, nisa: 0, net: 10000, setup: 0 }
+  };
+  var LABELS = {
+    house: "住宅購入相談", insure: "保険相談", nisa: "NISA・iDeCo", net: "ネット証券等の相談", setup: "設定まで同席サポート"
+  };
+  var HINTS = {
+    member: "保険相談・NISA/iDeCo・運用方針の相談は顧問料に含まれるため、追加料金はかかりません。",
+    visitor: "ビジターの保険相談は、必要に応じて取扱商品の提案をしてもよい場合は無料です。解説・比較のみはスポット相談となります。"
+  };
+  var yen = function (n) { return n.toLocaleString("ja-JP") + "円"; };
+  var priceText = function (mode, key) {
+    var p = PRICES[mode][key];
+    if (p > 0) return yen(p);
+    if (mode === "member" && (key === "insure" || key === "net")) return "含む";
+    if (mode === "visitor" && key === "setup") return "含む";
+    return "無料";
+  };
+
+  function render() {
+    var mode = document.querySelector('input[name="mode"]:checked').value;
+    var checks = document.querySelectorAll("#opts input[type=checkbox]");
+    var total = PRICES[mode].base;
+    var lines = "";
+    checks.forEach(function (c) {
+      var key = c.dataset.key;
+      var el = c.parentElement.querySelector("[data-price]");
+      var txt = priceText(mode, key);
+      el.textContent = txt;
+      el.classList.toggle("free", PRICES[mode][key] === 0);
+      if (c.checked) {
+        var p = PRICES[mode][key];
+        total += p;
+        lines += '<div class="row"><span>' + LABELS[key] + '</span><span class="num">' + (p > 0 ? yen(p) : txt) + '</span></div>';
+      }
+    });
+    document.getElementById("baseLabel").textContent = mode === "member" ? "年間顧問料" : "年間顧問料（契約なし）";
+    document.getElementById("baseFee").textContent = mode === "member" ? yen(50000) : "0円";
+    document.getElementById("lines").innerHTML = lines;
+    document.getElementById("grand").textContent = yen(total);
+    document.getElementById("hint").textContent = HINTS[mode];
+  }
+
+  document.querySelectorAll('input[name="mode"], #opts input').forEach(function (i) {
+    i.addEventListener("change", render);
+  });
+  render();
+
+  document.getElementById("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = this.elements.name, email = this.elements.email;
+    if (!name.value.trim()) { name.focus(); return; }
+    if (!email.value.trim() || email.value.indexOf("@") < 0) { email.focus(); return; }
+    document.getElementById("thanks").hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

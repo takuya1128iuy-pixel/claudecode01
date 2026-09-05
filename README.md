@@ -60,3 +60,8 @@ npm run build
 - 銘柄マスタとの照合によるOCR精度向上
 - 日本酒度・酸度などより専門的な指標の記録
 - 好みに近い銘柄のレコメンド
+
+## 別プロジェクト: 家計の顧問FP（契約書ドラフト & LPデモ）
+
+`fp-advisory/` に、FP事務所の年間顧問契約書ドラフト（Word / Markdown）と
+LPデモ（`fp-advisory/index.html`）を置いています。詳細は `fp-advisory/README.md` を参照。
