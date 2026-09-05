@@ -9,6 +9,9 @@ LINEのリッチメニューから直接開かせる前提で作ってある。
 - 収録: **保険会社25社 / 手続き6種 / リンク97件 / 電話窓口25件**
 - 給付金請求・控除証明書再発行など、専用ダイヤルがある会社はその番号を優先して表示
 
+公開URL: https://takuya1128iuy-pixel.github.io/ai-secretary-pages/hoken-navi/
+（配信は `ai-secretary-pages` リポジトリ。GitHub Pages が main から出している）
+
 プレビュー（Artifact・既定では自分だけが見られる）:
 https://claude.ai/code/artifact/fdf96169-abc7-4172-8525-a341213e8349
 
@@ -84,11 +87,18 @@ node tools/check-links.mjs --json   # 全件の結果をJSONで
 node tools/build-single.mjs   # dist/index.html （CSS/JS/データ入り、約29KB）
 ```
 
-- **Netlify**: `dist/` フォルダを https://app.netlify.com/drop にドラッグ&ドロップ
-- **GitHub Pages**: このフォルダごと公開する（同リポジトリの `.github/workflows/deploy.yml` は
-  別ブランチのアプリを公開しているので、そのまま有効にすると上書きになる。分けて設定すること）
+**いまの公開方法**: `ai-secretary-pages` リポジトリに相乗りしている。
+このリポジトリの GitHub Pages（`.github/workflows/deploy.yml`）は別アプリを配信しているため、
+そちらは使っていない。中身を更新したら、固めたファイルを差し替えて push する:
 
-公開URLが決まったら `line-richmenu/.env` の `SITE_BASE_URL` に入れて `npm run deploy` する。
+```bash
+node tools/build-single.mjs
+cp dist/index.html ../../ai-secretary-pages/hoken-navi/index.html
+# ai-secretary-pages 側で commit して main に push
+```
+
+別の場所に出すなら `dist/` を https://app.netlify.com/drop に投げてもよい。
+その場合は `line-richmenu/.env` の `SITE_BASE_URL` を新しいURLに変えて `npm run deploy` し直す。
 
 ## ファイル
 

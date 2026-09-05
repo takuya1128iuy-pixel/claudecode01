@@ -7,9 +7,8 @@ export const IMAGE = { width: 2500, height: 1686 };
 // タブ帯の高さ。0にすればタブなしの普通のリッチメニューになる。
 export const TAB_HEIGHT = 260;
 
-// 「保険のお手続きナビ」を公開した場所。デプロイ前に .env で実URLに差し替える。
-// 例: SITE_BASE_URL=https://takuya1128iuy-pixel.github.io/claudecode01/hoken-navi
-export const SITE = (process.env.SITE_BASE_URL ?? 'https://example.com/hoken-navi').replace(/\/$/, '');
+// 「保険のお手続きナビ」の公開先。別の場所に出すときは .env の SITE_BASE_URL で上書きする。
+export const SITE = (process.env.SITE_BASE_URL ?? 'https://takuya1128iuy-pixel.github.io/ai-secretary-pages/hoken-navi').replace(/\/$/, '');
 
 // ナビの特定の手続きを直接開くURL（data.js の procedures の id と揃えること）
 const navi = (procedureId) => `${SITE}/?p=${procedureId}`;

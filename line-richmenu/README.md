@@ -31,8 +31,9 @@ cp .env.example .env
 # .env に LINE_CHANNEL_ACCESS_TOKEN と SITE_BASE_URL を書く
 ```
 
-`SITE_BASE_URL` は「保険のお手続きナビ」を公開したURL。
-未設定だと `https://example.com/hoken-navi` のままリンクが作られるので、必ず入れ替えること。
+`SITE_BASE_URL` は「保険のお手続きナビ」の公開先。
+既定で `https://takuya1128iuy-pixel.github.io/ai-secretary-pages/hoken-navi` を指しているので、
+同じ場所に出しているなら設定しなくてよい。
 
 ## 3. 反映
 

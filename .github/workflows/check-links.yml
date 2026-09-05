@@ -21,6 +21,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: リンクを確認する
+      - name: 各社のリンクを確認する
         working-directory: hoken-navi
         run: node tools/check-links.mjs
+
+      # リッチメニューのリンク先そのものが落ちていないかも見る
+      - name: 公開ページが見えるか確認する
+        run: |
+          url=https://takuya1128iuy-pixel.github.io/ai-secretary-pages/hoken-navi/
+          code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "$url")
+          echo "$url -> $code"
+          test "$code" = "200"
