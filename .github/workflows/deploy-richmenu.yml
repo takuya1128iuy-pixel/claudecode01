@@ -3,6 +3,11 @@ name: リッチメニューをLINEに反映
 # 手で押したときだけ動く。うっかり流れて本番のメニューが差し替わらないように、
 # push では起動しない。
 #
+# 注意: GitHub は「Run workflow」のボタンを、デフォルトブランチにあるワークフローに
+# しか出さない。このリポジトリのデフォルトは claude/sake-tasting-app-demo-bbnia0 なので、
+# ボタンを出すにはこのファイルをそちらにも置く必要がある。
+# それをしないなら、手元で npm run deploy を実行すること。
+#
 # 事前に一度だけ:
 #   Settings → Secrets and variables → Actions → New repository secret
 #   Name: LINE_CHANNEL_ACCESS_TOKEN
