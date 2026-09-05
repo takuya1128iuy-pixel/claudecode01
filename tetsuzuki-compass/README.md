@@ -15,7 +15,7 @@ LINEのリッチメニューから直接開かせる前提で作ってある。
 - 手続きごとに「用意するもの」「かかる時間の目安」「つまずきやすいところ」を表示
 - 「担当者に相談する」でLINEのトークに用件入りで戻れる（送信するかは本人が決める）
 
-公開URL: https://takuya1128iuy-pixel.github.io/ai-secretary-pages/hoken-navi/
+公開URL: https://takuya1128iuy-pixel.github.io/ai-secretary-pages/tetsuzuki-compass/
 （配信は `ai-secretary-pages` リポジトリ。GitHub Pages が main から出している）
 
 プレビュー（Artifact・既定では自分だけが見られる）:
@@ -51,8 +51,8 @@ open index.html
 URLにパラメータを付けると、その手続きの会社選択画面から始まる。
 
 ```
-https://example.com/hoken-navi/?p=payment              クレジットカード・口座変更
-https://example.com/hoken-navi/?p=payment&c=orixlife   オリックス生命の結果画面を直接開く
+https://example.com/tetsuzuki-compass/?p=payment              クレジットカード・口座変更
+https://example.com/tetsuzuki-compass/?p=payment&c=orixlife   オリックス生命の結果画面を直接開く
 ```
 
 `p` に使える値: `address` `payment` `certificate` `beneficiary` `claim` `loan`
@@ -64,7 +64,7 @@ https://example.com/hoken-navi/?p=payment&c=orixlife   オリックス生命の�
 
 収録している97件のURLは **2026-09-05 に全件疎通確認済み（97件中97件OK）**。
 確認は GitHub Actions（[`.github/workflows/check-links.yml`](../.github/workflows/check-links.yml)）で
-`hoken-navi/` を変更したときと毎月1日に自動で回るので、リンク切れは Actions の失敗で気づける。
+`tetsuzuki-compass/` を変更したときと毎月1日に自動で回るので、リンク切れは Actions の失敗で気づける。
 
 手元で確かめたいときはこちら:
 
@@ -117,7 +117,7 @@ node tools/build-single.mjs   # dist/index.html （CSS/JS/データ入り、約2
 
 ```bash
 node tools/build-single.mjs
-cp dist/index.html ../../ai-secretary-pages/hoken-navi/index.html
+cp dist/index.html ../../ai-secretary-pages/tetsuzuki-compass/index.html
 # ai-secretary-pages 側で commit して main に push
 ```
 

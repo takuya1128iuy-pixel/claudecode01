@@ -26,7 +26,7 @@ function fetchWithTimeout(url, method) {
     method,
     redirect: 'follow',
     signal: AbortSignal.timeout(TIMEOUT_MS),
-    headers: { 'User-Agent': 'hoken-navi-link-check/1.0' },
+    headers: { 'User-Agent': 'tetsuzuki-compass-link-check/1.0' },
   });
 }
 

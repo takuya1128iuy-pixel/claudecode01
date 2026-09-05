@@ -7,8 +7,8 @@ export const IMAGE = { width: 2500, height: 1686 };
 // タブ帯の高さ。0にすればタブなしの普通のリッチメニューになる。
 export const TAB_HEIGHT = 260;
 
-// 「保険のお手続きナビ」の公開先。別の場所に出すときは .env の SITE_BASE_URL で上書きする。
-export const SITE = (process.env.SITE_BASE_URL ?? 'https://takuya1128iuy-pixel.github.io/ai-secretary-pages/hoken-navi').replace(/\/$/, '');
+// 「てつづきコンパス」の公開先。別の場所に出すときは .env の SITE_BASE_URL で上書きする。
+export const SITE = (process.env.SITE_BASE_URL ?? 'https://takuya1128iuy-pixel.github.io/ai-secretary-pages/tetsuzuki-compass').replace(/\/$/, '');
 
 // ナビの特定の手続きを直接開くURL（data.js の procedures の id と揃えること）
 const navi = (procedureId) => `${SITE}/?p=${procedureId}`;
@@ -31,7 +31,7 @@ export const menus = [
       { emoji: '📅', label: '面談予約', sub: '日程変更/キャンセル', action: { type: 'uri', uri: 'https://example.com/reserve' } },
       { emoji: '🤝', label: '大切な人に紹介', sub: 'ご紹介はこちら', action: { type: 'uri', uri: 'https://example.com/referral' } },
       { emoji: '🏢', label: '会社情報', sub: '事業内容', action: { type: 'uri', uri: 'https://example.com/company' } },
-      { emoji: '🧰', label: '便利ツール', sub: 'お手続きナビほか', action: { type: 'uri', uri: `${SITE}/` } },
+      { emoji: '🧰', label: '便利ツール', sub: 'てつづきコンパス', action: { type: 'uri', uri: `${SITE}/` } },
       { emoji: '🎟', label: 'クーポン', sub: '面談を早く進める', action: { type: 'postback', data: 'coupon=meeting', displayText: 'クーポンについて' } },
     ],
   },
@@ -47,7 +47,7 @@ export const menus = [
       { label: 'メニュー', active: false, switchTo: 'richmenu-main', data: 'switch=main' },
       { label: '各種お手続き', active: true },
     ],
-    // タップすると「保険のお手続きナビ」の該当ステップが直接開く
+    // タップすると「てつづきコンパス」の該当ステップが直接開く
     tiles: [
       { emoji: '🏠', label: '住所・氏名変更', sub: '引っ越し・結婚', action: { type: 'uri', uri: navi('address') } },
       { emoji: '💳', label: 'カード・口座', sub: '引き落とし先の変更', action: { type: 'uri', uri: navi('payment') } },

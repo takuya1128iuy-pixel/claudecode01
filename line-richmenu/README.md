@@ -10,7 +10,7 @@
 | メニュー | プロフィール / 面談予約 / 紹介 / 会社情報 / 便利ツール / クーポン |
 | 各種お手続き | 住所・氏名変更 / カード・口座 / 控除証明書 / 受取人・契約者 / 給付金請求 / 貸付・解約 |
 
-「各種お手続き」の6枚は、同じリポジトリの [`../hoken-navi`](../hoken-navi)（保険のお手続きナビ）の
+「各種お手続き」の6枚は、同じリポジトリの [`../tetsuzuki-compass`](../tetsuzuki-compass)（てつづきコンパス）の
 該当ステップを直接開く。
 
 ## 1. LINE側の準備
@@ -31,8 +31,8 @@ cp .env.example .env
 # .env に LINE_CHANNEL_ACCESS_TOKEN と SITE_BASE_URL を書く
 ```
 
-`SITE_BASE_URL` は「保険のお手続きナビ」の公開先。
-既定で `https://takuya1128iuy-pixel.github.io/ai-secretary-pages/hoken-navi` を指しているので、
+`SITE_BASE_URL` は「てつづきコンパス」の公開先。
+既定で `https://takuya1128iuy-pixel.github.io/ai-secretary-pages/tetsuzuki-compass` を指しているので、
 同じ場所に出しているなら設定しなくてよい。
 
 ## 3. 反映

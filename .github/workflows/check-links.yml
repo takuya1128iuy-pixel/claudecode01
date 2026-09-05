@@ -1,4 +1,4 @@
-name: お手続きナビのリンク確認
+name: てつづきコンパスのリンク確認
 
 # 保険会社のサイトはリニューアルでURLが変わりやすいので、
 # 変更時と毎月1日に、収録している各社URLが生きているか確かめる。
@@ -7,7 +7,7 @@ on:
     branches:
       - claude/line-rich-menu-dev-ck37z0
     paths:
-      - 'hoken-navi/**'
+      - 'tetsuzuki-compass/**'
       - '.github/workflows/check-links.yml'
   schedule:
     - cron: '0 0 1 * *'
@@ -22,13 +22,16 @@ jobs:
         with:
           node-version: 22
       - name: 各社のリンクを確認する
-        working-directory: hoken-navi
+        working-directory: tetsuzuki-compass
         run: node tools/check-links.mjs
 
-      # リッチメニューのリンク先そのものが落ちていないかも見る
+      # リッチメニューのリンク先そのものが落ちていないかも見る。
+      # 旧URLはリッチメニューに埋め込み済みなので、転送ページが生きているかも確かめる。
       - name: 公開ページが見えるか確認する
         run: |
-          url=https://takuya1128iuy-pixel.github.io/ai-secretary-pages/hoken-navi/
-          code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "$url")
-          echo "$url -> $code"
-          test "$code" = "200"
+          base=https://takuya1128iuy-pixel.github.io/ai-secretary-pages
+          for url in "$base/tetsuzuki-compass/" "$base/hoken-navi/"; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "$url")
+            echo "$url -> $code"
+            test "$code" = "200"
+          done
