@@ -1,7 +1,12 @@
 name: リッチメニューをLINEに反映
 
-# 実行するには line-richmenu/.deploy-request に deploy / inspect / clear のどれかを
-# 書いて push する。ファイルが変わったときだけ動くので、ふだんの変更では起動しない。
+# 実行するには line-richmenu/.deploy-request に次のどれかを書いて push する。
+# ファイルが変わったときだけ動くので、ふだんの変更では起動しない。
+#   inspect              いま登録されている内容を見るだけ
+#   deploy               画像を作ってリッチメニューを反映する
+#   clear                登録済みのリッチメニューとエイリアスを全部消す
+#   link <userId>        そのユーザーにメニューAをリンクする（タブ切替の確認用）
+#   link <userId> <key>  メニューを指定してリンクする（key は main / procedures）
 #
 # 事前に一度だけ:
 #   Settings → Secrets and variables → Actions → New repository secret
@@ -46,14 +51,23 @@ jobs:
       - name: 何をするか決める
         id: mode
         run: |
-          m="${{ inputs.mode }}"
-          if [ -z "$m" ]; then m=$(tr -d '[:space:]' < line-richmenu/.deploy-request); fi
+          line="${{ inputs.mode }}"
+          if [ -z "$line" ]; then line=$(head -n1 line-richmenu/.deploy-request); fi
+          m=$(echo "$line" | awk '{print $1}')
+          args=$(echo "$line" | cut -s -d' ' -f2-)
           case "$m" in
             deploy|inspect|clear) ;;
-            *) echo "::error::不明なモード: $m（deploy / inspect / clear のどれかにしてください）"; exit 1 ;;
+            link)
+              case "$args" in
+                U*) ;;
+                *) echo "::error::link にはユーザーID（Uで始まる）が要ります: link U0123..."; exit 1 ;;
+              esac
+              ;;
+            *) echo "::error::不明なモード: $m（inspect / deploy / clear / link のどれかにしてください）"; exit 1 ;;
           esac
           echo "モード: $m"
           echo "mode=$m" >> "$GITHUB_OUTPUT"
+          echo "args=$args" >> "$GITHUB_OUTPUT"
 
       - name: 依存を入れる
         working-directory: line-richmenu
@@ -87,6 +101,11 @@ jobs:
         if: steps.mode.outputs.mode == 'deploy'
         working-directory: line-richmenu
         run: npm run deploy
+
+      - name: ユーザーにリンクする
+        if: steps.mode.outputs.mode == 'link'
+        working-directory: line-richmenu
+        run: npm run link -- ${{ steps.mode.outputs.args }}
 
       - name: 全部消す
         if: steps.mode.outputs.mode == 'clear'
