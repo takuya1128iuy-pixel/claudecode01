@@ -114,6 +114,13 @@
             : '<p class="empty">該当する保険会社が見つかりませんでした。会社名を短く入れてお試しください。</p>');
   }
 
+  // 番号は用途が限られることがあるので、何の窓口かを必ず添える
+  function telLink(tel, note) {
+    return '<a class="sub-link" href="tel:' + esc(tel.replace(/-/g, '')) + '">' +
+      '<span>' + esc(tel) + '<br><span class="sub-note">' + esc(note) + '</span></span>' +
+      '<span>›</span></a>';
+  }
+
   function viewResult() {
     var p = state.procedure, c = state.company;
     var l = linkFor(c, p.id);
@@ -130,12 +137,10 @@
       subs += '<a class="sub-link" href="' + esc(c.top) + '" target="_blank" rel="noopener">' +
         '<span>お手続き一覧をすべて見る</span><span>›</span></a>';
     }
-    if (c.tel) {
-      // 番号は用途が限られることがあるので、何の窓口かを必ず添える
-      subs += '<a class="sub-link" href="tel:' + esc(c.tel.replace(/-/g, '')) + '">' +
-        '<span>' + esc(c.tel) + '<br><small style="color:var(--muted)">' +
-        esc(c.telNote || '電話窓口') + '</small></span><span>›</span></a>';
-    }
+    // その手続き専用のダイヤルがある会社は、代表番号より先に出す
+    var dedicated = c.extraTels && c.extraTels[p.id];
+    if (dedicated) subs += telLink(dedicated.tel, dedicated.note);
+    if (c.tel) subs += telLink(c.tel, c.telNote || '電話窓口');
 
     return stepper(3) +
       '<button class="back" type="button" data-back="companies">← 保険会社を選びなおす</button>' +

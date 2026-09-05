@@ -4,8 +4,9 @@
  * 公開前に `node tools/check-links.mjs` を実行して、生きているURLか必ず確かめること。
  * 各社サイトはリニューアルでURLが変わりやすいので、定期的な再チェックが要る。
  *
- * tel は検索結果で番号が確認できた会社にだけ入れている（自動音声・専用ダイヤルを含む）。
- * 番号は用途が限られる場合があるので、追加するときは必ず公式サイトで確認すること。
+ * tel は各社の公式サイトで公開されている代表窓口。telNote に窓口名と受付時間を書く。
+ * extraTels は手続き専用ダイヤルがある会社のぶん（給付金請求・控除証明書再発行など）。
+ * 受付時間は変わりやすいので、番号を足すときは必ず公式サイトで確認すること。
  *
  * status:
  *   'direct' … その手続きの専用ページが分かっているもの
@@ -26,6 +27,7 @@ var HOKEN = {
   companies: [
     {
       id: 'nissay', name: '日本生命',
+      tel: '0120-201-021', telNote: 'ニッセイコールセンター 平日9:00〜18:00／土9:00〜17:00',
       portal: { name: 'ニッセイマイページ', url: 'https://www.nissay.co.jp/keiyaku/' },
       top: 'https://www.nissay.co.jp/keiyaku/',
       links: {
@@ -35,6 +37,8 @@ var HOKEN = {
     },
     {
       id: 'dai-ichi', name: '第一生命',
+      tel: '0120-157-157', telNote: '第一生命コンタクトセンター 平日9:00〜18:00／土9:00〜17:00',
+      extraTels: { claim: { tel: '0120-211-157', note: '入院・手術給付金／死亡保険金 専用ダイヤル' } },
       portal: { name: 'ご契約者専用サイト', url: 'https://www.dai-ichi-life.co.jp/contractor/' },
       top: 'https://www.dai-ichi-life.co.jp/contractor/change/index.html',
       links: {
@@ -45,6 +49,7 @@ var HOKEN = {
     },
     {
       id: 'meijiyasuda', name: '明治安田生命',
+      tel: '0120-662-332', telNote: 'コミュニケーションセンター 平日9:00〜18:00／土9:00〜17:00',
       portal: { name: 'MYほけんページ', url: 'https://www.meijiyasuda.co.jp/contractor/myhoken/' },
       top: 'https://www.meijiyasuda.co.jp/contractor/guide/',
       links: {
@@ -53,6 +58,7 @@ var HOKEN = {
     },
     {
       id: 'sumitomo', name: '住友生命',
+      tel: '0120-307-506', telNote: 'スミセイコールセンター 平日9:00〜18:00／土9:00〜17:00',
       portal: { name: 'スミセイダイレクトサービス', url: 'https://www.sumitomolife.co.jp/contract/ds/' },
       top: 'https://www.sumitomolife.co.jp/contract/service/index.html',
       links: {
@@ -61,6 +67,7 @@ var HOKEN = {
     },
     {
       id: 'kampo', name: 'かんぽ生命',
+      tel: '0120-552-950', telNote: 'かんぽコールセンター 平日9:00〜21:00／土日祝9:00〜17:00',
       portal: { name: 'かんぽ生命マイページ', url: 'https://www.jp-life.japanpost.jp/customer/index.html' },
       top: 'https://www.jp-life.japanpost.jp/customer/procedure/index.html',
       links: {
@@ -69,6 +76,8 @@ var HOKEN = {
     },
     {
       id: 'aflac', name: 'アフラック生命',
+      tel: '0120-5555-95', telNote: 'アフラックコールセンター 平日9:00〜18:00／土9:00〜17:00',
+      extraTels: { claim: { tel: '0120-555-877', note: '給付金・保険金のご請求（オペレーター 平日9:00〜17:00）' } },
       portal: { name: 'アフラック よりそうネット', url: 'https://www.aflac.co.jp/canet/' },
       top: 'https://www.aflac.co.jp/keiyaku/step/index.html',
       links: {
@@ -79,6 +88,7 @@ var HOKEN = {
     },
     {
       id: 'metlife', name: 'メットライフ生命',
+      tel: '0120-881-796', telNote: 'カスタマーサービスセンター 月〜土9:00〜18:00',
       portal: { name: 'ご契約者さまWEBサービス', url: 'https://www.metlife.co.jp/customer/' },
       top: 'https://www.metlife.co.jp/customer/procedures/',
       links: {
@@ -88,6 +98,7 @@ var HOKEN = {
     },
     {
       id: 'sonylife', name: 'ソニー生命',
+      tel: '0120-158-821', telNote: 'カスタマーセンター 9:00〜17:30（日曜・年末年始を除く）',
       portal: { name: 'お客さま専用WEBサービス', url: 'https://www.sonylife.co.jp/contractor/' },
       top: 'https://www.sonylife.co.jp/contractor/guide/',
       links: {
@@ -96,7 +107,9 @@ var HOKEN = {
       },
     },
     {
-      id: 'orixlife', telNote: '24時間自動音声（控除証明書の再発行など）', tel: '0120-155-131', name: 'オリックス生命',
+      id: 'orixlife', name: 'オリックス生命',
+      tel: '0120-506-094', telNote: 'カスタマーサービスセンター 月〜土9:00〜18:00',
+      extraTels: { certificate: { tel: '0120-155-131', note: '控除証明書の再発行など 24時間自動音声' } },
       portal: { name: 'WEBお手続きページ', url: 'https://www.orixlife.co.jp/customer/ivr/' },
       top: 'https://www.orixlife.co.jp/customer/',
       links: {
@@ -106,7 +119,9 @@ var HOKEN = {
       },
     },
     {
-      id: 'fwdlife', telNote: '24時間自動音声（クレジットカード関連）', tel: '0120-622-211', name: 'FWD生命',
+      id: 'fwdlife', name: 'FWD生命',
+      tel: '0120-211-901', telNote: '総合サービスセンター 平日9:00〜18:00',
+      extraTels: { payment: { tel: '0120-622-211', note: 'クレジットカード関連 24時間自動音声' } },
       portal: { name: 'ご契約者さまページ', url: 'https://www.fwdlife.co.jp/support/' },
       top: 'https://www.fwdlife.co.jp/support/_procedure/',
       links: {
@@ -114,7 +129,8 @@ var HOKEN = {
       },
     },
     {
-      id: 'nnlife', telNote: 'サービスセンター（平日9:00〜17:00）', tel: '0120-521-513', name: 'エヌエヌ生命',
+      id: 'nnlife', name: 'エヌエヌ生命',
+      tel: '0120-521-513', telNote: 'サービスセンター 平日9:00〜17:00',
       portal: { name: 'マイページ', url: 'https://www.nnlife.co.jp/customers/mypage' },
       top: 'https://www.nnlife.co.jp/customers/services/list',
       links: {
@@ -124,6 +140,8 @@ var HOKEN = {
     },
     {
       id: 'tmn-anshin', name: '東京海上日動あんしん生命',
+      tel: '0120-016-234', telNote: 'カスタマーセンター 平日9:00〜18:00／土9:00〜17:00',
+      extraTels: { claim: { tel: '0120-536-338', note: '保険金請求受付 平日8:00〜18:00／土9:00〜17:00' }, certificate: { tel: '0120-733-669', note: '控除証明書再発行 専用ダイヤル 平日9:00〜18:00' } },
       portal: { name: '東京海上日動マイページ', url: 'https://www.tmn-anshin.co.jp/keiyaku/' },
       top: 'https://www.tmn-anshin.co.jp/keiyaku/contract/',
       links: {
@@ -133,6 +151,7 @@ var HOKEN = {
     },
     {
       id: 'himawari', name: 'SOMPOひまわり生命',
+      tel: '0120-563-506', telNote: 'カスタマーセンター 平日9:00〜18:00／土9:00〜17:00',
       portal: { name: 'MYひまわり', url: 'https://www.himawari-life.co.jp/customer/' },
       top: 'https://www.himawari-life.co.jp/customer/',
       links: {
@@ -143,7 +162,8 @@ var HOKEN = {
       },
     },
     {
-      id: 'msa-life', telNote: 'コールセンター（通話料有料）', tel: '0476-31-4600', name: '三井住友海上あいおい生命',
+      id: 'msa-life', name: '三井住友海上あいおい生命',
+      tel: '0120-324-386', telNote: 'カスタマーセンター 平日9:00〜18:00／土9:00〜17:00',
       portal: { name: 'お客さまWebサービス', url: 'https://www.msa-life.co.jp/customer/service/' },
       top: 'https://www.msa-life.co.jp/customer/msa/procedure/',
       links: {
@@ -153,6 +173,7 @@ var HOKEN = {
     },
     {
       id: 'axa', name: 'アクサ生命',
+      tel: '0120-568-093', telNote: 'カスタマーサービスセンター 平日9:00〜18:00／土9:00〜17:00',
       portal: { name: 'MyAXA', url: 'https://www.axa.co.jp/customer/' },
       top: 'https://www.axa.co.jp/customer/',
       links: {
@@ -161,7 +182,8 @@ var HOKEN = {
       },
     },
     {
-      id: 'daido', telNote: 'コールセンター', tel: '0120-789-501', name: '大同生命',
+      id: 'daido', name: '大同生命',
+      tel: '0120-789-501', telNote: 'コールセンター 平日9:00〜17:00（住所変更・控除証明書は24時間自動音声）',
       portal: { name: 'お客さまページ', url: 'https://www.daido-life.co.jp/c_keiyaku/' },
       top: 'https://www.daido-life.co.jp/c_keiyaku/procedure/',
       links: {
@@ -171,6 +193,7 @@ var HOKEN = {
     },
     {
       id: 'taiyo', name: '太陽生命',
+      tel: '0120-97-2111', telNote: 'お客様サービスセンター 平日9:00〜18:00／土9:00〜17:00',
       portal: { name: '太陽生命マイページ', url: 'https://www.taiyo-seimei.co.jp/customer/' },
       top: 'https://www.taiyo-seimei.co.jp/customer/procedure/index.html',
       links: {
@@ -180,6 +203,7 @@ var HOKEN = {
     },
     {
       id: 'gib-life', name: 'ジブラルタ生命',
+      tel: '0120-37-2269', telNote: 'カスタマーサービスセンター 平日9:00〜18:00／土9:00〜17:00',
       portal: { name: 'Myページ', url: 'https://www.gib-life.co.jp/st/keiyaku/' },
       top: 'https://www.gib-life.co.jp/st/keiyaku/process/index.html',
       links: {
@@ -188,6 +212,7 @@ var HOKEN = {
     },
     {
       id: 'prudential', name: 'プルデンシャル生命',
+      tel: '0120-810-740', telNote: 'カスタマーサービスセンター 平日9:00〜17:30／土9:00〜17:00',
       portal: { name: 'Myページ', url: 'https://www.prudential.co.jp/contractor/' },
       top: 'https://www.prudential.co.jp/contractor/process/',
       links: {
@@ -197,6 +222,7 @@ var HOKEN = {
     },
     {
       id: 'asahi-life', name: '朝日生命',
+      tel: '0120-714-532', telNote: 'お客様サービスセンター 月〜土9:00〜17:00',
       portal: { name: 'あさひマイページ', url: 'https://www.asahi-life.co.jp/service/' },
       top: 'https://www.asahi-life.co.jp/service/',
       links: {
@@ -206,6 +232,7 @@ var HOKEN = {
     },
     {
       id: 'fukoku', name: 'フコク生命（富国生命）',
+      tel: '0120-259-817', telNote: 'フコク生命お客さまセンター 平日9:00〜17:00',
       portal: { name: 'ご契約者専用サービス', url: 'https://www.fukoku-life.co.jp/contract/' },
       top: 'https://www.fukoku-life.co.jp/contract/procedure/index.html',
       links: {
@@ -214,6 +241,7 @@ var HOKEN = {
     },
     {
       id: 'manulife', name: 'マニュライフ生命',
+      tel: '0120-063-730', telNote: 'コールセンター 平日9:00〜17:00',
       portal: { name: 'マイページ', url: 'https://www.manulife.co.jp/ja/policyholder.html' },
       top: 'https://www.manulife.co.jp/ja/policyholder/procedure.html',
       links: {
@@ -224,6 +252,7 @@ var HOKEN = {
     },
     {
       id: 'neofirst', name: '第一ネオ生命（旧ネオファースト生命）',
+      tel: '0120-312-201', telNote: 'コンタクトセンター 9:00〜17:00（日・祝を除く）',
       portal: { name: 'マイページ', url: 'https://neofirst.co.jp/customer/' },
       top: 'https://neofirst.co.jp/customer/procedure/',
       links: {
@@ -232,6 +261,8 @@ var HOKEN = {
     },
     {
       id: 'lifenet', name: 'ライフネット生命',
+      tel: '0120-205-566', telNote: 'コンタクトセンター 平日9:00〜20:00／土日祝9:00〜18:00',
+      extraTels: { claim: { tel: '0120-717-991', note: '保険金・給付金のご請求 平日9:00〜17:30' } },
       portal: { name: 'マイページ', url: 'https://www.lifenet-seimei.co.jp/customer/' },
       top: 'https://www.lifenet-seimei.co.jp/customer/',
       links: {
@@ -240,6 +271,7 @@ var HOKEN = {
     },
     {
       id: 'zurichlife', name: 'チューリッヒ生命',
+      tel: '0120-236-523', telNote: 'カスタマーケアセンター 月〜土9:00〜18:00',
       portal: { name: 'マイページ（Z-Life）', url: 'https://www.zurichlife.co.jp/customer/z-life/' },
       top: 'https://www.zurichlife.co.jp/vivr/list',
       links: {
