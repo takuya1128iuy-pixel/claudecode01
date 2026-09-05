@@ -37,6 +37,14 @@ cp .env.example .env
 
 ## 3. 反映
 
+手元にNode環境がなければ、GitHub Actions から実行できる。
+リポジトリの **Settings → Secrets and variables → Actions** で
+`LINE_CHANNEL_ACCESS_TOKEN` を登録し、**Actions → 「リッチメニューをLINEに反映」→ Run workflow**
+で `deploy` / `inspect` / `clear` を選んで押すだけ（`.github/workflows/deploy-richmenu.yml`）。
+トークンはSecretsに入るので、手元に置かなくてよい。
+
+手元で動かす場合:
+
 ```bash
 npm run build     # out/*.png を作る（2500x1686）
 npm run deploy    # 作成 → 画像アップ → エイリアス登録 → デフォルト設定

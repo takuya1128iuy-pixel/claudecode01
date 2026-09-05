@@ -1,0 +1,87 @@
+name: リッチメニューをLINEに反映
+
+# 手で押したときだけ動く。うっかり流れて本番のメニューが差し替わらないように、
+# push では起動しない。
+#
+# 事前に一度だけ:
+#   Settings → Secrets and variables → Actions → New repository secret
+#   Name: LINE_CHANNEL_ACCESS_TOKEN
+#   Value: LINE Developers で発行した「チャネルアクセストークン（長期）」
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 何をするか
+        required: true
+        default: deploy
+        type: choice
+        options:
+          - deploy   # 画像を作ってリッチメニューを反映する
+          - inspect  # いま登録されている内容を見るだけ
+          - clear    # 登録済みのリッチメニューとエイリアスを全部消す
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: トークンが設定されているか確認する
+        run: |
+          if [ -z "$LINE_CHANNEL_ACCESS_TOKEN" ]; then
+            echo "::error::LINE_CHANNEL_ACCESS_TOKEN が未設定です。リポジトリの Settings → Secrets and variables → Actions で登録してください。"
+            exit 1
+          fi
+
+      - name: 依存を入れる
+        working-directory: line-richmenu
+        run: npm ci
+
+      - name: いまの登録内容を見る
+        if: inputs.mode == 'inspect'
+        working-directory: line-richmenu
+        run: npm run inspect
+
+      # 画像の撮影にブラウザが要る。ランナーに Chrome があればそれを使い、
+      # 無いときだけ playwright で chromium を落とす。
+      - name: ブラウザを用意する
+        if: inputs.mode == 'deploy'
+        run: |
+          if [ -x /usr/bin/google-chrome ]; then
+            echo "CHROMIUM_PATH=/usr/bin/google-chrome" >> "$GITHUB_ENV"
+            echo "ランナーの Chrome を使います"
+          else
+            npx --yes playwright@1.63.0 install --with-deps chromium
+          fi
+
+      - name: 画像を作る
+        if: inputs.mode == 'deploy'
+        working-directory: line-richmenu
+        run: npm run build
+
+      - name: 作った画像を残す
+        if: inputs.mode == 'deploy'
+        uses: actions/upload-artifact@v4
+        with:
+          name: richmenu-images
+          path: line-richmenu/out/*.png
+
+      - name: LINEに反映する
+        if: inputs.mode == 'deploy'
+        working-directory: line-richmenu
+        run: npm run deploy
+
+      - name: 全部消す
+        if: inputs.mode == 'clear'
+        working-directory: line-richmenu
+        run: npm run clear -- --yes
+
+      - name: 反映後の状態を出す
+        if: inputs.mode != 'inspect'
+        working-directory: line-richmenu
+        run: npm run inspect
