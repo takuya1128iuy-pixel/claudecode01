@@ -85,6 +85,14 @@ jobs:
             npx --yes playwright@1.63.0 install --with-deps chromium
           fi
 
+      # ランナーには日本語フォントが入っていない。無いまま撮ると文字が□になる。
+      - name: 日本語フォントを入れる
+        if: steps.mode.outputs.mode == 'deploy'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-list :lang=ja family | head -3
+
       - name: 画像を作る
         if: steps.mode.outputs.mode == 'deploy'
         working-directory: line-richmenu

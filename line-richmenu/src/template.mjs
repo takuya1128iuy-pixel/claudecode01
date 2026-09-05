@@ -37,7 +37,7 @@ export function toHtml(menu) {
   html, body { width:${image.width}px; height:${image.height}px; }
   body {
     position:relative; background:${THEME.bg}; overflow:hidden;
-    font-family:"Hiragino Sans","Noto Sans JP","IPAGothic","Yu Gothic",sans-serif;
+    font-family:"Hiragino Sans","Noto Sans JP","Noto Sans CJK JP","IPAGothic","Yu Gothic",sans-serif;
     -webkit-font-smoothing:antialiased;
   }
   .tab { position:absolute; display:flex; align-items:center; justify-content:center; font-size:82px; font-weight:700; letter-spacing:.04em; }
