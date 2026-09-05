@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>保険のお手続きナビ（デモ）</title>
-<meta name="description" content="ご加入中の保険会社のお手続きページを、手続きの種類から探せるデモページです。">
-<meta property="og:title" content="保険のお手続きナビ（デモ）">
-<meta property="og:description" content="保険会社ごとのお手続き方法と手順をまとめてご案内します。">
+<title>てつづきコンパス</title>
+<meta name="description" content="ご加入中の保険会社のお手続きページを、手続きの種類から探せます。">
+<meta property="og:title" content="てつづきコンパス">
+<meta property="og:description" content="保険会社ごとのお手続き方法と窓口をまとめてご案内します。">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,7 +18,8 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>
       </svg>
-      保険のお手続きナビ
+      <span class="brand-name">てつづきコンパス</span>
+      <span class="brand-sub"></span>
     </div>
     <nav class="nav">
       <button type="button" data-nav="top">トップ</button>
@@ -32,13 +33,15 @@
 
 <footer class="wrap">
   <div class="disclaimer">
-    <p><strong>デモページです。</strong>掲載しているリンクは各保険会社の公開ページを集めたものです。
-      内容やURLは変更されることがあるため、お手続きの可否・必要書類は必ず各社の公式サイトまたはコールセンターでご確認ください。</p>
+    <p>掲載しているリンクと電話番号は各保険会社の公開ページからまとめたものです。
+      内容は変更されることがあるため、お手続きの可否・必要書類は必ず各社の公式サイトまたはコールセンターでご確認ください。
+      「用意するもの」「かかる時間」は一般的な目安で、ご契約内容により異なります。</p>
     <p>個人情報の入力は不要です。このページは入力内容をどこにも送信しません。
-      データ更新日: <span id="updated"></span></p>
+      リンク最終確認日: <span id="updated"></span></p>
   </div>
 </footer>
 
+<script src="tenants.js"></script>
 <script src="data.js"></script>
 <script src="app.js"></script>
 </body>
