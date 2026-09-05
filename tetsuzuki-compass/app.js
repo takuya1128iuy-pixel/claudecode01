@@ -80,12 +80,11 @@
     return html + '</div>';
   }
 
-  // 収録リンクをいつ全件確認したか。ここが古いと信用に関わるので目立つ場所に出す。
-  function freshness() {
-    var count = HOKEN.companies.reduce(function (n, c) {
-      return n + 1 + (c.portal ? 1 : 0) + Object.keys(c.links || {}).length;
-    }, 0);
-    return '<span class="freshness">✓ リンク' + count + '件を' + esc(HOKEN.checkedAt) + 'に全件確認</span>';
+  // リンクを保守していることは伝えたいが、確認件数や日付は運用側の言葉なので出さない。
+  // 切れていたら教えてもらう、という導線にしておく。
+  function linkNote() {
+    return '<p class="link-note">各保険会社のリンクは随時確認しておりますが、' +
+      'つながらない場合は' + esc(tenant.agent || '担当者') + 'までお知らせください。</p>';
   }
 
   // 商談中に配色を見せ替えるための切り替え。?preview=1 のときだけ出す。
@@ -131,7 +130,7 @@
         '<span class="pill">個人情報の入力は一切不要です</span>' +
         '<h1>' + esc(tenant.siteName) + '</h1>' +
         '<p class="lead">ご希望のお手続きを選択してください。ご加入中の保険会社のお手続き方法をご案内します。</p>' +
-        '<p style="margin:10px 0 0">' + freshness() + '</p>' +
+        linkNote() +
       '</div>' +
       '<h2>手続きを選ぶ</h2>' + tiles();
   }
