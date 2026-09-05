@@ -1,0 +1,19 @@
+{
+  "name": "line-richmenu",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LINE公式アカウントのリッチメニューを、画像生成からAPI反映までコードで作り直すための道具一式",
+  "type": "module",
+  "scripts": {
+    "test": "node test/run-e2e.mjs",
+    "build": "node src/build-images.mjs",
+    "deploy": "node src/deploy.mjs",
+    "inspect": "node src/inspect.mjs",
+    "clear": "node src/clear.mjs",
+    "link": "node src/link.mjs",
+    "webhook": "node src/webhook.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.63.0"
+  }
+}

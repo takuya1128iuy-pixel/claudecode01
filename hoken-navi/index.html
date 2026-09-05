@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>保険のお手続きナビ（デモ）</title>
+<meta name="description" content="ご加入中の保険会社のお手続きページを、手続きの種類から探せるデモページです。">
+<meta property="og:title" content="保険のお手続きナビ（デモ）">
+<meta property="og:description" content="保険会社ごとのお手続き方法と手順をまとめてご案内します。">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>
+      </svg>
+      保険のお手続きナビ
+    </div>
+    <nav class="nav">
+      <button type="button" data-nav="top">トップ</button>
+      <button type="button" data-nav="procedures">手続きを選ぶ</button>
+      <button type="button" data-nav="contact">お問い合わせ</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="app" aria-live="polite"></main>
+
+<footer class="wrap">
+  <div class="disclaimer">
+    <p><strong>デモページです。</strong>掲載しているリンクは各保険会社の公開ページを集めたものです。
+      内容やURLは変更されることがあるため、お手続きの可否・必要書類は必ず各社の公式サイトまたはコールセンターでご確認ください。</p>
+    <p>個人情報の入力は不要です。このページは入力内容をどこにも送信しません。
+      データ更新日: <span id="updated"></span></p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
