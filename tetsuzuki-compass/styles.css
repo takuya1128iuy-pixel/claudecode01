@@ -345,10 +345,12 @@ p.lead { color: var(--muted); margin: 0 0 4px; font-size: 14px; }
 }
 
 /* 手続きの前に知っておきたいこと */
-.info { display: grid; gap: 14px; margin: 4px 0 0; }
+.info { display: grid; gap: 16px; margin: 4px 0 0; }
+.info--divided { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 16px; }
+.info-title { font-size: 15px; margin: 0; color: var(--brand); }
 .info h3 {
   font-size: 13px; margin: 0 0 6px; color: var(--muted);
-  letter-spacing: .06em; font-weight: 700;
+  letter-spacing: .04em; font-weight: 700;
 }
 .info ul { margin: 0; padding-left: 1.2em; }
 .info li { font-size: 14px; margin-bottom: 4px; }

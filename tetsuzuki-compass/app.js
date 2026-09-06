@@ -164,7 +164,7 @@
       '<div class="card">' +
         '<div class="result-head"><span class="ic">' + p.icon + '</span><h2 style="margin:0">' + esc(p.label) + '</h2></div>' +
         '<p class="lead">' + esc(p.desc) + '</p>' +
-        infoBlock(p) +
+        infoBlock(p, { divider: true }) +
       '</div>' +
       '<h2>ご加入中の保険会社を選ぶ</h2>' +
       '<input class="search" id="q" type="search" placeholder="会社名で絞り込む（例: オリックス）" value="' + esc(state.query) + '">' +
@@ -172,13 +172,16 @@
             : '<p class="empty">該当する保険会社が見つかりませんでした。会社名を短く入れてお試しください。</p>');
   }
 
-  // リンク先に飛ぶ前に知っておきたいこと。会社ごとの差はあるので目安として出す。
-  function infoBlock(p) {
+  // リンク先に進む前に知っておきたいこと。会社ごとの差はあるので目安として出す。
+  // 見出しはお客さまが読む言葉づかいに合わせる。
+  function infoBlock(p, opts) {
     if (!p.needs && !p.duration && !p.pitfalls) return '';
-    var html = '<div class="info">';
-    if (p.needs) html += '<div><h3>用意するもの</h3>' + list(p.needs) + '</div>';
-    if (p.duration) html += '<div><h3>かかる時間の目安</h3><p>' + esc(p.duration) + '</p></div>';
-    if (p.pitfalls) html += '<div><h3>つまずきやすいところ</h3>' + list(p.pitfalls) + '</div>';
+    var o = opts || {};
+    var html = '<div class="info' + (o.divider ? ' info--divided' : '') + '">';
+    html += '<h2 class="info-title">お手続きの前に</h2>';
+    if (p.needs) html += '<div><h3>ご用意いただくもの</h3>' + list(p.needs) + '</div>';
+    if (p.duration) html += '<div><h3>所要時間の目安</h3><p>' + esc(p.duration) + '</p></div>';
+    if (p.pitfalls) html += '<div><h3>ご注意いただきたいこと</h3>' + list(p.pitfalls) + '</div>';
     return html + '</div>';
   }
 
